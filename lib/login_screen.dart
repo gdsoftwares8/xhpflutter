@@ -233,7 +233,7 @@ class _Login extends State<Login> {
                                           autofocus: true,
                                           maxLines: 1,
                                           maxLength: 20,
-                                          validator: (val) => val!.isEmpty
+                                          validator: (val) => val.isEmpty
                                               ? GlobalVars.ENTER_VALID_EMAIL
                                               : null,
                                           textAlign: TextAlign.center,

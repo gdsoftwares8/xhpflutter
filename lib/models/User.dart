@@ -3,11 +3,11 @@ import 'dart:developer';
 class User {
   bool gender = false;
   bool isVerified = false;
-  String? id;
-  String? name;
-  String? email;
-  String? phone;
-  String? loginToken;
+  String id;
+  String name;
+  String email;
+  String phone;
+  String loginToken;
 
   User( {
     this.id, this.name, this.email, this.phone

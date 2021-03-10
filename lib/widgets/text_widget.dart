@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TextWidget extends StatelessWidget {
   final String text;
   final double textSize;
-  final double? width;
+  final double width;
   final EdgeInsets padding;
   final EdgeInsets margin;
   final Color color;
@@ -11,7 +11,7 @@ class TextWidget extends StatelessWidget {
   final FontWeight fontWeight;
   final TextAlign textAlign;
   final String fontFamily;
-  final BoxDecoration? decoration;
+  final BoxDecoration decoration;
   final TextDecoration textDecoration;
 
   TextWidget(

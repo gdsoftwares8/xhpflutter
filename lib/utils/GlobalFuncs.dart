@@ -26,7 +26,7 @@ class GlobalFunc {
       final prefs = await SharedPreferences.getInstance();
       prefs.setBool(GlobalVars.isLogin, muser.isVerified ? true : false);
       prefs.setBool(GlobalVars.isVerified, muser.isVerified);
-      if(muser.id!=null && muser.id!.isNotEmpty)
+      if(muser.id!=null && muser.id.isNotEmpty)
         prefs.setString(GlobalVars.id, muser.id);
       prefs.setString(GlobalVars.name, muser.name);
       prefs.setString(GlobalVars.email, muser.email);
@@ -67,7 +67,7 @@ class GlobalFunc {
     );*/
   }
 
-  static Widget getAnimatoreButton(VoidCallback? click) {
+  static Widget getAnimatoreButton(VoidCallback click) {
     return GestureDetector(
       onTap: click,
       child: Container(
@@ -120,7 +120,7 @@ class GlobalFunc {
       stops: GlobalVars.gradientStops,
     );
   }
-  static Widget getCircleText(String text, Color mcolor, bool isSelected, VoidCallback? click) {
+  static Widget getCircleText(String text, Color mcolor, bool isSelected, VoidCallback click) {
     return GestureDetector(
       onTap: click,
       child: Container(
