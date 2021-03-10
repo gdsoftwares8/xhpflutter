@@ -1,19 +1,19 @@
 
 class LoginModel {
-  int status;
-  String message;
-  String userID;
-  bool isVerified;
-  bool blocked;
-  bool deleted;
-  String pwResetToken;
-  String pwResetOTP;
-  int id;
-  String name;
-  String email;
-  String phone;
-  String password;
-  String loginToken;
+  int? status;
+  String? message;
+  String? userID;
+  bool isVerified = false;
+  bool blocked = false;
+  bool deleted = false;
+  String? pwResetToken;
+  String? pwResetOTP;
+  int? id;
+  String? name;
+  String? email;
+  String? phone;
+  String? password;
+  String? loginToken;
 
 
   LoginModel.fromJson(Map<String, dynamic> json) {

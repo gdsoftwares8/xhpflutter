@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextWidget extends StatelessWidget {
+class ButtonWidget extends StatelessWidget {
   final String text;
   final double textSize;
   final double? width;
@@ -13,23 +13,31 @@ class TextWidget extends StatelessWidget {
   final String fontFamily;
   final BoxDecoration? decoration;
   final TextDecoration textDecoration;
+  final VoidCallback? onPressed;
 
-  TextWidget(
-      {@required this.text = "",
-      this.textSize = 12,
-      this.width,
-      this.decoration,
-      this.padding = const EdgeInsets.all(0.0),
-      this.margin = const EdgeInsets.all(0.0),
-      this.color = Colors.black,
-      this.fontWeight = FontWeight.normal,
-      this.backgroundColor = Colors.transparent,
-      this.textAlign = TextAlign.start,
-      this.fontFamily = FontStyles.fontName,
-      this.textDecoration = TextDecoration.none});
+  const ButtonWidget(
+      {@required this.text = "Blank",
+        @required this.onPressed,
+        this.textSize = 12,
+        this.width,
+        this.decoration,
+        this.padding = const EdgeInsets.all(0.0),
+        this.margin = const EdgeInsets.all(0.0),
+        this.color = Colors.white,
+        this.fontWeight = FontWeight.normal,
+        this.backgroundColor = Colors.transparent,
+        this.textAlign = TextAlign.start,
+        this.fontFamily = FontStyles.fontName,
+        this.textDecoration = TextDecoration.none});
 
   @override
   Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+
+      child: Text(text ,
+      style: Theme.of(context).textTheme.bodyText2,),
+    );
     return Container(
       width: width,
       decoration: decoration,

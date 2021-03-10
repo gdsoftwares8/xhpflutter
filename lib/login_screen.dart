@@ -21,8 +21,8 @@ class Login extends StatefulWidget {
 
 class _Login extends State<Login> {
   SharedPref sharedPref = SharedPref();
-  String _email;
-  String _password;
+  String _email = "";
+  String _password = "";
   bool _loading = false;
 
   @override
@@ -199,7 +199,7 @@ class _Login extends State<Login> {
   }
 
   showPasswordRecovery() {
-    String email;
+    String email = "";
 
     return showDialog(
         context: context,
@@ -233,7 +233,7 @@ class _Login extends State<Login> {
                                           autofocus: true,
                                           maxLines: 1,
                                           maxLength: 20,
-                                          validator: (val) => val.isEmpty
+                                          validator: (val) => val!.isEmpty
                                               ? GlobalVars.ENTER_VALID_EMAIL
                                               : null,
                                           textAlign: TextAlign.center,
@@ -358,7 +358,7 @@ class _Login extends State<Login> {
       print(json);
       if (json['Status'] == 1) {
         User user = User.fromJson(json['Data']);
-        GlobalFunc.moveuserAccordingLoginState(user, context, sharedPref);
+      //  GlobalFunc.moveuserAccordingLoginState(user, context, sharedPref);
 
         /* final prefs = await SharedPreferences.getInstance();
         prefs.setBool(GlobalVars.isLogin, true);

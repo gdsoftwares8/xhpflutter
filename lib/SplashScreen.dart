@@ -20,13 +20,13 @@ class SplashScreen extends StatelessWidget {
           child: CircleAvatar(
             backgroundColor: GlobalFunc.colorFromHex('#522B83'),
             radius: 100,
-            child: Image.asset('assets/Logo.png'),
+            child: Image.asset('assets/app_icon.png'),
           ),
         )
     );
   }
 
-  Future<bool> checkUserAndNavigate(BuildContext context) async {
+   checkUserAndNavigate(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     print("Anil ${prefs.getBool(GlobalVars.isLogin)}");
     // return prefs.getBool(GlobalVars.isLogin);

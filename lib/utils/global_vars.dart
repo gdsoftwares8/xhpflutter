@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 import 'GlobalFuncs.dart';
 
 class GlobalVars {
@@ -49,7 +51,6 @@ class GlobalVars {
   static String SELECT_PLAYLIST_TO_PLAY = "Seleziona la playlist per riprodurre l'audio";
   static String NO_MORE_SONG_IN_PLAYLIST = "Nessun altro brano nella playlist corrente";
 
-  static int TOTAL_SLOTS = 8;
 
   static List<Color> colorLib = [
     GlobalFunc.colorFromHex('#AB5952'),
@@ -65,7 +66,20 @@ class GlobalVars {
   static Color borderColor = GlobalFunc.colorFromHex('#707070');
   static Color widgetColor = GlobalFunc.colorFromHex('#7B52AB');
   static final Color opacityColor = Color.fromRGBO(123, 82, 171, 0.94);
-  static final Color primaryColor = Color(0xFF7B52AB);
+  static final MaterialColor primaryColor = MaterialColor(0xFF7B52AB,
+      const <int, Color> {
+        50: const Color(0xFF7B52AB),
+        100: const Color(0xFF7B52AB),
+        200: const Color(0xFF7B52AB),
+        300: const Color(0xFF7B52AB),
+        400: const Color(0xFF7B52AB),
+        500: const Color(0xFF7B52AB),
+        600: const Color(0xFF7B52AB),
+        700: const Color(0xFF7B52AB),
+        800: const Color(0xFF7B52AB),
+        900: const Color(0xFF7B52AB),
+      });
+  static final Color accentColor = Color(0xFF736881);
   static final Color primaryColorDark = Color(0xFF522B83);
 
   static List<Color> gradientColors = [

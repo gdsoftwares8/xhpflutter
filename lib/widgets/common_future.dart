@@ -6,7 +6,7 @@ class CommonFuture<T> extends StatelessWidget {
   final Widget Function(T data) data;
   final Future<T> future;
   final T initialData;
-  const CommonFuture({this.future, this.initialData, this.data});
+  const CommonFuture({required this.future, required this.initialData, required this.data});
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<T>(
@@ -17,7 +17,7 @@ class CommonFuture<T> extends StatelessWidget {
           if (snapshot.hasError) {
             return TextWidget(text: 'Error Occured');
           }
-          return data(snapshot.data);
+          return data(snapshot.data!);
         } else {
           return Center(
             child: CircularProgressIndicator(),
