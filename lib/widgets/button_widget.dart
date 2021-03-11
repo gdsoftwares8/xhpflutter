@@ -1,10 +1,10 @@
-/*
+
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
   final double textSize;
-  final double? width;
+  final double width;
   final EdgeInsets padding;
   final EdgeInsets margin;
   final Color color;
@@ -12,9 +12,9 @@ class ButtonWidget extends StatelessWidget {
   final FontWeight fontWeight;
   final TextAlign textAlign;
   final String fontFamily;
-  final BoxDecoration? decoration;
+  final BoxDecoration decoration;
   final TextDecoration textDecoration;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
 
   const ButtonWidget(
       {@required this.text = "Blank",
@@ -34,8 +34,9 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+    
       onPressed: onPressed,
-
+ style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.orange) ),
       child: Text(text ,
       style: Theme.of(context).textTheme.bodyText2,),
     );
@@ -73,4 +74,3 @@ class FontStyles {
   static FontWeight extraBold = FontWeight.w800;
   static FontWeight black = FontWeight.w900;
 }
-*/

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:device_info/device_info.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,8 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:xhp/utils/GlobalFuncs.dart';
 import 'package:xhp/utils/httpUtils.dart';
-import 'Utils/SharedPref.dart';
-import 'Utils/global_vars.dart';
+import 'utils/SharedPref.dart';
+import 'utils/global_vars.dart';
 import 'models/User.dart';
 
 class Login extends StatefulWidget {
