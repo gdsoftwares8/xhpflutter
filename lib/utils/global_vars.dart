@@ -25,32 +25,11 @@ class GlobalVars {
   static String phone = "phone";
   static String password = "password";
 
-  // fields for global managing
-  static int CurrentPlaylist_Position = -1;
-  static int CurrentSong_Position = -1;
-
-  static String NO_SONG_FOUND = "Nessuna canzone trovata";
-  static String NO_PLAYLIST_FOUND = "Nessuna playlist trovata";
-  static String PLAYLIST_NAME_NEEDED = "È necessario il nome della playlist";
-  static String TAP_ON_PLAYLIST_TO_ADD_SONG = "Tocca qualsiasi playlist per aggiungere una canzone";
-  static String PLAYLIST_CREATED = "Playlist creata";
-  static String ERROR_PLAYLIST_CREATING = "Errore nella creazione della playlist";
-  static String SELECT_ATLEAST_ONE_SONG = "Seleziona almeno una canzone";
-  static String SONG_ADDED = "Canzone aggiunta";
-  static String ERROR_SONG_ADDING = "Errore durante l'aggiunta del brano";
-  static String NO_CATEGORY_FOUND = "Nessuna categoria trovata";
-  static String TRACKS = "brani";
-  static String ENTER_NAME = "Inserisci il nome.";
-  static String ENTER_VALID_EMAIL = "Inserire una email valida, grazie.";
-  static String ENTER_PASSWORD = "Per favore, inserisci la password.";
-  static String ENTER_CONFIRM_PASSWORD = "Immettere confermare la password.";
-  static String PASSWORD_NOT_MATCHED = "Password e Conferma password non corrispondono";
-  static String ALL_FIELDS_ARE_REQUIRED = "Tutti i campi sono obbligatori. Immettere informazioni valide";
-  static String PLAYER_ERROR = "Errore del giocatore";
-  static String EMPTY_SLOT = "Slot vuoto";
-  static String SELECT_PLAYLIST_TO_PLAY = "Seleziona la playlist per riprodurre l'audio";
-  static String NO_MORE_SONG_IN_PLAYLIST = "Nessun altro brano nella playlist corrente";
-
+  static String ENTER_NAME = "Enter valid name";
+  static String ENTER_VALID_EMAIL = "Enter valid email";
+  static String ENTER_PASSWORD = "Enter valid password";
+  static String ENTER_CONFIRM_PASSWORD = "Enter valid confirm password";
+  static String PASSWORD_NOT_MATCHED = "Password and Confirm password not matched";
 
   static List<Color> colorLib = [
     GlobalFunc.colorFromHex('#AB5952'),
@@ -79,7 +58,7 @@ class GlobalVars {
         800: const Color(0xFF7B52AB),
         900: const Color(0xFF7B52AB),
       });
-  static final Color accentColor = Color(0xFF736881);
+  static final Color accentColor = Color(0xFF3a1172);
   static final Color primaryColorDark = Color(0xFF522B83);
 
   static List<Color> gradientColors = [

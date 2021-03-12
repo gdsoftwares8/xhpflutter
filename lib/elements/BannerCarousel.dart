@@ -41,9 +41,7 @@ class _BannerCarouselWidgetState extends State<BannerCarouselWidget> {
                 viewportFraction: 0.95,
               ),
               itemCount: widget.banners.length,
-              itemBuilder: (context, index) {
-                return BannerWidget(imageurl: widget.banners[index]);
-              },
+              itemBuilder: (context, index) => BannerWidget(imageurl: widget.banners[index]),
             ),
           );
   }

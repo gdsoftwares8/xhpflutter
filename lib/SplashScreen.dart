@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xhp/utils/GlobalFuncs.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
 
 class SplashScreen extends StatelessWidget {
 
@@ -15,13 +16,9 @@ class SplashScreen extends StatelessWidget {
     });
     return new Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: const Color(0xFF522B83),
+     //   backgroundColor: const Color(0xFF522B83),
         body: Center(
-          child: CircleAvatar(
-            backgroundColor: GlobalFunc.colorFromHex('#522B83'),
-            radius: 100,
-            child: Image.asset('assets/app_icon.png'),
-          ),
+          child: GlobalWidgets.getCircleAppIcon(),
         )
     );
   }
@@ -32,12 +29,12 @@ class SplashScreen extends StatelessWidget {
     // return prefs.getBool(GlobalVars.isLogin);
     bool isLogin = prefs.getBool(GlobalVars.isLogin);
     bool isVerified = prefs.getBool(GlobalVars.isVerified);
-    GlobalFunc.log("isLogin $isLogin and isVerified $isVerified");
+    GlobalFunc.logPrint("isLogin $isLogin and isVerified $isVerified");
 
     /* if(isVerified == false)
     Navigator.popAndPushNamed(context, "/help_screen");
   else*/ if(isLogin == true)
-      Navigator.popAndPushNamed(context, "/menu");
+      Navigator.popAndPushNamed(context, "/login");
     else
       Navigator.popAndPushNamed(context, "/welcome");
   }

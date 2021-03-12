@@ -5,6 +5,7 @@ class ButtonWidget extends StatelessWidget {
   final String text;
   final double textSize;
   final double width;
+  final double height;
   final EdgeInsets padding;
   final EdgeInsets margin;
   final Color color;
@@ -19,13 +20,14 @@ class ButtonWidget extends StatelessWidget {
   const ButtonWidget(
       {@required this.text = "Blank",
         @required this.onPressed,
-        this.textSize = 12,
+        this.textSize = 15,
         this.width,
+        this.height = 50,
         this.decoration,
         this.padding = const EdgeInsets.all(0.0),
         this.margin = const EdgeInsets.all(0.0),
         this.color = Colors.white,
-        this.fontWeight = FontWeight.normal,
+        this.fontWeight = FontWeight.w600,
         this.backgroundColor = Colors.transparent,
         this.textAlign = TextAlign.start,
         this.fontFamily = FontStyles.fontName,
@@ -33,31 +35,34 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-    
-      onPressed: onPressed,
- style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.orange) ),
-      child: Text(text ,
-      style: Theme.of(context).textTheme.bodyText2,),
-    );
+    // return ElevatedButton(
+    //   onPressed: onPressed,
+    //   //style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.orange) ),
+    //   child: Text(text ),
+    // );
     return Container(
       width: width,
+      height: height,
       decoration: decoration,
-      // color: backgroundColor,
+        color: backgroundColor,
       padding: padding,
       // alignment: Alignment.ce,
       margin: margin,
-      child: Text(
-        text,
-        style: TextStyle(
-          decoration: textDecoration,
-          fontSize: textSize,
-          color: color,
-          fontWeight: fontWeight,
-          fontFamily: fontFamily,
-        ),
-        textAlign: textAlign,
-      ),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        //style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.orange) ),
+        child: Text(
+            text,
+          style: TextStyle(
+            decoration: textDecoration,
+            fontSize: textSize,
+            color: color,
+            fontWeight: fontWeight,
+            fontFamily: fontFamily,
+          ),
+          textAlign: textAlign,),
+      )
+
     );
   }
 }

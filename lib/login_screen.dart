@@ -9,6 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:xhp/utils/GlobalFuncs.dart';
 import 'package:xhp/utils/httpUtils.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
+import 'package:xhp/widgets/button_widget.dart';
 import 'utils/SharedPref.dart';
 import 'utils/global_vars.dart';
 import 'models/User.dart';
@@ -40,58 +42,34 @@ class _Login extends State<Login> {
               Container(
                   padding: EdgeInsets.only(top: 80.0),
                   alignment: Alignment.topCenter,
-                  decoration: BoxDecoration(
+                  /*decoration: BoxDecoration(
                     //color: Main.opacityColor,
                     image: DecorationImage(
-                      image: AssetImage("assets/login.png"),
+                      image: AssetImage("assets/app_icon.png"),
                       colorFilter: ColorFilter.mode(
                           Colors.deepPurple.withOpacity(0.7), BlendMode.srcATop),
                       fit: BoxFit.cover,
                     ),
-                  ),
+                  ),*/
                   child: Stack(
                     overflow: Overflow.clip,
                     children: <Widget>[
                       Column(
                         children: <Widget>[
-                          CircleAvatar(
-                            /*backgroundImage: AssetImage("assets/Logo.png"),
-                            backgroundColor: Colors.deepPurple[400],
-                            radius: 80,*/
-                              backgroundColor: GlobalFunc.colorFromHex('#522B83'),
-                              radius: 70,
-                              child: CircleAvatar(
-                                radius: 70,
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: AssetImage('assets/Logo.png'),
-                              )
-                          ),
+                          GlobalWidgets.getCircleAppIcon(radious: 100),
                           SizedBox(
                             height: 10,
                           ),
                           Container(
                             alignment: Alignment.topCenter,
                             child: Text(
-                              "WEBCHORUS",
+                              "Register",
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                              ),
+                              style: Theme.of(context).textTheme.headline2,
                             ),
                           ),
                           SizedBox(
                             height: 50.0,
-                          ),
-                          Text(
-                            "INIZIO",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24),
-                          ),
-                          SizedBox(
-                            height: 80,
                           ),
                         ],
                       ),
@@ -145,31 +123,18 @@ class _Login extends State<Login> {
                     SizedBox(
                       height: 30.0,
                     ),
-                    ButtonTheme(
-                      minWidth: 170,
-                      height: 50,
-                      child: RaisedButton(
-                        elevation: 0,
-                        onPressed: () {
-                          if (_email == "" || _email == null || !EmailValidator.validate(_email)) {
-                            GlobalFunc.showToast(GlobalVars.ENTER_VALID_EMAIL);
-                          } else if (_password == "" || _password == null) {
-                            GlobalFunc.showToast(GlobalVars.ENTER_PASSWORD);
-                          } else {
-                            postData();
-                          }
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        color: GlobalVars.opacityColor,
-                        child: Text(
-                          "ENTRA",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.0,
-                              letterSpacing: 2.0),
-                        ),
-                      ),
+                    ButtonWidget(
+                      text: "Login",
+                      width: 170,
+                      onPressed: () {
+                        if (_email == "" || _email == null || !EmailValidator.validate(_email)) {
+                          GlobalFunc.showToast(GlobalVars.ENTER_VALID_EMAIL);
+                        } else if (_password == "" || _password == null) {
+                          GlobalFunc.showToast(GlobalVars.ENTER_PASSWORD);
+                        } else {
+                          postData();
+                        }
+                      },
                     ),
                     SizedBox(
                       height: 15.0,
@@ -179,7 +144,7 @@ class _Login extends State<Login> {
                         showPasswordRecovery();
                       },
                       child: Text(
-                        "Hai dimenticato la password?",
+                        "forgot password?",
                         style: TextStyle(
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.normal,
@@ -279,7 +244,7 @@ class _Login extends State<Login> {
                         children: [
                           RichText(
                             text: TextSpan(
-                              text: 'ANNULLA',
+                              text: 'Cancel',
                               recognizer: new TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.of(context).pop();
@@ -291,7 +256,7 @@ class _Login extends State<Login> {
                           ),
                           RichText(
                             text: TextSpan(
-                              text: 'CONTINUA',
+                              text: 'Continue',
                               recognizer: new TapGestureRecognizer()
                                 ..onTap = () async {
                                   if (email == "" || email == null || !EmailValidator.validate(email)) {

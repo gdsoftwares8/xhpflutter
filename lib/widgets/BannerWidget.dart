@@ -13,7 +13,12 @@ class BannerWidget extends StatelessWidget {
               topRight: Radius.circular(10),
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),
-          child: Stack(
+          child: Image.network(
+            imageurl,
+            fit: BoxFit.fitHeight,
+            height: 400,
+          )
+        /*Stack(
             children: [
               Image.network(
                 imageurl,
@@ -30,7 +35,8 @@ class BannerWidget extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       child: Text("Xtras Health Plan")))
             ],
-          )),
+          )*/
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -17,9 +18,10 @@ class GlobalFunc {
     Fluttertoast.showToast(msg: msg);
   }
   
-  static log(String msg) {
-    log(msg);
+  static logPrint(String msg) {
+    log(""+msg);
   }
+
 
   static moveuserAccordingLoginState(User muser, BuildContext context, SharedPref sharedPref) async {
     if(muser!=null){
