@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xhp/pages/signup.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
 
@@ -49,7 +50,9 @@ class Home extends StatelessWidget {
               width: size.width * .60,
               child: ButtonWidget(
                 text: "Sign Up",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>SignUp()));
+                },
               ),
             ),
             SizedBox(height: 30),
