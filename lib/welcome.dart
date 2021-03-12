@@ -27,7 +27,7 @@ class Welcome extends StatelessWidget {
             ButtonWidget(
               text: "Sign Up",
               width: size.width * .60,
-              onPressed: () {},
+              onPressed: () { Navigator.pushNamed(context, "/signup"); },
             ),
             SizedBox(height: 30),
             TextWidget(text: "Terms and Conditions | Privacy | FSG | PDS")

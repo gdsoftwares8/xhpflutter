@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:xhp/SplashScreen.dart';
-import 'package:xhp/login_screen.dart';
+import 'package:xhp/pages/login.dart';
+import 'package:xhp/pages/signup.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'welcome.dart';
 
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       routes: {
-        "/login": (context) => Login(),
+        "/signup": (context) => SignUp(),
         "/welcome": (context) => Welcome(),
         "/login": (context) => Login()
       },
