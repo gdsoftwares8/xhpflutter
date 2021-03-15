@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:xhp/SplashScreen.dart';
 import 'package:xhp/pages/login.dart';
 import 'package:xhp/pages/signup.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'pages/home.dart';
+import 'provider/sign_up_provider.dart';
 import 'welcome.dart';
 
 void main() async {
@@ -20,7 +23,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SignUpProvider())
+      ],child:MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -65,9 +71,10 @@ class MyApp extends StatelessWidget {
       routes: {
         "/signup": (context) => SignUp(),
         "/welcome": (context) => Welcome(),
-        "/login": (context) => Login()
+        "/login": (context) => Login(),
+        "/home":(context)=> Home(),
       },
       home: SplashScreen(),
-    );
+    ));
   }
 }

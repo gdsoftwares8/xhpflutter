@@ -33,16 +33,16 @@ class _Login extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
-        body: _loading ? GlobalFunc.ProgressBar() :
-        SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                  padding: EdgeInsets.only(top: 80.0),
-                  alignment: Alignment.topCenter,
-                  /*decoration: BoxDecoration(
+    return Scaffold(
+      body: _loading
+          ? GlobalFunc.ProgressBar()
+          : SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                      padding: EdgeInsets.only(top: 80.0),
+                      alignment: Alignment.topCenter,
+                      /*decoration: BoxDecoration(
                     //color: Main.opacityColor,
                     image: DecorationImage(
                       image: AssetImage("assets/app_icon.png"),
@@ -51,115 +51,118 @@ class _Login extends State<Login> {
                       fit: BoxFit.cover,
                     ),
                   ),*/
-                  child: Stack(
-                    overflow: Overflow.clip,
-                    children: <Widget>[
-                      Column(
+                      child: Stack(
+                        overflow: Overflow.clip,
                         children: <Widget>[
-                          GlobalWidgets.getCircleAppIcon(radious: 100),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "Login",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline2,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 50.0,
+                          Column(
+                            children: <Widget>[
+                              GlobalWidgets.getCircleAppIcon(radious: 100),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                alignment: Alignment.topCenter,
+                                child: Text(
+                                  "Login",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.headline2,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 50.0,
+                              ),
+                            ],
                           ),
                         ],
-                      ),
-                    ],
-                  )),
-              Container(
-                margin: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    TextField(
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              //color: Main.primaryColor,
-                                width: 2.5,
-                                style: BorderStyle.solid)),
-                        hintText: 'E-mail*',
-                        hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      onChanged: (value) {
-                        try {
-                          _email = value.trim();
-                        } catch (e) {
-                          print(e);
-                          _email = value;
-                        }
-                      },
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextField(
-                      obscureText: true,
-                      obscuringCharacter: "*",
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              //color: Main.primaryColor,
-                                width: 2.5,
-                                style: BorderStyle.solid)),
-                        hintText: 'Password*',
-                        hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      onChanged: (value) {
-                        _password = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    ButtonWidget(
-                      text: "Login",
-                      width: 170,
-                      onPressed: () {
-                        if (_email == "" || _email == null || !EmailValidator.validate(_email)) {
-                          GlobalFunc.showToast(GlobalVars.ENTER_VALID_EMAIL);
-                        } else if (_password == "" || _password == null) {
-                          GlobalFunc.showToast(GlobalVars.ENTER_PASSWORD);
-                        } else {
-                          postData();
-                        }
-                      },
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    FlatButton(
-                      onPressed: () {
-                        showPasswordRecovery();
-                      },
-                      child: Text(
-                        "forgot password?",
-                        style: TextStyle(
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14.0,
-                            color: Color(0xFF222222)
+                      )),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        TextField(
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    //color: Main.primaryColor,
+                                    width: 2.5,
+                                    style: BorderStyle.solid)),
+                            hintText: 'E-mail*',
+                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          onChanged: (value) {
+                            try {
+                              _email = value.trim();
+                            } catch (e) {
+                              print(e);
+                              _email = value;
+                            }
+                          },
                         ),
-                      ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        TextField(
+                          obscureText: true,
+                          obscuringCharacter: "*",
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    //color: Main.primaryColor,
+                                    width: 2.5,
+                                    style: BorderStyle.solid)),
+                            hintText: 'Password*',
+                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          onChanged: (value) {
+                            _password = value;
+                          },
+                        ),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        ButtonWidget(
+                          text: "Login",
+                          width: 170,
+                          onPressed: () {
+                            if (_email == "" ||
+                                _email == null ||
+                                !EmailValidator.validate(_email)) {
+                              GlobalFunc.showToast(
+                                  GlobalVars.ENTER_VALID_EMAIL);
+                            } else if (_password == "" || _password == null) {
+                              GlobalFunc.showToast(GlobalVars.ENTER_PASSWORD);
+                            } else {
+                              Navigator.pushReplacementNamed(context, "/home");
+                              postData();
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        FlatButton(
+                          onPressed: () {
+                            showPasswordRecovery();
+                          },
+                          child: Text(
+                            "forgot password?",
+                            style: TextStyle(
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14.0,
+                                color: Color(0xFF222222)),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      );
+                  )
+                ],
+              ),
+            ),
+    );
   }
 
   showPasswordRecovery() {
@@ -211,20 +214,19 @@ class _Login extends State<Login> {
                                               hintStyle: TextStyle(
                                                   color: Colors.white
                                                       .withOpacity(.5)),
-                                              hintText:
-                                              'E-mail*',
+                                              hintText: 'E-mail*',
                                               enabledBorder:
-                                              UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: GlobalFunc
-                                                          .colorFromHex(
-                                                          '#B0C3B2'))),
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: GlobalFunc
+                                                              .colorFromHex(
+                                                                  '#B0C3B2'))),
                                               focusedBorder:
-                                              UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: GlobalFunc
-                                                          .colorFromHex(
-                                                          '#B0C3B2')))),
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: GlobalFunc
+                                                              .colorFromHex(
+                                                                  '#B0C3B2')))),
                                           obscureText: false,
                                           onChanged: (text) {
                                             email = text.trim();
@@ -259,11 +261,14 @@ class _Login extends State<Login> {
                               text: 'Continue',
                               recognizer: new TapGestureRecognizer()
                                 ..onTap = () async {
-                                  if (email == "" || email == null || !EmailValidator.validate(email)) {
-                                    GlobalFunc.showToast(GlobalVars.ENTER_VALID_EMAIL);
+                                  if (email == "" ||
+                                      email == null ||
+                                      !EmailValidator.validate(email)) {
+                                    GlobalFunc.showToast(
+                                        GlobalVars.ENTER_VALID_EMAIL);
                                     return;
                                   }
-                                  postPasswordRecovery(email,context);
+                                  postPasswordRecovery(email, context);
                                   // _CreatePlayList(playListName);
                                 },
                             ),
@@ -284,7 +289,7 @@ class _Login extends State<Login> {
     parameterData.putIfAbsent("email", () => _email);
     parameterData.putIfAbsent("password", () => _password);
     parameterData.putIfAbsent("firebaseInstanceID", () => "blank");
-    if(Platform.isAndroid) {
+    if (Platform.isAndroid) {
       var androidInfo = await DeviceInfoPlugin().androidInfo;
       var release = androidInfo.version.release;
       var sdkInt = androidInfo.version.sdkInt;
@@ -292,7 +297,8 @@ class _Login extends State<Login> {
       var model = androidInfo.model;
       print('Android $release (SDK $sdkInt), $manufacturer $model');
       parameterData.putIfAbsent("deviceType", () => "android");
-      parameterData.putIfAbsent("deviceName", () => "Android $manufacturer $model");
+      parameterData.putIfAbsent(
+          "deviceName", () => "Android $manufacturer $model");
       parameterData.putIfAbsent("osVersion", () => "$sdkInt");
     }
 
@@ -305,15 +311,15 @@ class _Login extends State<Login> {
       print('$systemName $version, $name $model');
 
       parameterData.putIfAbsent("deviceType", () => "ios");
-      parameterData.putIfAbsent("deviceName", () => "$systemName $version, $name $model");
+      parameterData.putIfAbsent(
+          "deviceName", () => "$systemName $version, $name $model");
       parameterData.putIfAbsent("osVersion", () => "$version");
     }
 
     updateLoadingState(true);
 
     try {
-      http.Response res = await HttpUtils.getClient().post(
-          GlobalVars.LOGIN_URL,
+      http.Response res = await HttpUtils.getClient().post(GlobalVars.LOGIN_URL,
           headers: HttpUtils.getHeaders(),
           body: jsonEncode(parameterData)); // post api call
       updateLoadingState(false);
@@ -388,7 +394,4 @@ class _Login extends State<Login> {
       return Future.error('Unexpected error 😢');
     }
   }
-
 }
-
-
