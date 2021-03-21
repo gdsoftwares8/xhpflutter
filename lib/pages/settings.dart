@@ -8,7 +8,7 @@ class Settings extends StatelessWidget {
       body:SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[

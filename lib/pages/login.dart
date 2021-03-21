@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:xhp/models/User.dart';
 import 'package:xhp/utils/GlobalFuncs.dart';
@@ -14,6 +15,7 @@ import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/utils/httpUtils.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/button_widget.dart';
+import 'package:xhp/widgets/text_widget.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -88,7 +90,7 @@ class _Login extends State<Login> {
                                     //color: Main.primaryColor,
                                     width: 2.5,
                                     style: BorderStyle.solid)),
-                            hintText: 'E-mail*',
+                            hintText: 'Username*',
                             hintStyle: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           onChanged: (value) {
@@ -128,14 +130,12 @@ class _Login extends State<Login> {
                           width: 170,
                           onPressed: () {
                             if (_email == "" ||
-                                _email == null ||
-                                !EmailValidator.validate(_email)) {
+                                _email == null ) {
                               GlobalFunc.showToast(
                                   GlobalVars.ENTER_VALID_EMAIL);
                             } else if (_password == "" || _password == null) {
                               GlobalFunc.showToast(GlobalVars.ENTER_PASSWORD);
                             } else {
-                              Navigator.pushReplacementNamed(context, "/home");
                               postData();
                             }
                           },
@@ -172,6 +172,7 @@ class _Login extends State<Login> {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
+            
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)), //this right here
             child: Container(
@@ -214,7 +215,7 @@ class _Login extends State<Login> {
                                               hintStyle: TextStyle(
                                                   color: Colors.white
                                                       .withOpacity(.5)),
-                                              hintText: 'E-mail*',
+                                              hintText: 'Username*',
                                               enabledBorder:
                                                   UnderlineInputBorder(
                                                       borderSide: BorderSide(
@@ -286,9 +287,9 @@ class _Login extends State<Login> {
 
   Future postData() async {
     Map<String, dynamic> parameterData = Map();
-    parameterData.putIfAbsent("email", () => _email);
+    parameterData.putIfAbsent("username", () => _email);
     parameterData.putIfAbsent("password", () => _password);
-    parameterData.putIfAbsent("firebaseInstanceID", () => "blank");
+    //parameterData.putIfAbsent("firebaseInstanceID", () => "blank");
     if (Platform.isAndroid) {
       var androidInfo = await DeviceInfoPlugin().androidInfo;
       var release = androidInfo.version.release;
@@ -326,8 +327,9 @@ class _Login extends State<Login> {
 
       var json = jsonDecode(res.body);
       print(json);
-      if (json['Status'] == 1) {
+      if (json['status'] == 1) {
         User user = User.fromJson(json['Data']);
+        Navigator.pushReplacementNamed(context, "/home");
         //  GlobalFunc.moveuserAccordingLoginState(user, context, sharedPref);
 
         /* final prefs = await SharedPreferences.getInstance();
@@ -336,7 +338,15 @@ class _Login extends State<Login> {
         prefs.setString(GlobalVars.id, json['Data']['userID']);
         Navigator.pushNamedAndRemoveUntil(context, "/category", (route) => false);*/
       } else {
-        GlobalFunc.showToast(json['Message']);
+        
+        showDialog(
+                            context: context,
+                            builder: (context) => new AlertDialog(
+                              title: TextWidget(text:"Incorrect Details",textSize: 16),
+                              content: Text('Please Enter correct details *'),
+                             
+                            ),
+                          );
       }
     } on SocketException {
       updateLoadingState(false);

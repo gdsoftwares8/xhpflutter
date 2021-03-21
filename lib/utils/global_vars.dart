@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'GlobalFuncs.dart';
 
 class GlobalVars {
-  static String URL = "http://dev.gdsoftwares.com:3003/";
+  static String URL = "http://rupeestreet.com/xhpbackend/";
   static String BASE_URL = URL+"api/";
   static String REGISTER_URL = BASE_URL+"auth/register";
   static String LOGIN_URL = BASE_URL+"auth/login";

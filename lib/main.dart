@@ -4,9 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xhp/SplashScreen.dart';
 import 'package:xhp/pages/login.dart';
+import 'package:xhp/pages/reports/contributions.dart';
+import 'package:xhp/pages/reports/financial-report.dart';
 import 'package:xhp/pages/signup.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'pages/appointment/appointments.dart';
+import 'pages/appointment/history-appointments.dart';
+import 'pages/gifts/gift.dart';
 import 'pages/home.dart';
+import 'pages/invoices/gap-history.dart';
+import 'pages/invoices/non-partner.dart';
+import 'pages/invoices/pending-invoice.dart';
+import 'pages/reports/appointment-reports.dart';
 import 'provider/sign_up_provider.dart';
 import 'welcome.dart';
 
@@ -73,8 +82,19 @@ class MyApp extends StatelessWidget {
         "/welcome": (context) => Welcome(),
         "/login": (context) => Login(),
         "/home":(context)=> Home(),
+        "/book-appointment":(context)=>BookAppointment(),
+        "/book-history":(context)=>AppointmentHistory(),
+        "/issue-gift":(context)=>IssueGift(),
+        "/receive-gift":(context)=>GiftReceive(),
+        "/pending-invoice":(context)=>PendingInvoice(),
+        "/non-partner":(context) =>NonPartner(),
+        "/gap-history":(context)=>GapHistory(),
+        "/appointment-report":(context)=>AppointmentReport(),
+        "/contributions":(context)=>Contribution(),
+        "/financial":(context)=>Financial(),
+        //"gift-history":(context)=>
       },
-      home: SplashScreen(),
+      home: Home(),
     ));
   }
 }

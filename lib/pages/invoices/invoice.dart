@@ -8,7 +8,7 @@ class Invoice extends StatelessWidget {
       body:SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
@@ -22,12 +22,17 @@ class Invoice extends StatelessWidget {
                 height: MediaQuery.of(context).size.height*.20,
                margin: EdgeInsets.all(20),
                // padding: EdgeInsets.only(left: 20),
-                child: Card(
-                
-                  color: Color(0xFF522B83).withOpacity(0.85),
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, '/pending-invoice');
+                  },
+                                  child: Card(
                   
-                  elevation: 10,
-                  child:Center(child: TextWidget(text:"Pending Invoice",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                    color: Color(0xFF522B83).withOpacity(0.85),
+                    
+                    elevation: 10,
+                    child:Center(child: TextWidget(text:"Pending Invoice",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                  ),
                 ),
               ),
               Container(
@@ -35,12 +40,17 @@ class Invoice extends StatelessWidget {
                 width: MediaQuery.of(context).size.width*.80,
                 height: MediaQuery.of(context).size.height*.20,
                 margin: EdgeInsets.all(20),
-                child: Card(
-                
-                  color: Color(0xFF522B83).withOpacity(0.85),
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, "/gap-history");
+                  },
+                                  child: Card(
                   
-                  elevation: 10,
-                  child:Center(child: TextWidget(text:"Gap-Paid",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                    color: Color(0xFF522B83).withOpacity(0.85),
+                    
+                    elevation: 10,
+                    child:Center(child: TextWidget(text:"Gap-Paid",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                  ),
                 ),
               ),
                Container(
@@ -48,12 +58,17 @@ class Invoice extends StatelessWidget {
                 width: MediaQuery.of(context).size.width*.80,
                 height: MediaQuery.of(context).size.height*.20,
                 margin: EdgeInsets.all(20),
-                child: Card(
-                
-                  color: Color(0xFF522B83).withOpacity(0.85),
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, '/pending-invoice');
+                  },
+                                  child: Card(
                   
-                  elevation: 10,
-                  child:Center(child: TextWidget(text:"Invoice History",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                    color: Color(0xFF522B83).withOpacity(0.85),
+                    
+                    elevation: 10,
+                    child:Center(child: TextWidget(text:"Invoice History",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                  ),
                 ),
               ),
                Container(
@@ -61,12 +76,17 @@ class Invoice extends StatelessWidget {
                 width: MediaQuery.of(context).size.width*.80,
                 height: MediaQuery.of(context).size.height*.20,
                 margin: EdgeInsets.all(20),
-                child: Card(
-                
-                  color: Color(0xFF522B83).withOpacity(0.85),
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, "/non-partner");
+                  },
+                                  child: Card(
                   
-                  elevation: 10,
-                  child:Center(child: TextWidget(text:"Non-Partner",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                    color: Color(0xFF522B83).withOpacity(0.85),
+                    
+                    elevation: 10,
+                    child:Center(child: TextWidget(text:"Non-Partner",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
+                  ),
                 ),
               )
             ])
@@ -75,3 +95,4 @@ class Invoice extends StatelessWidget {
     );
   }
 }
+
