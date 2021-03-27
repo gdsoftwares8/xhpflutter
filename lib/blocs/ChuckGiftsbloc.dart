@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:xhp/models/appointment_responce.dart';
 import 'package:xhp/models/gift_responce.dart';
@@ -6,7 +7,7 @@ import 'package:xhp/networking/Response.dart';
 import 'package:xhp/repository/ChuckAppointmentRepository.dart';
 import 'package:xhp/repository/ChuckGiftsRepository.dart';
 
-class ChuckAppointmentbloc {
+class ChuckGiftbloc {
   ChuckGiftsRepository _chuckRepository;
   StreamController _chuckListController;
 
@@ -16,17 +17,20 @@ class ChuckAppointmentbloc {
   Stream<Response<GiftResponce>> get chuckListStream =>
       _chuckListController.stream;
 
-  ChuckCategoryBloc() {
+  ChuckGiftbloc(String memberId) {
     _chuckListController = StreamController<Response<AppointmentResponce>>();
     _chuckRepository = ChuckGiftsRepository();
-    fetchGifts();
+    fetchGifts(memberId);
   }
 
-  fetchGifts() async {
+  fetchGifts(String memberId) async {
     chuckListSink.add(Response.loading('Getting Gifts.'));
     try {
+      Map<String,String> map = HashMap();
+      map.putIfAbsent("member_id", () => memberId);
+
       GiftResponce chuckDatas =
-      await _chuckRepository.fetchGifts();
+      await _chuckRepository.fetchGifts(queryParams: map);
       if(chuckDatas.status == 1)
         chuckListSink.add(Response.completed(chuckDatas));
       else

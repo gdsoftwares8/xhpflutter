@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
+import 'package:xhp/widgets/OtionTab.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/text_widget.dart';
 
@@ -20,96 +21,18 @@ class Gift extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30)),
-                          width: MediaQuery.of(context).size.width * .40,
-                          height: MediaQuery.of(context).size.height * .25,
-                          margin: EdgeInsets.all(10),
-                          // padding: EdgeInsets.only(left: 20),
-                          child: GestureDetector(
-                            onTap: () {
+                        OptionTab(
+                            tabText: "Issue\nGift",
+                            icon: Icons.card_giftcard,
+                            onPressed: (){
                               Navigator.pushNamed(context, '/issue-gift');
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              color: GlobalVars.accentColor,
-
-                              elevation: 10,
-                              child: Stack(
-                                  //  textDirection: TextDirection.ltr,
-                                  //  alignment: AlignmentDirectional.center,
-                                  children: [
-                                    Center(
-                                        child: Icon(Icons.card_giftcard,
-                                      size: 60,
-                                      color: Colors.white,
-                                    )),
-                                    Positioned(
-                                        bottom: 0,
-                                        child: Center(
-                                            child: TextWidget(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 40),
-                                          textAlign: TextAlign.center,
-                                          text: "Issue\nGift",
-                                          // softWrap: true,
-                                          maxLines:2,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          textSize: 20,
-                                        ))),
-                                  ]),
-                              //Center(child: TextWidget(text:"Pending Invoice",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
-                            ),
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30)),
-                          width: MediaQuery.of(context).size.width * .40,
-                          height: MediaQuery.of(context).size.height * .25,
-                          margin: EdgeInsets.all(10),
-                          // padding: EdgeInsets.only(left: 20),
-                          child: GestureDetector(
-                            onTap: () {
+                            }),
+                        OptionTab(
+                            tabText: "Gift\nHistory",
+                            icon: FontAwesomeIcons.gifts,
+                            onPressed: (){
                               Navigator.pushNamed(context, '/receive-gift');
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              color: GlobalVars.accentColor,
-                              elevation: 10,
-                              child: Stack(
-                                  //  textDirection: TextDirection.ltr,
-                                  //  alignment: AlignmentDirectional.center,
-                                  children: [
-                                    Center(
-                                        child: FaIcon(
-                                      FontAwesomeIcons.gifts,
-                                      size: 60,
-                                      color: Colors.white,
-                                    )),
-                                    Positioned(
-                                        bottom: 0,
-                                        child: Center(
-                                            child: TextWidget(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 30),
-                                          textAlign: TextAlign.center,
-                                          text: "Gift\nHistory",
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          textSize: 20,
-                                        ))),
-                                  ]),
-                              //Center(child: TextWidget(text:"Pending Invoice",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
-                            ),
-                          ),
-                        ),
+                            }),
                       ],
                     ),
                   // Padding(

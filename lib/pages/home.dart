@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'appointment/appointments.dart';
 import 'gifts/gift.dart';
 import 'invoices/invoice.dart';
-
+import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'reports/report.dart';
 import 'settings.dart';
 
@@ -24,9 +24,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*appBar: GlobalWidgets.getToolbarWithBack(
+      onPressed: (){
+            Navigator.pop(context);
+      }),*/
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
-        elevation: 0,
         centerTitle: true,
         title: Text("Welcome to XHP"),
       ),

@@ -5,42 +5,31 @@ import 'package:xhp/models/appointment_model.dart';
 /// status : 1
 
 class AppointmentResponce {
-  String _message;
-  List<AppointmentModel> _result;
-  int _status;
+  String message;
+  List<AppointmentModel> result;
+  int status;
 
-  String get message => _message;
-  List<AppointmentModel> get result => _result;
-  int get status => _status;
+  AppointmentResponce({this.message, this.result, this.status});
 
-  AppointmentResponce({
-      String message, 
-      List<AppointmentModel> result,
-      int status}){
-    _message = message;
-    _result = result;
-    _status = status;
-}
-
-  AppointmentResponce.fromJson(dynamic json) {
-    _message = json["message"];
-    if (json["result"] != null) {
-      _result = [];
-      json["result"].forEach((v) {
-        _result.add(AppointmentModel.fromJson(v));
+  AppointmentResponce.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    if (json['result'] != null) {
+      result = new List<AppointmentModel>();
+      json['result'].forEach((v) {
+        result.add(new AppointmentModel.fromJson(v));
       });
     }
-    _status = json["status"];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map["message"] = _message;
-    if (_result != null) {
-      map["result"] = _result.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['message'] = this.message;
+    if (this.result != null) {
+      data['result'] = this.result.map((v) => v.toJson()).toList();
     }
-    map["status"] = _status;
-    return map;
+    data['status'] = this.status;
+    return data;
   }
 
 }

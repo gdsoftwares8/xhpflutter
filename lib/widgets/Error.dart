@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xhp/widgets/button_widget.dart';
+import 'package:xhp/widgets/text_widget.dart';
 
 class Error extends StatelessWidget {
   final String errorMessage;
@@ -15,18 +17,15 @@ class Error extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            errorMessage,
+          TextWidget(
+            text: errorMessage,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-            ),
+            textSize: 18,
+            color: Colors.black,
           ),
-          SizedBox(height: 8),
-          RaisedButton(
-            color: Colors.white,
-            child: Text('Retry', style: TextStyle(color: Colors.black)),
+          SizedBox(height: 20),
+          ButtonWidget(
+            text: 'Retry',
             onPressed: onRetryPressed,
           )
         ],

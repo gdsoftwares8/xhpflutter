@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'package:xhp/widgets/OtionTab.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
@@ -21,97 +22,19 @@ class Appointment extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30)),
-                          width: MediaQuery.of(context).size.width * .40,
-                          height: MediaQuery.of(context).size.height * .25,
-                          margin: EdgeInsets.all(10),
-                          // padding: EdgeInsets.only(left: 20),
-                          child: GestureDetector(
-                            onTap: () {
+                        OptionTab(
+                            tabText: "Book\nAppointment",
+                            icon: Icons.assignment,
+                            onPressed: (){
                               Navigator.pushNamed(context, '/book-appointment');
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              color: GlobalVars.accentColor,
-
-                              elevation: 10,
-                              child: Stack(
-                                  //  textDirection: TextDirection.ltr,
-                                  //  alignment: AlignmentDirectional.center,
-                                  children: [
-                                    Center(
-                                        child: Icon(Icons.assignment,
-                                      size: 60,
-                                      color: Colors.white,
-                                    )),
-                                    Positioned(
-                                        bottom: 0,
-                                        child: Center(
-                                            child: TextWidget(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          textAlign: TextAlign.center,
-                                          text: "Book\nAppointment",
-                                          // softWrap: true,
-                                          maxLines:2,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          textSize: 20,
-                                        ))),
-                                  ]),
-                              //Center(child: TextWidget(text:"Pending Invoice",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
-                            ),
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30)),
-                          width: MediaQuery.of(context).size.width * .40,
-                          height: MediaQuery.of(context).size.height * .25,
-                          margin: EdgeInsets.all(10),
-                          // padding: EdgeInsets.only(left: 20),
-                          child: GestureDetector(
-                            onTap: () {
+                            }),
+                        OptionTab(
+                            tabText: "History\nAppointment",
+                            icon: FontAwesomeIcons.history,
+                            onPressed: (){
                               Navigator.pushNamed(context, '/book-history');
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              color: GlobalVars.accentColor,
+                            }),
 
-                              elevation: 10,
-                              child: Stack(
-                                  //  textDirection: TextDirection.ltr,
-                                  //  alignment: AlignmentDirectional.center,
-                                  children: [
-                                    Center(
-                                        child: FaIcon(
-                                      FontAwesomeIcons.history,
-                                      size: 60,
-                                      color: Colors.white,
-                                    )),
-                                    Positioned(
-                                        bottom: 0,
-                                        child: Center(
-                                            child: TextWidget(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          textAlign: TextAlign.center,
-                                          text: "History\nAppointment",
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          textSize: 20,
-                                        ))),
-                                  ]),
-                              //Center(child: TextWidget(text:"Pending Invoice",color: Colors.white,fontWeight: FontWeight.bold,textSize: 20,))
-                            ),
-                          ),
-                        ),
                       ],
                     ),
 

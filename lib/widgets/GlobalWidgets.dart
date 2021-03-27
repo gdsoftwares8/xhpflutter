@@ -31,6 +31,25 @@ class GlobalWidgets {
     );
   }
 
+  static Widget getToolbarWithBack({title, @required onPressed}) {
+    return AppBar(
+        elevation: 5,
+        centerTitle: true,
+        title: TextWidget(text: (title!=null) ? title : "Welcome to XHP",
+          color: Colors.white,
+        textSize: 20,),
+        leading: IconButton(
+            icon:  Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+
+            ),
+            onPressed: onPressed
+        )
+
+    );
+  }
+
   static Widget getCircleAppIcon({double radious = 100}) {
     return CircleAvatar(
       backgroundColor: GlobalFunc.colorFromHex('#522B83'),

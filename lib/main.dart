@@ -42,6 +42,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: GlobalVars.primaryColor,
         accentColor: GlobalVars.accentColor,
         scaffoldBackgroundColor:  Colors.grey[100],
+        appBarTheme: AppBarTheme(
+          color: Colors.blue[900],
+          elevation: 5
+        ),
         // elevated button theme
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
@@ -95,7 +99,7 @@ class MyApp extends StatelessWidget {
         "/financial":(context)=>Financial(),
         //"gift-history":(context)=>
       },
-      home: SplashScreen(),
+      home: Home(),
     ));
   }
 }

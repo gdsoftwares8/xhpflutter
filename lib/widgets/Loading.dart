@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xhp/utils/GlobalFuncs.dart';
+import 'package:xhp/widgets/text_widget.dart';
 
 class Loading extends StatelessWidget {
   final String loadingMessage;
@@ -12,18 +14,17 @@ class Loading extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            loadingMessage,
+          TextWidget(
+            text: loadingMessage,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-            ),
+            textSize: 24,
+            color: Colors.black,
           ),
           SizedBox(height: 24),
-          CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.deepPurpleAccent),
-          ),
+          GlobalFunc.ProgressBar()
+          // CircularProgressIndicator(
+          //   valueColor: AlwaysStoppedAnimation<Color>(Colors.deepPurpleAccent),
+          // ),
         ],
       ),
     );

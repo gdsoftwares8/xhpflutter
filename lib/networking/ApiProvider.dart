@@ -26,12 +26,14 @@ class ApiProvider {
     );
   }
 
-  Future<dynamic> get(String url,{ Map<String, dynamic> queryParams}) async {
+  Future<Map<String, dynamic>> get(String url,{ Map<String, dynamic> queryParams}) async {
     var responseJson;
     try {
      // val url = Uri.http(authority, unencodedPath)
       final response = await getClient().get(Uri.parse(_baseUrl+url), params: queryParams);
+      GlobalFunc.logPrint("ApiProvider 1 $response");
       responseJson = _response(response);
+      GlobalFunc.logPrint("ApiProvider $responseJson");
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
@@ -39,6 +41,7 @@ class ApiProvider {
   }
 
   dynamic _response(http.Response response) {
+    GlobalFunc.logPrint("ApiProvider status Code ${response.statusCode}");
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.body.toString());
