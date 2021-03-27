@@ -15,7 +15,7 @@ class Welcome extends StatelessWidget {
           children: [
             GlobalWidgets.getToolbar(size.height * .10),
             SizedBox(height: 20),
-            Container(height: size.height * .50, child: BannerCarouselWidget()),
+            Container(height: size.height * .40, child: BannerCarouselWidget()),
             SizedBox(height: size.height * .10),
             ButtonWidget(
               text: "Login",
@@ -29,7 +29,7 @@ class Welcome extends StatelessWidget {
               width: size.width * .60,
               onPressed: () { Navigator.pushNamed(context, "/signup"); },
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             TextWidget(text: "Terms and Conditions | Privacy | FSG | PDS")
           ],
         ),

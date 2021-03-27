@@ -9,10 +9,18 @@ class GlobalVars {
   static String BASE_URL = URL+"api/";
   static String REGISTER_URL = BASE_URL+"auth/register";
   static String LOGIN_URL = BASE_URL+"auth/login";
+  static String GET_PROFILE_URL = BASE_URL+"account";
+  static String UPDATE_PROFILE_URL = BASE_URL+"account/update_account";
+  static String APPOINTMENTS_URL = BASE_URL+"appointments";
+  static String BOOK_APPOINTMENT_URL = BASE_URL+"appointments/bookAppointment";
+
   static String EMAIL_VERIFIED_URL = BASE_URL+"auth/checkEmailVerified";
   static String PASSWORD_RECOVERY_URL = BASE_URL+"auth/checkEmailVerified";
-  static String CATEGORIES_URL = BASE_URL+"category/getCategories";
-  static String SONG_BY_CATEGORY_URL = BASE_URL+"song/getSongsByCategoryID";
+
+  static String INVOICES_URL = BASE_URL+"invoice";
+  static String GIFTS_URL = BASE_URL+"gift";
+  static String ADD_GIFT_URL = BASE_URL+"gift/add";
+  static String TERMS_URL = BASE_URL+"getTermsAndCondition";
 
   // Constants For Prefrences
   static String isLogin = "isLogin";
