@@ -58,8 +58,8 @@ class GlobalVars {
         800: const Color(0xFF7B52AB),
         900: const Color(0xFF7B52AB),
       });
-  static final Color accentColor = Color(0xFF3a1172);
-  static final Color primaryColorDark = Color(0xFF522B83);
+  static final Color accentColor = Colors.orange[900];
+  static final Color primaryColorDark = Colors.blue[900];
 
   static List<Color> gradientColors = [
     Color(0xFF4A2072).withOpacity(0.85),

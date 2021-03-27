@@ -7,23 +7,26 @@ import 'package:xhp/widgets/text_widget.dart';
 class GlobalWidgets {
 
   static Widget getToolbar(double height) {
-    return Container(
-      height: height,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Image.asset('assets/app_icon.png'),
-          Column(children: [
-            SizedBox(height: 30),
-            TextWidget(
-              text: "Xtras Health Plan",
-              textSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
-            //SizedBox(height: 5),
-            TextWidget(text: "Your Health | Your Savings | Your Choice")
-          ])
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: height,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset('assets/app_icon.png'),
+            Column(children: [
+              SizedBox(height: 30),
+              TextWidget(
+                text: "Xtras Health Plan",
+                textSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+              //SizedBox(height: 5),
+              TextWidget(text: "Your Health | Your Savings | Your Choice")
+            ])
+          ],
+        ),
       ),
     );
   }

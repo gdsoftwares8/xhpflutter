@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SignUpProvider())
       ],child:MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'XHP',
       theme: ThemeData(
         primarySwatch: GlobalVars.primaryColor,
         accentColor: GlobalVars.accentColor,
@@ -94,7 +94,7 @@ class MyApp extends StatelessWidget {
         "/financial":(context)=>Financial(),
         //"gift-history":(context)=>
       },
-      home: Home(),
+      home: SplashScreen(),
     ));
   }
 }

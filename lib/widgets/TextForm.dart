@@ -8,6 +8,12 @@ class TextFormWidget extends StatelessWidget {
   final TextInputType keyboardType;
   final Function onSaved;
   final bool obscureText;
+  final Function onTap;
+  final TextEditingController controller;
+  final bool readOnly;
+  final String labelText;
+  final Widget suffixIcon;
+  final String hintText;
 
   TextFormWidget(
       {this.autovalidateMode,
@@ -16,25 +22,36 @@ class TextFormWidget extends StatelessWidget {
       this.onChanged,
       this.validator,
       this.onSaved,
-      this.obscureText});
+      this.obscureText,
+      this.onTap,
+      this.controller,
+      this.readOnly,
+      this.labelText,
+      this.hintText,
+      this.suffixIcon,});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextFormField(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        keyboardType: keyboardType,
-         decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText:"",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
-        validator: validator,
-        onChanged: onChanged,
-        onSaved: onSaved,
-        obscureText: obscureText,
-      ),
+    
+    return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      keyboardType: keyboardType,
+       decoration: 
+       InputDecoration(
+              contentPadding: EdgeInsets.all(10),
+              labelText:labelText,
+              suffixIcon: suffixIcon,
+              hintText: hintText,
+              border: OutlineInputBorder(),
+              alignLabelWithHint: true,
+            ),
+      validator: validator,
+      onChanged: onChanged,
+      onSaved: onSaved,
+      obscureText: false,
+      onTap: onTap,
+      controller: controller,
+      readOnly:false,
     );
   }
 }

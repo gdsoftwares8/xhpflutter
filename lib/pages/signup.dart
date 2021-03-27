@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xhp/provider/sign_up_provider.dart';
 import 'package:xhp/widgets/button_widget.dart';
+import 'package:xhp/widgets/TextForm.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -141,17 +142,12 @@ class _SignUpState extends State<SignUp> {
             //style: Constant.heading
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
+            labelText: "Enter Aadhar card number ",
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "Enter Aadhar card number ",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -181,7 +177,7 @@ class _SignUpState extends State<SignUp> {
           //   ],
           // ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -191,7 +187,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -201,7 +197,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -220,7 +216,7 @@ class _SignUpState extends State<SignUp> {
       child: Column(
         children: [
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -230,7 +226,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -240,7 +236,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -250,7 +246,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -260,7 +256,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           SizedBox(height: 10),
-          TextFormField(
+          TextFormWidget(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),
@@ -282,14 +278,14 @@ class PersonalDetail extends StatefulWidget {
 
 class _PersonalDetailState extends State<PersonalDetail> {
   String _selectedText;
-  String strDob="";
-  String _value= "";
+  String strDob = "";
+  String _value = "";
 
   @override
   Widget build(BuildContext context) {
     final signInProvider = Provider.of<SignUpProvider>(context);
-    TextEditingController dateCtl = TextEditingController();
-    
+    TextEditingController dateCtroller = TextEditingController();
+
     return Form(
       key: signInProvider.formKey,
       child: Container(
@@ -316,21 +312,17 @@ class _PersonalDetailState extends State<PersonalDetail> {
                 });
               },
             ),
-            TextFormField(
+            TextFormWidget(
+              labelText: "First Name",
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "First Name",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+              
               validator: signInProvider.validateEmpty,
               onChanged: (value) {
                 signInProvider.validateEmpty(value);
               },
             ),
             SizedBox(height: 10),
-            TextFormField(
+            TextFormWidget(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
@@ -344,14 +336,12 @@ class _PersonalDetailState extends State<PersonalDetail> {
               // },
             ),
             SizedBox(height: 10),
-            TextFormField(
-              initialValue: strDob,
+            TextFormWidget(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 labelText: "Last Name",
                 border: OutlineInputBorder(),
-                
                 alignLabelWithHint: true,
               ),
               validator: signInProvider.validateEmpty,
@@ -360,37 +350,33 @@ class _PersonalDetailState extends State<PersonalDetail> {
               },
             ),
             SizedBox(height: 10),
-   TextFormField(
-                      controller: dateCtl,
-                      decoration: InputDecoration(
-                        icon:Icon(Icons.calendar_today),
-                        labelText: "DOB",
-                        hintText: "Preferred Date",
-                      ),
-                      onTap: () async {
-                        DateTime date = DateTime(1900);
-                        FocusScope.of(context).requestFocus(new FocusNode());
+            TextFormWidget(
+              labelText: "DOB",
+            
+              controller: dateCtroller,
+              onTap: () async {
+                DateTime date = DateTime(1900);
+                FocusScope.of(context).requestFocus(new FocusNode());
 
-                        date = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1900),
-                            lastDate: DateTime(2100));
-                        var x = date.toIso8601String().substring(0, 10);
-                        dateCtl.text = x;
-                      },
-                    ),
-
-
-            TextFormField(
+                date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2100));
+                var x = date.toIso8601String().substring(0, 10);
+                dateCtroller.text = x;
+                setState(() {
+                    dateCtroller.text = x;
+                  
+                });
+                print(dateCtroller.text);
+              },
+            ),
+            TextFormWidget(
+               labelText: "Phone",
               autovalidateMode: AutovalidateMode.onUserInteraction,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "Phone",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+             
               validator: signInProvider.phoneValidate,
               onChanged: (value) {
                 signInProvider.phoneValidate(value);
@@ -399,88 +385,62 @@ class _PersonalDetailState extends State<PersonalDetail> {
             SizedBox(height: 10),
             Text("Account Information*"),
             SizedBox(height: 10),
-            TextFormField(
+            TextFormWidget(
+              labelText: "Email",
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "Email",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+              
               validator: signInProvider.emailValidate,
               onChanged: (value) {
                 signInProvider.emailValidate(value);
               },
             ),
             SizedBox(height: 10),
-            TextFormField(
+            TextFormWidget(
+              labelText: "User ID",
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "User ID",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+             
               onChanged: (value) {},
             ),
             SizedBox(height: 10),
-            TextFormField(
+            TextFormWidget(
+              labelText: "Password",
               obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "Password",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+             
               //validator: signInProvider.passValidate,
               onChanged: (value) {
                 // signInProvider.passValidate(value);
               },
             ),
             SizedBox(height: 10),
-            TextFormField(
+            TextFormWidget(
+               labelText: "Confirm Password",
               obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "Confirm Password",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+             
               //validator: signInProvider.passValidate,
               onChanged: (value) {
                 // signInProvider.passValidate(value);
               },
             ),
             SizedBox(height: 10),
-            TextFormField(
+            TextFormWidget(
+               labelText: "4 digit PIN",
               obscureText: true,
               keyboardType: TextInputType.number,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "4 digit PIN",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+              
               onChanged: (value) {},
             ),
             SizedBox(height: 10),
-            TextFormField(
-             
-             
+            TextFormWidget(
+              labelText: "Referral Code",
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "Referral Code",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+              
               onChanged: (value) {},
             ),
             SizedBox(height: 10),
-            TextFormField(
+            TextFormWidget(
               validator: signInProvider.validateGender,
               readOnly: true,
               decoration: InputDecoration(
@@ -523,9 +483,5 @@ class _PersonalDetailState extends State<PersonalDetail> {
         ),
       ),
     );
-    
   }
-
 }
-
-

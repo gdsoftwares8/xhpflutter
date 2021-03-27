@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'text_widget.dart';
+import 'package:xhp/utils/global_vars.dart';
 
 class DropDownWidget extends StatefulWidget {
   String value;
@@ -22,7 +23,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Color(0xFF3a1172), width: 2),
+            border: Border.all(color: GlobalVars.accentColor, width: 2),
             borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),

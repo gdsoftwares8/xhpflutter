@@ -13,7 +13,7 @@ class BannerWidget extends StatelessWidget {
               topRight: Radius.circular(10),
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),
-          child: Image.network(
+          child: Image.asset(
             imageurl,
             fit: BoxFit.fitHeight,
             height: 400,

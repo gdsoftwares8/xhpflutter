@@ -27,6 +27,7 @@ class _Login extends State<Login> {
   String _email = "";
   String _password = "";
   bool _loading = false;
+  bool show_pass = true;
 
   @override
   void initState() {
@@ -83,14 +84,19 @@ class _Login extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         TextField(
-                          textAlign: TextAlign.center,
+                        
+                         // textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                            labelText: 'Username',
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     //color: Main.primaryColor,
                                     width: 2.5,
                                     style: BorderStyle.solid)),
-                            hintText: 'Username*',
+                            prefixIcon: Icon(Icons.person_outline,
+                                color: Theme.of(context).accentColor),
+                               
+                           
                             hintStyle: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           onChanged: (value) {
@@ -106,16 +112,31 @@ class _Login extends State<Login> {
                           height: 20.0,
                         ),
                         TextField(
-                          obscureText: true,
+                          obscureText: show_pass,
                           obscuringCharacter: "*",
-                          textAlign: TextAlign.center,
+                         
                           decoration: InputDecoration(
+                            labelText: "Password",
+                            suffixIcon: IconButton(
+                              icon: Icon(show_pass
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  show_pass = !show_pass;
+                                });
+                              },
+                              color: Theme.of(context).focusColor,
+                              
+                            ),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     //color: Main.primaryColor,
                                     width: 2.5,
                                     style: BorderStyle.solid)),
-                            hintText: 'Password*',
+                            prefixIcon: Icon(Icons.lock_outline,
+                                color: Theme.of(context).accentColor),
+                            hintText: '••••••••••••',
                             hintStyle: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           onChanged: (value) {
@@ -129,8 +150,7 @@ class _Login extends State<Login> {
                           text: "Login",
                           width: 170,
                           onPressed: () {
-                            if (_email == "" ||
-                                _email == null ) {
+                            if (_email == "" || _email == null) {
                               GlobalFunc.showToast(
                                   GlobalVars.ENTER_VALID_EMAIL);
                             } else if (_password == "" || _password == null) {
@@ -148,7 +168,7 @@ class _Login extends State<Login> {
                             showPasswordRecovery();
                           },
                           child: Text(
-                            "forgot password?",
+                            "Forgot password?",
                             style: TextStyle(
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.normal,
@@ -172,7 +192,6 @@ class _Login extends State<Login> {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-            
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)), //this right here
             child: Container(
@@ -338,15 +357,13 @@ class _Login extends State<Login> {
         prefs.setString(GlobalVars.id, json['Data']['userID']);
         Navigator.pushNamedAndRemoveUntil(context, "/category", (route) => false);*/
       } else {
-        
         showDialog(
-                            context: context,
-                            builder: (context) => new AlertDialog(
-                              title: TextWidget(text:"Incorrect Details",textSize: 16),
-                              content: Text('Please Enter correct details *'),
-                             
-                            ),
-                          );
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: TextWidget(text: "Incorrect Details", textSize: 16),
+            content: Text('Please Enter correct details *'),
+          ),
+        );
       }
     } on SocketException {
       updateLoadingState(false);

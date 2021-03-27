@@ -13,6 +13,8 @@ class TextWidget extends StatelessWidget {
   final String fontFamily;
   final BoxDecoration decoration;
   final TextDecoration textDecoration;
+  final bool softWrap;
+  final int maxLines;
 
   TextWidget(
       {@required this.text = "",
@@ -26,6 +28,8 @@ class TextWidget extends StatelessWidget {
       this.backgroundColor = Colors.transparent,
       this.textAlign = TextAlign.start,
       this.fontFamily = FontStyles.fontName,
+      this.maxLines,
+      this.softWrap,
       this.textDecoration = TextDecoration.none});
 
   @override
@@ -39,6 +43,8 @@ class TextWidget extends StatelessWidget {
       margin: margin,
       child: Text(
         text,
+        // softWrap: softWrap,
+        maxLines: 2,
         style: TextStyle(
           decoration: textDecoration,
           fontSize: textSize,

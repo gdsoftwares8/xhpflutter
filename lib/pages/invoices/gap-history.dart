@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
 import 'package:xhp/widgets/text_widget.dart';
 
@@ -21,9 +22,9 @@ class _GapHistoryState extends State<GapHistory> {
               Container(
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color(0xFF3a1172),
+                    color: GlobalVars.accentColor,
                     border: Border.all(
-                      color: Color(0xFF3a1172),
+                      color: GlobalVars.accentColor,
                     ),
                     borderRadius: BorderRadius.circular(10.0),
                   ),

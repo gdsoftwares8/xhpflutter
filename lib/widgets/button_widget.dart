@@ -26,7 +26,9 @@ class ButtonWidget extends StatelessWidget {
         this.decoration,
         this.padding = const EdgeInsets.all(0.0),
         this.margin = const EdgeInsets.all(0.0),
-        this.color = Colors.white,
+       // this.color = const Color(0xFF1E88E5),
+       this.color=Colors.white,
+        
         this.fontWeight = FontWeight.w600,
         this.backgroundColor = Colors.transparent,
         this.textAlign = TextAlign.start,
@@ -44,13 +46,15 @@ class ButtonWidget extends StatelessWidget {
       width: width,
       height: height,
       decoration: decoration,
-        color: backgroundColor,
+       // color: Colors.orange[900],
       padding: padding,
       // alignment: Alignment.ce,
       margin: margin,
       child: ElevatedButton(
+       // style: ButtonStyle(backgroundColor: Colors.orange[850] ),
+        
         onPressed: onPressed,
-        //style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.orange) ),
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.orange[900]) ),
         child: Text(
             text,
           style: TextStyle(

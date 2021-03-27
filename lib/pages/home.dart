@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue[900],
         elevation: 0,
         centerTitle: true,
         title: Text("Welcome to XHP"),
@@ -32,11 +33,11 @@ class _HomeState extends State<Home> {
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
-        //backgroundColor: Color(0xFF522B83).withOpacity(0.85),
+        backgroundColor: Colors.blue[900],
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFF522B83).withOpacity(0.85),
+            backgroundColor: Colors.blue[900],
             icon: Icon(Icons.assignment),
             label: 'Appointments',
           ),
