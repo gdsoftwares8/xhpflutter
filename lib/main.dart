@@ -78,6 +78,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       routes: {
+        "/splash": (context) => SplashScreen(),
         "/signup": (context) => SignUp(),
         "/welcome": (context) => Welcome(),
         "/login": (context) => Login(),
@@ -94,7 +95,7 @@ class MyApp extends StatelessWidget {
         "/financial":(context)=>Financial(),
         //"gift-history":(context)=>
       },
-      home: Home(),
+      home: SplashScreen(),
     ));
   }
 }

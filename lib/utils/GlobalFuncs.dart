@@ -23,7 +23,7 @@ class GlobalFunc {
   }
 
 
-  static moveuserAccordingLoginState(User muser, BuildContext context, SharedPref sharedPref) async {
+  /*static moveuserAccordingLoginState(User muser, BuildContext context, SharedPref sharedPref) async {
     if(muser!=null){
       final prefs = await SharedPreferences.getInstance();
       prefs.setBool(GlobalVars.isLogin, muser.isVerified ? true : false);
@@ -45,7 +45,7 @@ class GlobalFunc {
     } else {
       GlobalFunc.showToast("Error in retrive data");
     }
-  }
+  }*/
 
   static Widget ProgressBar() {
     return Center(
@@ -227,7 +227,7 @@ class GlobalFunc {
       final Map<Permission, PermissionStatus> permissionStatus =
       await [Permission.storage].request();
       return permissionStatus[Permission.storage] ??
-          PermissionStatus.undetermined;
+          PermissionStatus.restricted;
     } else {
       return permission;
     }
