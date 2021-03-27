@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/OtionTab.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/text_widget.dart';
@@ -18,70 +19,23 @@ class Gift extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        OptionTab(
-                            tabText: "Issue\nGift",
-                            icon: Icons.card_giftcard,
-                            onPressed: (){
-                              Navigator.pushNamed(context, '/issue-gift');
-                            }),
-                        OptionTab(
-                            tabText: "Gift\nHistory",
-                            icon: FontAwesomeIcons.gifts,
-                            onPressed: (){
-                              Navigator.pushNamed(context, '/receive-gift');
-                            }),
-                      ],
-                    ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  // ),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(15)),
-                  //   width: MediaQuery.of(context).size.width * .80,
-                  //   height: MediaQuery.of(context).size.height * .20,
-                  //   margin: EdgeInsets.all(20),
-                  //   child: GestureDetector(
-                  //     onTap: () {
-                  //       Navigator.pushNamed(context, '/issue-gift');
-                  //     },
-                  //     child: Card(
-                  //         color: GlobalVars.accentColor,
-                  //         elevation: 10,
-                  //         child: Center(
-                  //             child: TextWidget(
-                  //           text: "Issue Gift",
-                  //           color: Colors.white,
-                  //           fontWeight: FontWeight.bold,
-                  //           textSize: 20,
-                  //         ))),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(15)),
-                  //   width: MediaQuery.of(context).size.width * .80,
-                  //   height: MediaQuery.of(context).size.height * .20,
-                  //   margin: EdgeInsets.all(20),
-                  //   child: GestureDetector(
-                  //     onTap: () {
-                  //       Navigator.pushNamed(context, "/receive-gift");
-                  //     },
-                  //     child: Card(
-                  //         color: GlobalVars.accentColor,
-                  //         elevation: 10,
-                  //         child: Center(
-                  //             child: TextWidget(
-                  //           text: "Gift History",
-                  //           color: Colors.white,
-                  //           fontWeight: FontWeight.bold,
-                  //           textSize: 20,
-                  //         ))),
-                  //   ),
-                  // )
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      OptionTab(
+                          tabText: "Issue\nGift",
+                          icon: Icons.card_giftcard,
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/issue-gift');
+                          }),
+                      OptionTab(
+                          tabText: "Gift\nHistory",
+                          icon: FontAwesomeIcons.gifts,
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/receive-gift');
+                          }),
+                    ],
+                  ),
                 ])));
   }
 }
@@ -97,30 +51,19 @@ class _IssueGiftState extends State<IssueGift> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: GlobalWidgets.getToolbarWithBack(
+            title: "Gift of Health",
+            onPressed: (){
+              Navigator.pop(context);
+            }),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
           child: Card(
             elevation: 5,
-                      child: Column(
+            child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: GlobalVars.accentColor,
-                        border: Border.all(
-                          color: GlobalVars.accentColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                          child: TextWidget(
-                        text: "Gift of Health",
-                        color: Colors.white,
-                        textSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ))),
                   SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
@@ -133,7 +76,7 @@ class _IssueGiftState extends State<IssueGift> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormWidget(
-                     labelText: "Enter Name",
+                      labelText: "Enter Name",
                       onChanged: (value) {
                         name = value;
                       },
@@ -179,17 +122,17 @@ class _IssueGiftState extends State<IssueGift> {
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         border: Border.all(
-                            // color: GlobalVars.accentColor,
-                            ),
+                          // color: GlobalVars.accentColor,
+                        ),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Center(
                           child: TextWidget(
-                        text: "Your Account Balance",
-                        color: Colors.white,
-                        textSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ))),
+                            text: "Your Account Balance",
+                            color: Colors.white,
+                            textSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ))),
                   SizedBox(height: 10),
                   Card(
                     color: Colors.green[200],
@@ -286,30 +229,19 @@ class _GiftReceiveState extends State<GiftReceive> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: GlobalWidgets.getToolbarWithBack(
+            title: "Gift Received",
+            onPressed: (){
+              Navigator.pop(context);
+            }),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: GlobalVars.accentColor,
-                    border: Border.all(
-                      color: GlobalVars.accentColor,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Center(
-                      child: TextWidget(
-                    text: "Gift Received",
-                    color: Colors.white,
-                    textSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ))),
               Card(
-                              child: ExpansionTile(
+                child: ExpansionTile(
                   initiallyExpanded: true,
                   title: Row(
                     children: <Widget>[
@@ -325,25 +257,25 @@ class _GiftReceiveState extends State<GiftReceive> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                         Row(children: [Text('Amount')]),
-                         DividerWidget(),
-                      Row(children: [Text('Coupon Code')]),
-                      DividerWidget(),
-                      Row(children: [Text("Gift Balance Amount")]),
-                      DividerWidget(),
-                      Row(children: [Text("Expiry Date")]),
-                      DividerWidget(),
-                      Row(children: [Text("Status")]),
-                      DividerWidget(),
+                          Row(children: [Text('Amount')]),
+                          DividerWidget(),
+                          Row(children: [Text('Coupon Code')]),
+                          DividerWidget(),
+                          Row(children: [Text("Gift Balance Amount")]),
+                          DividerWidget(),
+                          Row(children: [Text("Expiry Date")]),
+                          DividerWidget(),
+                          Row(children: [Text("Status")]),
+                          DividerWidget(),
                         ],
                       ),
                     )
                   ],
                 ),
-                
+
               ),
               Card(
-                              child: ExpansionTile(
+                child: ExpansionTile(
                   initiallyExpanded: true,
                   title: Row(
                     children: <Widget>[
@@ -359,25 +291,25 @@ class _GiftReceiveState extends State<GiftReceive> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                        Row(children: [Text('Amount')]),
-                         DividerWidget(),
-                      Row(children: [Text('Coupon Code')]),
-                      DividerWidget(),
-                      Row(children: [Text("Gift Balance Amount")]),
-                      DividerWidget(),
-                      Row(children: [Text("Expiry Date")]),
-                      DividerWidget(),
-                      Row(children: [Text("Status")]),
-                      DividerWidget(),
+                          Row(children: [Text('Amount')]),
+                          DividerWidget(),
+                          Row(children: [Text('Coupon Code')]),
+                          DividerWidget(),
+                          Row(children: [Text("Gift Balance Amount")]),
+                          DividerWidget(),
+                          Row(children: [Text("Expiry Date")]),
+                          DividerWidget(),
+                          Row(children: [Text("Status")]),
+                          DividerWidget(),
                         ],
                       ),
                     )
                   ],
                 ),
-                
+
               ),
               Card(
-                              child: ExpansionTile(
+                child: ExpansionTile(
                   initiallyExpanded: true,
                   title: Row(
                     children: <Widget>[
@@ -393,22 +325,22 @@ class _GiftReceiveState extends State<GiftReceive> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                        Row(children: [Text('Amount')]),
-                         DividerWidget(),
-                      Row(children: [Text('Coupon Code')]),
-                      DividerWidget(),
-                      Row(children: [Text("Gift Balance Amount")]),
-                      DividerWidget(),
-                      Row(children: [Text("Expiry Date")]),
-                      DividerWidget(),
-                      Row(children: [Text("Status")]),
-                      DividerWidget(),
+                          Row(children: [Text('Amount')]),
+                          DividerWidget(),
+                          Row(children: [Text('Coupon Code')]),
+                          DividerWidget(),
+                          Row(children: [Text("Gift Balance Amount")]),
+                          DividerWidget(),
+                          Row(children: [Text("Expiry Date")]),
+                          DividerWidget(),
+                          Row(children: [Text("Status")]),
+                          DividerWidget(),
                         ],
                       ),
                     )
                   ],
                 ),
-                
+
               ),
             ],
           ),

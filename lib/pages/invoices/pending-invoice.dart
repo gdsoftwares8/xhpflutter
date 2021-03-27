@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/text_widget.dart';
 import 'package:xhp/utils/global_vars.dart';
 
@@ -13,29 +14,19 @@ class _PendingInvoiceState extends State<PendingInvoice> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: GlobalWidgets.getToolbarWithBack(
+            title: "Invoice",
+            onPressed: (){
+              Navigator.pop(context);
+            }),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: GlobalVars.accentColor,
-                    border: Border.all(
-                      color: GlobalVars.accentColor,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Center(
-                      child: TextWidget(
-                    text: "Invoice",
-                    color: Colors.white,
-                    textSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ))),
               Card(
+
                 child: ExpansionTile(
                   initiallyExpanded: true,
                   title: Row(

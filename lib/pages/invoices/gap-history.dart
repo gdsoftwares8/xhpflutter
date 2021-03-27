@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/text_widget.dart';
 
 class GapHistory extends StatefulWidget {
@@ -13,28 +14,17 @@ class _GapHistoryState extends State<GapHistory> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: GlobalWidgets.getToolbarWithBack(
+            title: "Gap History",
+            onPressed: (){
+              Navigator.pop(context);
+            }),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: GlobalVars.accentColor,
-                    border: Border.all(
-                      color: GlobalVars.accentColor,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Center(
-                      child: TextWidget(
-                    text: "Gap History",
-                    color: Colors.white,
-                    textSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ))),
               Card(
                 child: ExpansionTile(
                   initiallyExpanded: true,
@@ -52,7 +42,7 @@ class _GapHistoryState extends State<GapHistory> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                           Row(
+                          Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -60,15 +50,15 @@ class _GapHistoryState extends State<GapHistory> {
 
                                 TextWidget(text: '05-03-2019 06:30')
                               ]),
-                              DividerWidget(),
-                            Row(
+                          DividerWidget(),
+                          Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextWidget(text: 'Partner'),
                                 TextWidget(text: 'Dr. Abraham Zacharia)')
                               ]),
-                               Divider(
+                          Divider(
                             height: 5,
                           ),
                           Row(
@@ -78,11 +68,11 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: 'IFC NO'),
                                 TextWidget(text: "IFCA0001")
                               ]),
-                         
-                        
+
+
                           DividerWidget(),
-                         
-                         
+
+
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +80,7 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: "Invoice Amount"),
                                 TextWidget(text: "\$35.00")
                               ]),
-                         DividerWidget(),
+                          DividerWidget(),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +96,7 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: "Transfer Type"),
                                 TextWidget(text: 'DEBIT')
                               ]),
-                             DividerWidget(),
+                          DividerWidget(),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +110,7 @@ class _GapHistoryState extends State<GapHistory> {
                   ],
                 ),
               ),
-                Card(
+              Card(
                 child: ExpansionTile(
                   initiallyExpanded: true,
                   title: Row(
@@ -137,22 +127,22 @@ class _GapHistoryState extends State<GapHistory> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                           Row(
+                          Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextWidget(text: "Date"),
                                 TextWidget(text: '05-03-2019 06:30')
                               ]),
-                                DividerWidget(),
-                            Row(
+                          DividerWidget(),
+                          Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextWidget(text: 'Partner'),
                                 TextWidget(text: 'Dr. Abraham Zacharia')
                               ]),
-                               DividerWidget(),
+                          DividerWidget(),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,11 +150,11 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: 'IFC NO'),
                                 TextWidget(text: "IFCA0002")
                               ]),
-                         
-                        
-                         DividerWidget(),
-                         
-                         
+
+
+                          DividerWidget(),
+
+
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +178,7 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: "Transfer Type"),
                                 TextWidget(text: 'DEBIT')
                               ]),
-                             DividerWidget(),
+                          DividerWidget(),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -202,7 +192,7 @@ class _GapHistoryState extends State<GapHistory> {
                   ],
                 ),
               ),
-                 Card(
+              Card(
                 child: ExpansionTile(
                   initiallyExpanded: true,
                   title: Row(
@@ -219,22 +209,22 @@ class _GapHistoryState extends State<GapHistory> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                           Row(
+                          Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextWidget(text: "Date"),
                                 TextWidget(text: '05-03-2019 06:30')
                               ]),
-                                DividerWidget(),
-                            Row(
+                          DividerWidget(),
+                          Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextWidget(text: 'Partner'),
                                 TextWidget(text: 'Dr. Abraham Zacharia')
                               ]),
-                              DividerWidget(),
+                          DividerWidget(),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -242,11 +232,11 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: 'IFC NO'),
                                 TextWidget(text: "IFCA0003")
                               ]),
-                         
-                        
+
+
                           DividerWidget(),
-                         
-                         
+
+
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,7 +252,7 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: "Gap Amount"),
                                 TextWidget(text: '\$0.00')
                               ]),
-                         DividerWidget(),
+                          DividerWidget(),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,7 +260,7 @@ class _GapHistoryState extends State<GapHistory> {
                                 TextWidget(text: "Transfer Type"),
                                 TextWidget(text: 'DEBIT')
                               ]),
-                              Divider(
+                          Divider(
                             height: 5,
                           ),
                           Row(

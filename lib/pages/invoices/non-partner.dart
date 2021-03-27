@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
@@ -25,6 +26,11 @@ class _NonPartnerState extends State<NonPartner> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: GlobalWidgets.getToolbarWithBack(
+              title: "Non Partner Invoice",
+              onPressed: (){
+                Navigator.pop(context);
+              }),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(

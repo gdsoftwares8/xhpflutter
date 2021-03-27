@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
@@ -16,6 +17,11 @@ class _ContributionState extends State<Contribution> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: GlobalWidgets.getToolbarWithBack(
+            title: "Contribution Reports",
+            onPressed: (){
+              Navigator.pop(context);
+            }),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
           child: Column(
@@ -27,22 +33,6 @@ class _ContributionState extends State<Contribution> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: GlobalVars.accentColor,
-                            border: Border.all(
-                              color: GlobalVars.accentColor,
-                            ),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Center(
-                              child: TextWidget(
-                            text: "Contribution Reports",
-                            color: Colors.white,
-                            textSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ))),
                       SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
