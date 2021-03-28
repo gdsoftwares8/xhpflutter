@@ -12,7 +12,7 @@ class ChuckAppointmentRepository {
       }) async {
     GlobalFunc.logPrint("ChuckAppointmentRepository $queryParams");
     final response = await _provider.get(GlobalVars.APPOINTMENTS_URL, queryParams: queryParams);
-    //GlobalFunc.logPrint(response);
+    GlobalFunc.logPrint(" res is $response");
     return AppointmentResponce.fromJson(response);
   }
 }

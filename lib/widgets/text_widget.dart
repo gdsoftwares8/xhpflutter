@@ -42,7 +42,7 @@ class TextWidget extends StatelessWidget {
       // alignment: Alignment.ce,
       margin: margin,
       child: Text(
-        text,
+        text!=null ? text : "",
         // softWrap: softWrap,
         maxLines: 2,
         style: TextStyle(

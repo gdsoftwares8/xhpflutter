@@ -142,7 +142,7 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextWidget(text: 'Business Name'),
-                      TextWidget(text: "A2ZDental")
+                      TextWidget(text: model.company)
                     ]),
                 DividerWidget(),
                 Row(

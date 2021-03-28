@@ -44,8 +44,8 @@ class ApiProvider {
     GlobalFunc.logPrint("ApiProvider status Code ${response.statusCode}");
     switch (response.statusCode) {
       case 200:
-        var responseJson = json.decode(response.body.toString());
-        GlobalFunc.logPrint(responseJson);
+        Map<String, dynamic> responseJson = json.decode(response.body);
+        GlobalFunc.logPrint(""+responseJson.toString());
         return responseJson;
       case 400:
         throw BadRequestException(response.body.toString());
