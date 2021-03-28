@@ -18,7 +18,7 @@ class ChuckGiftbloc {
       _chuckListController.stream;
 
   ChuckGiftbloc(String memberId) {
-    _chuckListController = StreamController<Response<AppointmentResponce>>();
+    _chuckListController = StreamController<Response<GiftResponce>>();
     _chuckRepository = ChuckGiftsRepository();
     fetchGifts(memberId);
   }

@@ -1,4 +1,4 @@
-class Gift {
+class GiftModel {
   int _idGift;
   int _fkIdMember;
   int _fkIdReconcileSetup;
@@ -45,7 +45,7 @@ class Gift {
   String get batchStatusCtox => _batchStatusCtox;
   String get batchStatusXtoc => _batchStatusXtoc;
 
-  Gift({
+  GiftModel({
       int idGift, 
       int fkIdMember, 
       int fkIdReconcileSetup, 
@@ -92,7 +92,7 @@ class Gift {
     _batchStatusXtoc = batchStatusXtoc;
 }
 
-  Gift.fromJson(dynamic json) {
+  GiftModel.fromJson(dynamic json) {
     _idGift = json["id_gift"];
     _fkIdMember = json["fk_id_member"];
     _fkIdReconcileSetup = json["fk_id_reconcile_setup"];

@@ -40,6 +40,23 @@ class ApiProvider {
     return responseJson;
   }
 
+  Future<Map<String, dynamic>> post(String url,{ Map<String, dynamic> postParams}) async {
+    var responseJson;
+    try {
+     // val url = Uri.http(authority, unencodedPath)
+      final response = await getClient().post(Uri.parse(_baseUrl+url),
+          headers: getHeaders(),
+          body: jsonEncode(postParams)
+    );
+      GlobalFunc.logPrint("Post ApiProvider 1 $response");
+      responseJson = _response(response);
+      GlobalFunc.logPrint("Post ApiProvider $responseJson");
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   dynamic _response(http.Response response) {
     GlobalFunc.logPrint("ApiProvider status Code ${response.statusCode}");
     switch (response.statusCode) {

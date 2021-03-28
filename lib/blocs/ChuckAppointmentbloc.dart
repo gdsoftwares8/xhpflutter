@@ -26,7 +26,7 @@ class ChuckAppointmentbloc {
   }
 
   fetchAppointmets(String memberId) async {
-    GlobalFunc.logPrint("fetchAppointmets $memberId");
+   // GlobalFunc.logPrint("fetchAppointmets $memberId");
     chuckListSink.add(Response.loading('Getting Appointments.'));
     try {
       Map<String,String> map = HashMap();
@@ -34,7 +34,7 @@ class ChuckAppointmentbloc {
 
       AppointmentResponce chuckDatas =
       await _chuckRepository.fetchAppointments(queryParams: map);
-      GlobalFunc.logPrint("chuckDatas $chuckDatas");
+     // GlobalFunc.logPrint("chuckDatas $chuckDatas");
       if(chuckDatas.status == 1)
         if (_isStreaming) chuckListSink.add(Response.completed(chuckDatas));
       else

@@ -48,6 +48,7 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                 // return CategoryList(categoryList: snapshot.data.data);
                   AppointmentResponce res = snapshot.data.data;
                   if(res.status == 1) {
+                    GlobalFunc.logPrint("total Appointments ${res.result.length}");
                     return ListView.builder(
                       itemBuilder: (context, index) {
                         return drawItem(res.result[index]);

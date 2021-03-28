@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:xhp/utils/global_vars.dart';
+import 'package:xhp/blocs/ChuckGiftsbloc.dart';
+import 'package:xhp/models/gift.dart';
+import 'package:xhp/models/gift_responce.dart';
+import 'package:xhp/networking/Response.dart';
+import 'package:xhp/utils/GlobalFuncs.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
+import 'package:xhp/widgets/Error.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
+import 'package:xhp/widgets/Loading.dart';
 import 'package:xhp/widgets/OtionTab.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/text_widget.dart';
@@ -225,6 +231,14 @@ class GiftReceive extends StatefulWidget {
 }
 
 class _GiftReceiveState extends State<GiftReceive> {
+  ChuckGiftbloc _bloc;
+  String memberId = "1";
+  @override
+  void initState() {
+    super.initState();
+    _bloc = ChuckGiftbloc(memberId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -234,118 +248,119 @@ class _GiftReceiveState extends State<GiftReceive> {
             onPressed: (){
               Navigator.pop(context);
             }),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Card(
-                child: ExpansionTile(
-                  initiallyExpanded: true,
-                  title: Row(
-                    children: <Widget>[
-                      Expanded(child: Text('Peter George')),
-                      Text(
-                        '#101',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ],
-                  ),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Row(children: [Text('Amount')]),
-                          DividerWidget(),
-                          Row(children: [Text('Coupon Code')]),
-                          DividerWidget(),
-                          Row(children: [Text("Gift Balance Amount")]),
-                          DividerWidget(),
-                          Row(children: [Text("Expiry Date")]),
-                          DividerWidget(),
-                          Row(children: [Text("Status")]),
-                          DividerWidget(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-
-              ),
-              Card(
-                child: ExpansionTile(
-                  initiallyExpanded: true,
-                  title: Row(
-                    children: <Widget>[
-                      Expanded(child: Text('Harry Paul')),
-                      Text(
-                        '#102',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ],
-                  ),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Row(children: [Text('Amount')]),
-                          DividerWidget(),
-                          Row(children: [Text('Coupon Code')]),
-                          DividerWidget(),
-                          Row(children: [Text("Gift Balance Amount")]),
-                          DividerWidget(),
-                          Row(children: [Text("Expiry Date")]),
-                          DividerWidget(),
-                          Row(children: [Text("Status")]),
-                          DividerWidget(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-
-              ),
-              Card(
-                child: ExpansionTile(
-                  initiallyExpanded: true,
-                  title: Row(
-                    children: <Widget>[
-                      Expanded(child: Text('Ben Mark')),
-                      Text(
-                        '#103',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ],
-                  ),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Row(children: [Text('Amount')]),
-                          DividerWidget(),
-                          Row(children: [Text('Coupon Code')]),
-                          DividerWidget(),
-                          Row(children: [Text("Gift Balance Amount")]),
-                          DividerWidget(),
-                          Row(children: [Text("Expiry Date")]),
-                          DividerWidget(),
-                          Row(children: [Text("Status")]),
-                          DividerWidget(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-
-              ),
-            ],
-          ),
+        body: StreamBuilder<Response<GiftResponce>>(
+          stream: _bloc.chuckListStream,
+          builder: (context, snapshot) {
+            if(snapshot.hasData) {
+              GlobalFunc.logPrint("snapshot $snapshot");
+              switch(snapshot.data.status){
+                case Status.LOADING:
+                  return Loading(loadingMessage: snapshot.data.message);
+                  break;
+                case Status.COMPLETED:
+                // return CategoryList(categoryList: snapshot.data.data);
+                  GiftResponce res = snapshot.data.data;
+                  if(res.status == 1) {
+                    GlobalFunc.logPrint("total gifts ${res.result.received.length}");
+                    return ListView.builder(
+                      itemBuilder: (context, index) {
+                        return drawItem(res.result.send[index]);
+                      },
+                      itemCount: res.result.send.length,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                    );
+                  } else {
+                    return Error(
+                      errorMessage: res.message,
+                      onRetryPressed: () => _bloc.fetchGifts(memberId),
+                    );
+                  }
+                  break;
+                case Status.ERROR:
+                  return Error(
+                    errorMessage: snapshot.data.message,
+                    onRetryPressed: () => _bloc.fetchGifts(memberId),
+                  );
+                  break;
+              }
+            }
+            return Container();
+          },
         ),
       ),
+    );
+  }
+
+  Widget drawItem(GiftModel model) {
+    return Card(
+      child: ExpansionTile(
+        initiallyExpanded: true,
+        title: Row(
+          children: <Widget>[
+            Expanded(child: Text(model.receiverName)),
+            Text(
+              "${model.idGift}",
+              style: Theme.of(context).textTheme.caption,
+            ),
+          ],
+        ),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Amount'),
+                      TextWidget(text: "${model.giftAmount}")
+                    ]
+                ),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Coupon Code'),
+                      TextWidget(text: "${model.couponCode}")
+                    ]
+                ),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Gift Balance Amount"),
+                      TextWidget(text: "${model.giftAmountAvailable}")
+                    ]
+                ),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Expiry Date"),
+                      TextWidget(text: "${model.giftExpiryDate}")
+                    ]
+                ),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Status"),
+                      TextWidget(text: "${model.status}")
+                    ]
+                ),
+                DividerWidget(),
+              ],
+            ),
+          )
+        ],
+      ),
+
     );
   }
 }

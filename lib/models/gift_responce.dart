@@ -41,15 +41,15 @@ class GiftResponce {
 /// received : []
 
 class Result {
-  List<Gift> _send;
-  List<Gift> _received;
+  List<GiftModel> _send;
+  List<GiftModel> _received;
 
-  List<Gift> get send => _send;
-  List<Gift> get received => _received;
+  List<GiftModel> get send => _send;
+  List<GiftModel> get received => _received;
 
   Result({
-      List<Gift> send,
-      List<Gift> received}){
+      List<GiftModel> send,
+      List<GiftModel> received}){
     _send = send;
     _received = received;
 }
@@ -58,13 +58,13 @@ class Result {
     if (json["send"] != null) {
       _send = [];
       json["send"].forEach((v) {
-        _send.add(Gift.fromJson(v));
+        _send.add(GiftModel.fromJson(v));
       });
     }
     if (json["received"] != null) {
       _received = [];
       json["received"].forEach((v) {
-        _received.add(Gift.fromJson(v));
+        _received.add(GiftModel.fromJson(v));
       });
     }
   }
