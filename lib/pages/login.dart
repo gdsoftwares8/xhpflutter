@@ -37,6 +37,7 @@ class _Login extends State<Login> {
   @override
   void initState() {
     super.initState();
+    _bloc = ChuckLoginbloc();
   }
 
   @override
@@ -167,7 +168,7 @@ class _Login extends State<Login> {
                             } else {
                               //List<Map<String, dynamic>> map=[{'username':username,},{'password':_password}];
                              // _bloc.fetchLogin(username, _password);
-                              _bloc = ChuckLoginbloc(username,_password);
+                             _bloc.fetchLogin(username, _password);
                               // if (LoginResponce().status==1) {
                               //   print("DFGHBJN");
                               //   // Navigator.pushReplacementNamed(context, "/home");

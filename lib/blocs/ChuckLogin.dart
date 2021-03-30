@@ -19,10 +19,9 @@ class ChuckLoginbloc {
   Stream<Response<LoginResponce>> get chuckListStream =>
       _chuckListController.stream;
 
-  ChuckLoginbloc(String username, String password) {
+  ChuckLoginbloc() {
     _chuckListController = StreamController<Response<LoginResponce>>();
     _chuckRepository = ChuckLoginRepository();
-    fetchLogin(username,password);
   }
 
   fetchLogin(String username, String password) async {
