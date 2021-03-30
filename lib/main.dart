@@ -16,6 +16,7 @@ import 'pages/invoices/gap-history.dart';
 import 'pages/invoices/non-partner.dart';
 import 'pages/invoices/pending-invoice.dart';
 import 'pages/reports/appointment-reports.dart';
+import 'pages/reports/interest-report.dart';
 import 'provider/sign_up_provider.dart';
 import 'welcome.dart';
 
@@ -97,6 +98,8 @@ class MyApp extends StatelessWidget {
         "/appointment-report":(context)=>AppointmentReport(),
         "/contributions":(context)=>Contribution(),
         "/financial":(context)=>Financial(),
+        "/contributions-history":(context) =>ContributionHistory(),
+        "/interest-history":(context)=>InterestHistory()
         //"gift-history":(context)=>
       },
       home: Home(),

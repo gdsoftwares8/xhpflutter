@@ -8,7 +8,7 @@ class GlobalVars {
   static String URL = "http://rupeestreet.com/xhpbackend/";
   static String BASE_URL = URL+"api/";
   static String REGISTER_URL = BASE_URL+"auth/register";
-  static String LOGIN_URL = BASE_URL+"auth/login";
+  static String LOGIN_URL = "auth/login";
   static String GET_PROFILE_URL = BASE_URL+"account";
   static String UPDATE_PROFILE_URL = "account/update_account";
   static String APPOINTMENTS_URL = "appointments";
@@ -21,6 +21,8 @@ class GlobalVars {
   static String GIFTS_URL = "gift";
   static String ADD_GIFT_URL = "gift/add";
   static String TERMS_URL = "getTermsAndCondition";
+  static String CONTRIBUTION_URL="report/getContribution";
+  static String INTEREST_URL="report/getInterestStatement";
 
   // Constants For Prefrences
   static String isLogin = "isLogin";

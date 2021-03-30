@@ -97,7 +97,7 @@ class _FinancialState extends State<Financial> {
                                       //SizedBox(width: MediaQuery.of(context).size.width*.35),
                                       GestureDetector(
                                         onTap: () => Navigator.of(context)
-                                            .pushReplacementNamed('/home'),
+                                            .pushReplacementNamed('/interest-history'),
                                         child: TextWidget(text:
                                           "Yes",
                                           textSize: 14,

@@ -1,9 +1,190 @@
 import 'package:flutter/material.dart';
+import 'package:xhp/blocs/ChuckContributionbloc.dart';
+import 'package:xhp/models/appointment_model.dart';
+import 'package:xhp/models/appointment_responce.dart';
+import 'package:xhp/models/contribution-model.dart';
+import 'package:xhp/models/contribution_response.dart';
+import 'package:xhp/networking/Response.dart';
+import 'package:xhp/utils/GlobalFuncs.dart';
+import 'package:xhp/utils/global_vars.dart';
+import 'package:xhp/widgets/DividerWidget.dart';
+import 'package:xhp/widgets/Error.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
-import 'package:xhp/widgets/TextForm.dart';
+import 'package:xhp/widgets/Loading.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
-import 'package:xhp/utils/global_vars.dart';
+
+class ContributionHistory extends StatefulWidget {
+  @override
+  _ContributionHistoryState createState() => _ContributionHistoryState();
+}
+
+class _ContributionHistoryState extends State<ContributionHistory> {
+  ChuckContributionbloc _bloc;
+  String memberId = "1";
+  @override
+  void initState() {
+    super.initState();
+    _bloc = ChuckContributionbloc(memberId);
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: GlobalWidgets.getToolbarWithBack(
+            title: "Contribution History",
+            onPressed: (){
+              Navigator.pop(context);
+            }),
+        body: StreamBuilder<Response<ContributionResponse>>(
+          stream: _bloc.chuckListStream,
+          builder: (context, snapshot) {
+            if(snapshot.hasData) {
+              GlobalFunc.logPrint("snapshot $snapshot");
+              switch(snapshot.data.status){
+                case Status.LOADING:
+                  return Loading(loadingMessage: snapshot.data.message);
+                  break;
+                case Status.COMPLETED:
+                // return CategoryList(categoryList: snapshot.data.data);
+                  ContributionResponse res = snapshot.data.data;
+                  if(res.status == 1) {
+                    GlobalFunc.logPrint("total Contributions ${res.result.aMemberGroup.length}");
+                    return ListView.builder(
+                      itemBuilder: (context, index) {
+                        return drawItem(res.result.aMemberGroup[index]);
+                      },
+                      itemCount: res.result.aMemberGroup.length,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                    );
+                  } else {
+                    return Error(
+                      errorMessage: res.message,
+                      onRetryPressed: () => _bloc.fetchContributions(memberId),
+                    );
+                  }
+                  break;
+                case Status.ERROR:
+                  return Error(
+                    errorMessage: snapshot.data.message,
+                    onRetryPressed: () => _bloc.fetchContributions(memberId),
+                  );
+                  break;
+              }
+            }
+            return Container();
+          },
+        ),
+    
+      ),
+    );
+  }
+
+  Widget drawItem(ContributionMember model) {
+    return Card(
+      child: ExpansionTile(
+        initiallyExpanded: true,
+        title: Row(
+          children: <Widget>[
+            Expanded(child: TextWidget(text: 'Sr.No.1')),
+            Text(
+              'Peter Goerg (01000002)',
+              style: Theme.of(context).textTheme.caption,
+            ),
+          ],
+        ),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: 'Business Name'),
+                      TextWidget(text: model.firstName)
+                    ]),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: 'Member'),
+                      TextWidget(text: 'Peter Goerg (01000002)')
+                    ]),
+                DividerWidget(
+
+                ),
+
+
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Service"),
+                      TextWidget(text: 'Dental')
+                    ]),
+
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Preferred Date"),
+                      TextWidget(text: model.activationDate)
+                    ]),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Status"),
+                      TextWidget(text: model.status)
+                    ]),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Follow Up Contribution"),
+                      TextWidget(text: '-')
+                    ]),
+                DividerWidget(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Amount"),
+                      TextWidget(text: model.actualAmount)
+                    ]),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "IFC Status"),
+                      TextWidget(text: model.status)
+                    ]),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
+  }
+}
+
+
 
 class Contribution extends StatefulWidget {
   @override
@@ -72,7 +253,7 @@ class _ContributionState extends State<Contribution> {
                     ]),
               ), SizedBox(height:20),
               ButtonWidget(
-                          text: 'Appointment History',
+                          text: 'Contribution History',
                           onPressed: () {
                             return showDialog(
                                   context: context,
@@ -96,7 +277,7 @@ class _ContributionState extends State<Contribution> {
                                       //SizedBox(width: MediaQuery.of(context).size.width*.35),
                                       GestureDetector(
                                         onTap: () => Navigator.of(context)
-                                            .pushReplacementNamed('/home'),
+                                            .pushReplacementNamed('/contributions-history'),
                                         child: TextWidget(text:
                                           "Yes",
                                           textSize: 14,
@@ -110,11 +291,15 @@ class _ContributionState extends State<Contribution> {
                                   ),
                                 ) ??
                                 false;
-                          })
+                          }),
+                         
             ],
           ),
         ),
       ),
     );
   }
+
 }
+
+
