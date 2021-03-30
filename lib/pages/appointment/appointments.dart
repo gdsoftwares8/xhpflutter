@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:xhp/blocs/ChuckBookAppointment.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/OtionTab.dart';
@@ -52,6 +54,14 @@ class BookAppointment extends StatefulWidget {
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
+  ChuckBookAppointmentbloc _bloc;
+  String memberId="1";
+  String fkId='1';
+  String isRebate='1';
+  String company='Company';
+  String company_membership_no="01000013";
+  String service_category='1';
+
   String _selectedText;
   String _selectedText2;
   String _selectedText3;
@@ -97,9 +107,9 @@ class _BookAppointmentState extends State<BookAppointment> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: DropdownButton<String>(
-                                  hint: TextWidget(text:"Select Member"),
+                                  hint: TextWidget(text:"Select Member No"),
                                   value: _selectedText,
-                                  items: <String>['Peter Goerg', 'Patrica Goerg']
+                                  items: <String>['01000013', '01000013']
                                       .map((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
@@ -230,11 +240,10 @@ class _BookAppointmentState extends State<BookAppointment> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormWidget(
+                                    labelText: 'Time*',
                                     suffixIcon: Icon(Icons.watch),
                                     controller: timeCtl, // add this line.
-                                    decoration: InputDecoration(
-                                      labelText: 'Time*',
-                                    ),
+                                    
                                     onTap: () async {
                                       TimeOfDay time = TimeOfDay.now();
                                       FocusScope.of(context).requestFocus(new FocusNode());
@@ -245,9 +254,9 @@ class _BookAppointmentState extends State<BookAppointment> {
                                         timeCtl.text = picked
                                             .toString()
                                             .substring(10, 15); // add this line.
-                                        setState(() {
-                                          time = picked;
-                                        });
+                                        // setState(() {
+                                        //   time = picked;
+                                        // });
                                       }
                                     },
                                     validator: (value) {
@@ -321,8 +330,14 @@ class _BookAppointmentState extends State<BookAppointment> {
                           SizedBox(width: 20),
                           //SizedBox(width: MediaQuery.of(context).size.width*.35),
                           GestureDetector(
-                            onTap: () => Navigator.of(context)
-                                .pushReplacementNamed('/home'),
+                            onTap: () {
+                                //_bloc.fetchBookAppointmets(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+                                _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+                                Fluttertoast.showToast(
+          msg: "Booking Done Successfully!",
+        );
+                              Navigator.of(context)
+                                .pushReplacementNamed('/home');},
                             child: TextWidget(text:
                             "Yes",
                               textSize: 14,
