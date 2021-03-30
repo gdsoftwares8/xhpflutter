@@ -30,10 +30,14 @@ class GlobalVars {
   static String isVerified = "isVerified";
   static String isPaymentDone = "isPaymentDone";
   static String id = "_id";
-  static String name = "name";
+  static String fName = "fName";
+  static String mName = "mName";
+  static String lName = "lName";
   static String email = "email";
-  static String phone = "phone";
-  static String password = "password";
+  static String mobileNo = "phone";
+  static String title = "title";
+  static String member_type = "member_type";
+  static String membership_no = "membership_no";
 
   static String ENTER_NAME = "Enter valid name";
   static String ENTER_VALID_EMAIL = "Enter valid email";

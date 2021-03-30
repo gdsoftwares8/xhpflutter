@@ -102,7 +102,7 @@ class MyApp extends StatelessWidget {
         "/interest-history":(context)=>InterestHistory()
         //"gift-history":(context)=>
       },
-      home: Home(),
+      home: SplashScreen(),
     ));
   }
 }

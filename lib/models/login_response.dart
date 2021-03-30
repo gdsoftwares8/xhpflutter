@@ -7,7 +7,7 @@ import 'package:xhp/models/appointment_model.dart';
 
 class LoginResponce {
   String message;
-  List<User> userData;
+  User userData;
   int status;
 
   LoginResponce({this.message, this.userData, this.status});
@@ -15,10 +15,7 @@ class LoginResponce {
   LoginResponce.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     if (json['userData'] != null) {
-      userData = <User>[];
-      json['userData'].forEach((v) {
-        userData.add(new User.fromJson(v));
-      });
+      userData = new User.fromJson(json['userData']);
     }
     status = json['status'];
   }
@@ -26,11 +23,15 @@ class LoginResponce {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['message'] = this.message;
-    if (this.userData != null) {
-      data['userData'] = this.userData.map((v) => v.toJson()).toList();
-    }
+    data['userData'] = this.userData;
     data['status'] = this.status;
     return data;
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "status $status message $message userData $userData";
   }
 
 }

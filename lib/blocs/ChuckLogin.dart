@@ -1,31 +1,28 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:xhp/models/appointment_responce.dart';
 import 'package:xhp/models/login_response.dart';
 
 import 'package:xhp/networking/Response.dart';
-import 'package:xhp/repository/ChuckAppointmentRepository.dart';
 import 'package:xhp/repository/LoginResponse.dart';
+import 'package:xhp/utils/GlobalFuncs.dart';
 
 
 class ChuckLoginbloc {
   ChuckLoginRepository _chuckRepository;
-  StreamController _chuckListController;
-
-  StreamSink<Response<LoginResponce>> get chuckListSink =>
-      _chuckListController.sink;
+  StreamController _chuckListController = StreamController<Response<LoginResponce>>();
 
   Stream<Response<LoginResponce>> get chuckListStream =>
       _chuckListController.stream;
 
   ChuckLoginbloc() {
-    _chuckListController = StreamController<Response<LoginResponce>>();
+   // _chuckListController = StreamController.broadcast();
     _chuckRepository = ChuckLoginRepository();
   }
 
   fetchLogin(String username, String password) async {
-    chuckListSink.add(Response.loading('Getting Login.'));
+  //  _chuckListController.add("test");
+   _chuckListController.add(Response<LoginResponce>.loading('Getting Login.'));
     try {
       Map<String,String> map = HashMap();
       map.putIfAbsent("username", () => username);
@@ -33,12 +30,14 @@ class ChuckLoginbloc {
      // map.putIfAbsent("member_id", () => memberId);
       LoginResponce chuckDatas =
       await _chuckRepository.fetchLogin(postParams: map);
+    //  GlobalFunc.logPrint("Login Responce $chuckDatas");
       if(chuckDatas.status == 1)
-        chuckListSink.add(Response.completed(chuckDatas));
+        _chuckListController.add(Response<LoginResponce>.completed(chuckDatas));
       else
-        chuckListSink.add(Response.error(chuckDatas.message));
+        _chuckListController.add(Response<LoginResponce>.error(chuckDatas.message));
     } catch (e) {
-      chuckListSink.add(Response.error(e.toString()));
+      GlobalFunc.logPrint("Error $e");
+      _chuckListController.add(Response<LoginResponce>.error(e.toString()));
       print(e);
     }
   }

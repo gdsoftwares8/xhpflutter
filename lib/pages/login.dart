@@ -12,6 +12,7 @@ import 'package:xhp/blocs/ChuckLogin.dart';
 import 'package:xhp/models/login_response.dart';
 import 'package:xhp/models/user.dart';
 import 'package:xhp/networking/ApiProvider.dart';
+import 'package:xhp/networking/Response.dart';
 import 'package:xhp/utils/GlobalFuncs.dart';
 import 'package:xhp/utils/SharedPref.dart';
 import 'package:xhp/utils/global_vars.dart';
@@ -34,10 +35,49 @@ class _Login extends State<Login> {
   bool show_pass = false;
   User currentuser;
 
+  listenStream() {
+    _bloc.chuckListStream.listen((Response<LoginResponce> event) {
+      GlobalFunc.logPrint("Login listen ${event.message}");
+      switch(event.status) {
+        case Status.LOADING:
+          GlobalFunc.logPrint(event.message);
+          updateLoadingState(true);
+          break;
+        case Status.COMPLETED:
+          GlobalFunc.logPrint(" Success ${event.data}");
+          updateLoadingState(false);
+          if(event.data.userData!=null) {
+            GlobalFunc.saveUserData(event.data.userData, context, sharedPref);
+            Navigator.pushNamedAndRemoveUntil(context, '/home', (r) => false);
+          } else {
+            GlobalFunc.showToast("Error:- "+event.message);
+          }
+          break;
+        case Status.ERROR:
+          updateLoadingState(false);
+          GlobalFunc.showToast(event.message);
+          break;
+      }
+
+    }, onError: (error){
+      print("Error $error");
+    }, onDone: () {
+      print("Stream closed!");
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     _bloc = ChuckLoginbloc();
+    listenStream();
+
+  }
+
+  @override
+  void dispose() {
+    _bloc.dispose(); //Streams must be closed when not needed
+    super.dispose();
   }
 
   @override
@@ -206,6 +246,13 @@ class _Login extends State<Login> {
             ),
     );
   }
+
+  updateLoadingState(bool loading) {
+    setState(() {
+      this._loading = loading;
+    });
+  }
+
 }
 
 //   showPasswordRecovery() {
@@ -405,11 +452,7 @@ class _Login extends State<Login> {
 //     }
 //   }
 
-//   updateLoadingState(bool loading) {
-//     setState(() {
-//       this._loading = loading;
-//     });
-//   }
+
 
 //   Future postPasswordRecovery(String email, BuildContext context) async {
 //     Map<String, dynamic> parameterData = Map();
