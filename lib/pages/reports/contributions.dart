@@ -54,7 +54,7 @@ class _ContributionHistoryState extends State<ContributionHistory> {
                     GlobalFunc.logPrint("total Contributions ${res.result.aMemberGroup.length}");
                     return ListView.builder(
                       itemBuilder: (context, index) {
-                        return drawItem(res.result.aMemberGroup[index]);
+                        return drawItem(res.result.aMemberGroup[index],res.result.aYearRange[index],res.result.aServiceCategory[index]);
                       },
                       itemCount: res.result.aMemberGroup.length,
                       shrinkWrap: true,
@@ -83,15 +83,15 @@ class _ContributionHistoryState extends State<ContributionHistory> {
     );
   }
 
-  Widget drawItem(ContributionMember model) {
+  Widget drawItem(ContributionMember model,ContributionYear year,ContributionService service) {
     return Card(
       child: ExpansionTile(
         initiallyExpanded: true,
         title: Row(
           children: <Widget>[
-            Expanded(child: TextWidget(text: 'Sr.No.1')),
+            Expanded(child: TextWidget(text: model.membershipNo)),
             Text(
-              'Peter Goerg (01000002)',
+              model.firstName+" "+model.lastName,
               style: Theme.of(context).textTheme.caption,
             ),
           ],
@@ -105,16 +105,16 @@ class _ContributionHistoryState extends State<ContributionHistory> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: 'Business Name'),
-                      TextWidget(text: model.firstName)
+                      TextWidget(text: 'Start Year'),
+                      TextWidget(text: year.startYear)
                     ]),
                 DividerWidget(),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: 'Member'),
-                      TextWidget(text: 'Peter Goerg (01000002)')
+                      TextWidget(text: 'End Year'),
+                      TextWidget(text: year.endYear),
                     ]),
                 DividerWidget(
 
@@ -134,7 +134,15 @@ class _ContributionHistoryState extends State<ContributionHistory> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: "Preferred Date"),
+                      TextWidget(text: "Country"),
+                      TextWidget(text: model.liveCountry)
+                    ]),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Activation Date"),
                       TextWidget(text: model.activationDate)
                     ]),
                 DividerWidget(),
@@ -143,15 +151,15 @@ class _ContributionHistoryState extends State<ContributionHistory> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextWidget(text: "Status"),
-                      TextWidget(text: model.status)
+                      TextWidget(text: year.status)
                     ]),
                 DividerWidget(),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: "Follow Up Contribution"),
-                      TextWidget(text: '-')
+                      TextWidget(text: "Service Category"),
+                      TextWidget(text: service.name )
                     ]),
                 DividerWidget(),
                   Row(
@@ -162,12 +170,20 @@ class _ContributionHistoryState extends State<ContributionHistory> {
                       TextWidget(text: model.actualAmount)
                     ]),
                 DividerWidget(),
+                 Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Available Balance"),
+                      TextWidget(text: model.availableBalance)
+                    ]),
+                DividerWidget(),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: "IFC Status"),
-                      TextWidget(text: model.status)
+                      TextWidget(text: "XHP Authority "),
+                      TextWidget(text: model.xhpAuthority)
                     ]),
               ],
             ),

@@ -178,33 +178,20 @@ class _SignUpState extends State<SignUp> {
           // ),
           SizedBox(height: 10),
           TextFormWidget(
+            labelText: "Account Number",
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "Account Number",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+           
           ),
           SizedBox(height: 10),
           TextFormWidget(
+             labelText: "Re-enter Account Number",
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "Re-enter Account Number",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+            
           ),
           SizedBox(height: 10),
           TextFormWidget(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "IFSC Code",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+            labelText: "IFSC Code",
+            
           ),
         ],
       ),
@@ -217,53 +204,30 @@ class _SignUpState extends State<SignUp> {
         children: [
           SizedBox(height: 10),
           TextFormWidget(
+            labelText: "Citizenship",
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "Citizenship",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+           
           ),
           SizedBox(height: 10),
           TextFormWidget(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "Aborginal / Torres Strait Island",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+            labelText: "Aborginal / Torres Strait Island",
+            
           ),
           SizedBox(height: 10),
           TextFormWidget(
+            labelText: "Income",
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "Income",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+           
           ),
           SizedBox(height: 10),
           TextFormWidget(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "Countries of Tax Residence last 3 years",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+            labelText: "Countries of Tax Residence last 3 years",
+            
           ),
           SizedBox(height: 10),
           TextFormWidget(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              labelText: "ID Document",
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+               labelText: "ID Document",
+            
           ),
         ],
       ),
@@ -323,13 +287,8 @@ class _PersonalDetailState extends State<PersonalDetail> {
             ),
             SizedBox(height: 10),
             TextFormWidget(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "Middle Name",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+               labelText: "Middle Name",
+              
               // validator: signInProvider.validateEmpty,
               // onChanged: (value) {
               //   signInProvider.validateEmpty(value);
@@ -337,13 +296,8 @@ class _PersonalDetailState extends State<PersonalDetail> {
             ),
             SizedBox(height: 10),
             TextFormWidget(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                labelText: "Last Name",
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
+              labelText: "Last Name",
+              
               validator: signInProvider.validateEmpty,
               onChanged: (value) {
                 signInProvider.validateEmpty(value);
@@ -372,6 +326,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
                 print(dateCtroller.text);
               },
             ),
+            SizedBox(height: 10),
             TextFormWidget(
                labelText: "Phone",
               autovalidateMode: AutovalidateMode.onUserInteraction,

@@ -56,7 +56,7 @@ class _InterestHistoryState extends State<InterestHistory> {
                     GlobalFunc.logPrint("total Interests ${res.result.interest.thisYear.length}");
                     return ListView.builder(
                       itemBuilder: (context, index) {
-                        return drawItem(res.result.interest.thisYear[index]);
+                        return drawItem(res.result.interest.thisYear[index],res.result.years,res.result.interest);
                       },
                       itemCount: res.result.interest.thisYear.length,
                       shrinkWrap: true,
@@ -85,16 +85,16 @@ class _InterestHistoryState extends State<InterestHistory> {
     );
   }
 
-  Widget drawItem(InterestModel model) {
+  Widget drawItem(InterestModel model,Years years,Interest interest) {
     return Card(
       child: ExpansionTile(
         initiallyExpanded: true,
         title: Row(
           children: <Widget>[
-            Expanded(child: TextWidget(text: 'Sr.No.1')),
-            Text(
-              'Peter Goerg (01000002)',
-              style: Theme.of(context).textTheme.caption,
+            Expanded(child: TextWidget(text: years.aYearRange[0])),
+            TextWidget(
+            text:  model.membershipNo,
+              // style: Theme.of(context).textTheme.caption,
             ),
           ],
         ),
@@ -107,8 +107,8 @@ class _InterestHistoryState extends State<InterestHistory> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: 'Business Name'),
-                      TextWidget(text: model.firstName)
+                      TextWidget(text: 'Total'),
+                      TextWidget(text:model.s01Total)
                     ]),
                 DividerWidget(),
                 Row(
@@ -116,7 +116,7 @@ class _InterestHistoryState extends State<InterestHistory> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextWidget(text: 'Member'),
-                      TextWidget(text: 'Peter Goerg (01000002)')
+                      TextWidget(text:model.firstName+" "+model.lastName)
                     ]),
                 DividerWidget(
 
@@ -145,8 +145,16 @@ class _InterestHistoryState extends State<InterestHistory> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: "Follow Up Interest"),
-                      TextWidget(text: '-')
+                      TextWidget(text: "Actual Interest"),
+                      TextWidget(text: model.s01ActualInterest)
+                    ]),
+                DividerWidget(),
+                 Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Expected Interest"),
+                      TextWidget(text: model.s01ExpectedInterest)
                     ]),
                 DividerWidget(),
                   Row(
@@ -154,16 +162,33 @@ class _InterestHistoryState extends State<InterestHistory> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextWidget(text: "Amount"),
-                      TextWidget(text: model.s01ActualInterest)
+                      TextWidget(text: model.s01Total)
                     ]),
                 DividerWidget(),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: "IFC Status"),
-                      TextWidget(text: model.title)
+                      TextWidget(text: "Citizen"),
+                      TextWidget(text: model.citizenTfn)
                     ]),
+                     DividerWidget(),
+                    Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Start Year"),
+                      TextWidget(text: interest.startYear)
+                    ]),
+                DividerWidget(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "End Year"),
+                      TextWidget(text: interest.endYear)
+                    ]),
+                DividerWidget(),
               ],
             ),
           )
