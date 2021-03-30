@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xhp/models/user.dart';
 
 import 'SharedPref.dart';
@@ -23,16 +24,17 @@ class GlobalFunc {
 
   static saveUserData(User muser, BuildContext context, SharedPref sharedPref) async {
 
-  //  sharedPref.save(GlobalVars.isLogin, true);
-    sharedPref.save(GlobalVars.id, muser.idMember);
-    sharedPref.save(GlobalVars.fName, muser.firstName);
-    sharedPref.save(GlobalVars.mName, muser.middleName);
-    sharedPref.save(GlobalVars.lName, muser.lastName);
-    sharedPref.save(GlobalVars.mobileNo, muser.mobileNo);
-    sharedPref.save(GlobalVars.email, muser.email);
-    sharedPref.save(GlobalVars.title, muser.title);
-    sharedPref.save(GlobalVars.member_type, muser.memberType);
-    sharedPref.save(GlobalVars.membership_no, muser.membershipNo);
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(GlobalVars.isLogin, true);
+    prefs.setString(GlobalVars.id, "${muser.idMember}");
+    prefs.setString(GlobalVars.fName, muser.firstName);
+    prefs.setString(GlobalVars.mName, muser.middleName);
+    prefs.setString(GlobalVars.lName, muser.lastName);
+    prefs.setString(GlobalVars.mobileNo, muser.mobileNo);
+    prefs.setString(GlobalVars.email, muser.email);
+    prefs.setString(GlobalVars.title, muser.title);
+    prefs.setString(GlobalVars.member_type, muser.memberType);
+    prefs.setString(GlobalVars.membership_no, muser.membershipNo);
     try {
       sharedPref.save(GlobalVars.user, muser.toJson());
     } catch (e) {

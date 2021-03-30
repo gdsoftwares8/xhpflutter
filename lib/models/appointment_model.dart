@@ -6,32 +6,32 @@ class AppointmentModel {
   int fkIdBookByMember;
   int fkIdServiceCategory;
   int fkIdPartnerAddress;
-  Null fkIdPractitioner;
+  String fkIdPractitioner;
   String preferredDate;
-  Null alternateDate;
+  String alternateDate;
   int sitting;
   String netPayable;
-  Null grandTotal;
+  String grandTotal;
   String linAmount;
   int isDiscount;
-  Null discountReason;
+  String discountReason;
   String discount;
-  Null discountAmount;
+  String discountAmount;
   String gapAmount;
-  Null otp;
+  String otp;
   String remarks;
   String status;
-  Null ifcNo;
+  String ifcNo;
   String preferredTime;
   String discountType;
-  Null ifcStatus;
-  Null nxtAppTime;
-  Null nxtAppConfirmation;
-  Null nxtAppStatus;
+  String ifcStatus;
+  String nxtAppTime;
+  String nxtAppConfirmation;
+  String nxtAppStatus;
   int isChargePaid;
   int isPhiRebate;
-  Null company;
-  Null companyMembershipNo;
+  String company;
+  String companyMembershipNo;
 
   AppointmentModel(
       {this.idAppointment,
