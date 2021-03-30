@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xhp/blocs/ChuckAppointmentbloc.dart';
 import 'package:xhp/models/appointment_model.dart';
 import 'package:xhp/models/appointment_responce.dart';
 import 'package:xhp/networking/Response.dart';
 import 'package:xhp/utils/GlobalFuncs.dart';
+import 'package:xhp/utils/SharedPref.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
 import 'package:xhp/widgets/Error.dart';
@@ -17,11 +19,15 @@ class AppointmentHistory extends StatefulWidget {
 }
 
 class _AppointmentHistoryState extends State<AppointmentHistory> {
+  SharedPref sharedPref = SharedPref();
   ChuckAppointmentbloc _bloc;
   String memberId = "1";
   @override
-  void initState() {
+  initState()  {
     super.initState();
+  //  memberId = sharedPref.readString(GlobalVars.id);
+  //   final prefs = await SharedPreferences.getInstance();
+  //   memberId =  prefs.getString(GlobalVars.id);
     _bloc = ChuckAppointmentbloc(memberId);
   }
 

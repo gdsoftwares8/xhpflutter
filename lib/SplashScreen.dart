@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xhp/utils/GlobalFuncs.dart';
+import 'package:xhp/utils/SharedPref.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 
 class SplashScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Timer(Duration(seconds: 2), (){
@@ -24,19 +24,19 @@ class SplashScreen extends StatelessWidget {
   }
 
    checkUserAndNavigate(BuildContext context) async {
-    final prefs = await SharedPreferences.getInstance();
-    print("Anil ${prefs.getBool(GlobalVars.isLogin)}");
-    // return prefs.getBool(GlobalVars.isLogin);
-    bool isLogin = prefs.getBool(GlobalVars.isLogin);
-    bool isVerified = prefs.getBool(GlobalVars.isVerified);
-    GlobalFunc.logPrint("isLogin $isLogin and isVerified $isVerified");
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      bool isLogin = prefs.getBool(GlobalVars.isLogin);
+      GlobalFunc.logPrint("isLogin $isLogin");
 
-    /* if(isVerified == false)
-    Navigator.popAndPushNamed(context, "/help_screen");
-  else*/ if(isLogin == true)
-      Navigator.popAndPushNamed(context, "/login");
-    else
+      if(isLogin!=null && isLogin == true)
+            Navigator.popAndPushNamed(context, "/home");
+          else
+            Navigator.popAndPushNamed(context, "/welcome");
+    } catch (e) {
+      print(e);
       Navigator.popAndPushNamed(context, "/welcome");
+    }
   }
 
 }
