@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xhp/utils/global_vars.dart';
 
 import 'appointment/appointments.dart';
 import 'gifts/gift.dart';
@@ -21,6 +23,12 @@ class _HomeState extends State<Home> {
     Report(),
     Settings()
   ];
+
+  savebool(bool value) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool(GlobalVars.isLogin, value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +39,16 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Welcome to XHP"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                savebool(false);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/welcome', (Route<dynamic> route) => false,
+                      );
+              })
+        ],
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

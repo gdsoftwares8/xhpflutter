@@ -23,7 +23,7 @@ class GlobalFunc {
 
   static saveUserData(User muser, BuildContext context, SharedPref sharedPref) async {
 
-    sharedPref.save(GlobalVars.isLogin, true);
+  //  sharedPref.save(GlobalVars.isLogin, true);
     sharedPref.save(GlobalVars.id, muser.idMember);
     sharedPref.save(GlobalVars.fName, muser.firstName);
     sharedPref.save(GlobalVars.mName, muser.middleName);

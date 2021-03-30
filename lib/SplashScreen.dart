@@ -34,7 +34,7 @@ class SplashScreen extends StatelessWidget {
     /* if(isVerified == false)
     Navigator.popAndPushNamed(context, "/help_screen");
   else*/ if(isLogin == true)
-      Navigator.popAndPushNamed(context, "/login");
+      Navigator.popAndPushNamed(context, "/home");
     else
       Navigator.popAndPushNamed(context, "/welcome");
   }

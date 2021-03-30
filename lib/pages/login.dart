@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xhp/blocs/ChuckLogin.dart';
 import 'package:xhp/models/login_response.dart';
 import 'package:xhp/models/user.dart';
@@ -35,8 +36,17 @@ class _Login extends State<Login> {
   bool show_pass = false;
   User currentuser;
 
+ savebool(bool value)async{
+   final pref=await SharedPreferences.getInstance();
+   pref.setBool(GlobalVars.isLogin, value);
+
+
+ }
+
+
   listenStream() {
     _bloc.chuckListStream.listen((Response<LoginResponce> event) {
+      
       GlobalFunc.logPrint("Login listen ${event.message}");
       switch(event.status) {
         case Status.LOADING:
@@ -47,6 +57,7 @@ class _Login extends State<Login> {
           GlobalFunc.logPrint(" Success ${event.data}");
           updateLoadingState(false);
           if(event.data.userData!=null) {
+            savebool(true);
             GlobalFunc.saveUserData(event.data.userData, context, sharedPref);
             Navigator.pushNamedAndRemoveUntil(context, '/home', (r) => false);
           } else {
