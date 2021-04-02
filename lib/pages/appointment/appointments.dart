@@ -65,10 +65,28 @@ class _BookAppointmentState extends State<BookAppointment> {
   String _selectedText;
   String _selectedText2;
   String _selectedText3;
-  TextEditingController dateCtl = TextEditingController();
-  TextEditingController timeCtl = TextEditingController();
+  TextEditingController dateCtl;
+  TextEditingController timeCtl;
   String location;
   Ans _ans;
+
+@override
+  void initState() {
+    // TODO: implement initState
+dateCtl=TextEditingController();
+timeCtl=TextEditingController();
+
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    dateCtl.dispose();
+    timeCtl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +127,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                 child: DropdownButton<String>(
                                   hint: TextWidget(text:"Select Member No"),
                                   value: _selectedText,
-                                  items: <String>['01000013', '01000013']
+                                  items: <String>['01000013', '01000012']
                                       .map((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,

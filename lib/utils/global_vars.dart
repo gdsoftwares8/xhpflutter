@@ -23,6 +23,7 @@ class GlobalVars {
   static String TERMS_URL = "getTermsAndCondition";
   static String CONTRIBUTION_URL="report/getContribution";
   static String INTEREST_URL="report/getInterestStatement";
+  static String SIGNUP_FIRST_URL="report/getInterestStatement";
 
   // Constants For Prefrences
   static String isLogin = "isLogin";
@@ -74,6 +75,7 @@ class GlobalVars {
       });
   static final Color accentColor = Colors.orange[900];
   static final Color primaryColorDark = Colors.blue[900];
+  static final Color buttonColor = Color(0xFF0066FF);
 
   static List<Color> gradientColors = [
     Color(0xFF4A2072).withOpacity(0.85),

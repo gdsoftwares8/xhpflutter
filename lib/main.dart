@@ -6,7 +6,9 @@ import 'package:xhp/SplashScreen.dart';
 import 'package:xhp/pages/login.dart';
 import 'package:xhp/pages/reports/contributions.dart';
 import 'package:xhp/pages/reports/financial-report.dart';
+import 'package:xhp/pages/settings/profile.dart';
 import 'package:xhp/pages/signup.dart';
+import 'package:xhp/pages/signupdemo.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'pages/appointment/appointments.dart';
 import 'pages/appointment/history-appointments.dart';
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)
                 ),
-                primary: GlobalVars.accentColor,
+                primary: GlobalVars.buttonColor,
                 elevation: 5.0,
                 textStyle: TextStyle(fontSize: 15.0, color: Colors.white, fontFamily: 'OpenSans-Light')
             )),
@@ -84,7 +86,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       routes: {
         "/splash": (context) => SplashScreen(),
-        "/signup": (context) => SignUp(),
+        "/signup": (context) => Signup(),
         "/welcome": (context) => Welcome(),
         "/login": (context) => Login(),
         "/home":(context)=> Home(),
@@ -99,7 +101,8 @@ class MyApp extends StatelessWidget {
         "/contributions":(context)=>Contribution(),
         "/financial":(context)=>Financial(),
         "/contributions-history":(context) =>ContributionHistory(),
-        "/interest-history":(context)=>InterestHistory()
+        "/interest-history":(context)=>InterestHistory(),
+        "/profile":(context)=>Profile()
         //"gift-history":(context)=>
       },
       home: SplashScreen(),

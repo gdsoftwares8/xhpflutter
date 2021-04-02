@@ -4,7 +4,8 @@ import 'dart:collection';
 import 'package:xhp/models/login_response.dart';
 
 import 'package:xhp/networking/Response.dart';
-import 'package:xhp/repository/LoginResponse.dart';
+import 'package:xhp/repository/ChuckLoginRepo.dart';
+
 import 'package:xhp/utils/GlobalFuncs.dart';
 
 

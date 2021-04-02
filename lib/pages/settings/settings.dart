@@ -26,7 +26,7 @@ class Settings extends StatelessWidget {
                           tabText: "Profile\nManagement",
                           icon: FontAwesomeIcons.user,
                           onPressed: (){
-                            //  Navigator.pushNamed(context, '/contributions');
+                             Navigator.pushNamed(context, '/profile');
                           }),
                       OptionTab(
                           tabText: "Add\nMembers",
@@ -45,7 +45,7 @@ class Settings extends StatelessWidget {
                           tabText: "Contribution",
                           icon: FontAwesomeIcons.fileInvoice,
                           onPressed: (){
-                            //  Navigator.pushNamed(context, '/appointment-report');
+                             Navigator.pushNamed(context, '/contributions');
                           }),
                       OptionTab(
                           tabText: "Withdrawal",

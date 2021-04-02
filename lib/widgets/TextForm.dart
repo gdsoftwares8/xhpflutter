@@ -14,6 +14,8 @@ class TextFormWidget extends StatelessWidget {
   final String labelText;
   final Widget suffixIcon;
   final String hintText;
+  final bool enabled;
+  final String initialValue;
 
   TextFormWidget(
       {this.autovalidateMode,
@@ -28,21 +30,24 @@ class TextFormWidget extends StatelessWidget {
       this.readOnly,
       this.labelText,
       this.hintText,
-      this.suffixIcon,});
+      this.suffixIcon, this.enabled, this.initialValue,});
 
   @override
   Widget build(BuildContext context) {
     
     return TextFormField(
+      initialValue:initialValue,
+     
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
+      enabled: enabled,
        decoration: 
        InputDecoration(
               contentPadding: EdgeInsets.all(10),
               labelText:labelText,
               suffixIcon: suffixIcon,
               hintText: hintText,
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               alignLabelWithHint: true,
             ),
       validator: validator,

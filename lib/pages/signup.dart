@@ -1,3 +1,58 @@
+// import 'package:flutter/material.dart';
+
+
+// class Signup extends StatefulWidget {
+//   @override
+//   _SignupState createState() => _SignupState();
+// }
+
+// class _SignupState extends State<Signup> {
+//   int index=0;
+//   @override
+//   Widget build(BuildContext context) {
+  
+//    switch (index) {
+//       case 0 :
+//       return Container(child: Text("1"),);
+//        break;
+//       case 1 :
+//       return Container(child: Text("2"),);
+//        break;
+//       case 2 :
+//       return Container(child: Text("3"),);
+//        break;
+//       case 3 :
+//       return Container(child: Text("4"),);
+//       break;
+//       default:
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
