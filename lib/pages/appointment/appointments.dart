@@ -8,6 +8,7 @@ import 'package:xhp/widgets/OtionTab.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
+import 'package:date_format/date_format.dart';
 
 class Appointment extends StatelessWidget {
   @override
@@ -69,6 +70,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   TextEditingController timeCtl;
   String location;
   Ans _ans;
+  String formattedStr;
 
 @override
   void initState() {
@@ -243,8 +245,9 @@ timeCtl=TextEditingController();
                                           initialDate: DateTime.now(),
                                           firstDate: DateTime(1900),
                                           lastDate: DateTime(2100));
-                                      var x = date.toIso8601String().substring(0, 10);
-                                      dateCtl.text = x;
+                                      formattedStr = formatDate(date, [dd, '/', mm, '/', yyyy,],);
+                                      //var x = date.toIso8601String().substring(0, 10);
+                                      dateCtl.text = formattedStr;
                                     },
                                   ),
                                 ),)),
@@ -327,48 +330,54 @@ timeCtl=TextEditingController();
               ButtonWidget(
                   text: 'Book Appointment',
                   onPressed: () {
-                    return showDialog(
-                      context: context,
-                      builder: (context) => new AlertDialog(
-                        content: TextWidget(text:'Do you want to book ?',textSize: 18,),
-                        actionsPadding:
-                        EdgeInsets.only(left: 30, right: 30),
-                        actions: <Widget>[
-                          GestureDetector(
-                            onTap: () => Navigator.of(context).pop(false),
-                            child: TextWidget(text:
-                            "Cancel",
-                              textSize: 14,
-                              // style: TextStyle(
-                              //     color: Theme.of(context).accentColor,
-                              //     fontSize: 14.0,
-                              //     fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          SizedBox(width: 20),
-                          //SizedBox(width: MediaQuery.of(context).size.width*.35),
-                          GestureDetector(
-                            onTap: () {
-                                //_bloc.fetchBookAppointmets(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
-                                _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+                     _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
                                 Fluttertoast.showToast(
-          msg: "Booking Done Successfully!",
+          msg: "Booking Done Successfully! Please Wait...",
         );
                               Navigator.of(context)
-                                .pushReplacementNamed('/home');},
-                            child: TextWidget(text:
-                            "Yes",
-                              textSize: 14,
-                              // style: TextStyle(
-                              //     color: Theme.of(context).accentColor,
-                              //     fontSize: 14.0,
-                              //     fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ) ??
-                        false;
+                                .pushReplacementNamed('/home');
+        //             return showDialog(
+        //               context: context,
+        //               builder: (context) => new AlertDialog(
+        //                 content: TextWidget(text:'Do you want to book ?',textSize: 18,),
+        //                 actionsPadding:
+        //                 EdgeInsets.only(left: 30, right: 30),
+        //                 actions: <Widget>[
+        //                   GestureDetector(
+        //                     onTap: () => Navigator.of(context).pop(false),
+        //                     child: TextWidget(text:
+        //                     "Cancel",
+        //                       textSize: 14,
+        //                       // style: TextStyle(
+        //                       //     color: Theme.of(context).accentColor,
+        //                       //     fontSize: 14.0,
+        //                       //     fontWeight: FontWeight.bold),
+        //                     ),
+        //                   ),
+        //                   SizedBox(width: 20),
+        //                   //SizedBox(width: MediaQuery.of(context).size.width*.35),
+        //                   GestureDetector(
+        //                     onTap: () {
+        //                         //_bloc.fetchBookAppointmets(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+        //                         _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+        //                         Fluttertoast.showToast(
+        //   msg: "Booking Done Successfully!",
+        // );
+        //                       Navigator.of(context)
+        //                         .pushReplacementNamed('/home');},
+        //                     child: TextWidget(text:
+        //                     "Yes",
+        //                       textSize: 14,
+        //                       // style: TextStyle(
+        //                       //     color: Theme.of(context).accentColor,
+        //                       //     fontSize: 14.0,
+        //                       //     fontWeight: FontWeight.bold),
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             ) ??
+        //                 false;
                   })
             ],
           ),

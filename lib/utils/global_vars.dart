@@ -24,6 +24,7 @@ class GlobalVars {
   static String CONTRIBUTION_URL="report/getContribution";
   static String INTEREST_URL="report/getInterestStatement";
   static String SIGNUP_FIRST_URL="report/getInterestStatement";
+  static String WITHDRAWAL_URL="report/getWithdrawal";
 
   // Constants For Prefrences
   static String isLogin = "isLogin";
@@ -57,29 +58,29 @@ class GlobalVars {
     GlobalFunc.colorFromHex('#9652AB'),
   ];
 
-  static Color borderColor = GlobalFunc.colorFromHex('#707070');
-  static Color widgetColor = GlobalFunc.colorFromHex('#7B52AB');
+  static Color borderColor = GlobalFunc.colorFromHex('#0066FF');
+  static Color widgetColor = GlobalFunc.colorFromHex('#0066FF');
   static final Color opacityColor = Color.fromRGBO(123, 82, 171, 0.94);
-  static final MaterialColor primaryColor = MaterialColor(0xFF7B52AB,
+  static final MaterialColor primaryColor = MaterialColor(0xFF0066FF,
       const <int, Color> {
-        50: const Color(0xFF7B52AB),
-        100: const Color(0xFF7B52AB),
-        200: const Color(0xFF7B52AB),
-        300: const Color(0xFF7B52AB),
-        400: const Color(0xFF7B52AB),
-        500: const Color(0xFF7B52AB),
-        600: const Color(0xFF7B52AB),
-        700: const Color(0xFF7B52AB),
-        800: const Color(0xFF7B52AB),
-        900: const Color(0xFF7B52AB),
+        50: const Color(0xFF0066FF),
+        100: const Color(0xFF0066FF),
+        200: const Color(0xFF0066FF),
+        300: const Color(0xFF0066FF),
+        400: const Color(0xFF0066FF),
+        500: const Color(0xFF0066FF),
+        600: const Color(0xFF0066FF),
+        700: const Color(0xFF0066FF),
+        800: const Color(0xFF0066FF),
+        900: const Color(0xFF0066FF),
       });
   static final Color accentColor = Colors.orange[900];
   static final Color primaryColorDark = Colors.blue[900];
   static final Color buttonColor = Color(0xFF0066FF);
 
   static List<Color> gradientColors = [
-    Color(0xFF4A2072).withOpacity(0.85),
-    Color(0xFF8960B8).withOpacity(0.85),
+    Color(0xFF0066FF).withOpacity(0.85),
+    Color(0xFF0066FF).withOpacity(0.85),
   ];
   static List<double> gradientStops = [0.0, 1.0];
 }
