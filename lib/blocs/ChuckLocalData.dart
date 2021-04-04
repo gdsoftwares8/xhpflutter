@@ -11,7 +11,7 @@ class ChuckLocalData {
   static getUser() async {
     var result;
     final prefs = await SharedPreferences.getInstance();
-    result = prefs.getString('loginUserLocal');
+    result = prefs.getString('user');
     String strData = box.read(OBJECT_USER) ?? '$result';
     return User.fromJson(jsonDecode(strData));
   }
