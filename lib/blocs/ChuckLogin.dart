@@ -14,6 +14,7 @@ import '../controllers/user_controller.dart';
 import '../models/user.dart';
 
 class ChuckLoginbloc {
+  UserInfoController _userInfoCtrl = Get.put(UserInfoController());
   User user;
   ChuckLoginRepository _chuckRepository;
   StreamController _chuckListController =
@@ -41,7 +42,6 @@ class ChuckLoginbloc {
           .fetchLogin(postParams: map)
           .then((LoginResponce chuckDatas) {
         if (chuckDatas.status == 1) {
-          ChuckLocalData.saveUser(chuckDatas.userData);
           _chuckListController
               .add(res.Response<LoginResponce>.completed(chuckDatas));
         } else {

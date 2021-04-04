@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui';
 
@@ -13,17 +14,16 @@ import 'SharedPref.dart';
 import 'global_vars.dart';
 
 class GlobalFunc {
-
   static showToast(String msg) {
     Fluttertoast.showToast(msg: msg);
   }
-  
+
   static logPrint(String msg) {
-    log(""+msg);
+    log("" + msg);
   }
 
-  static saveUserData(User muser, BuildContext context, SharedPref sharedPref) async {
-
+  static saveUserData(
+      User muser, BuildContext context, SharedPref sharedPref) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(GlobalVars.isLogin, true);
     prefs.setString(GlobalVars.id, "${muser.idMember}");
@@ -35,12 +35,12 @@ class GlobalFunc {
     prefs.setString(GlobalVars.title, muser.title);
     prefs.setString(GlobalVars.member_type, muser.memberType);
     prefs.setString(GlobalVars.membership_no, muser.membershipNo);
+    prefs.setString("loginUserLocal", json.encode(muser));
     try {
       sharedPref.save(GlobalVars.user, muser.toJson());
     } catch (e) {
       print(e);
     }
-
   }
   /*static moveuserAccordingLoginState(User muser, BuildContext context, SharedPref sharedPref) async {
     if(muser!=null){
@@ -78,9 +78,7 @@ class GlobalFunc {
     return Container(
       margin: EdgeInsets.only(left: 32, right: 20),
       height: 1.2,
-      decoration: BoxDecoration(
-          color: mcolor
-      ),
+      decoration: BoxDecoration(color: mcolor),
     );
     /* return Divider(
       thickness: 1.2,
@@ -92,7 +90,8 @@ class GlobalFunc {
     return GestureDetector(
       onTap: click,
       child: Container(
-        constraints: BoxConstraints(maxWidth: 200.0, minHeight: 30.0,maxHeight: 40.0),
+        constraints:
+            BoxConstraints(maxWidth: 200.0, minHeight: 30.0, maxHeight: 40.0),
         margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
             boxShadow: <BoxShadow>[
@@ -117,7 +116,6 @@ class GlobalFunc {
             ),
             borderRadius: BorderRadius.circular(80.0)),
         child: Container(
-
           alignment: Alignment.center,
           child: Text(
             "ANIMATORE",
@@ -141,7 +139,9 @@ class GlobalFunc {
       stops: GlobalVars.gradientStops,
     );
   }
-  static Widget getCircleText(String text, Color mcolor, bool isSelected, VoidCallback click) {
+
+  static Widget getCircleText(
+      String text, Color mcolor, bool isSelected, VoidCallback click) {
     return GestureDetector(
       onTap: click,
       child: Container(
@@ -154,12 +154,15 @@ class GlobalFunc {
         ),
         child: CircleAvatar(
           radius: 63,
-          backgroundColor: isSelected ? Colors.green : GlobalFunc.colorFromHex('#522B83'),
+          backgroundColor:
+              isSelected ? Colors.green : GlobalFunc.colorFromHex('#522B83'),
           child: Text(
             '${text}',
-            style: TextStyle(color: Colors.white,
+            style: TextStyle(
+              color: Colors.white,
               fontSize: 18,
-              fontFamily: 'Montserrat_SemiBold', ),
+              fontFamily: 'Montserrat_SemiBold',
+            ),
           ),
         ),
       ),
@@ -182,7 +185,6 @@ class GlobalFunc {
       ),
     );
   }
-
 
   static Color colorFromHex(String hexColor) {
     final hexCode = hexColor.replaceAll('#', '');
@@ -228,14 +230,14 @@ class GlobalFunc {
     return new Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.8, 1.2],
-            colors: [
-              GlobalFunc.colorFromHex('#F1E7FC'),
-              GlobalFunc.colorFromHex('#FBF8FE')
-            ],
-          )),
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        stops: [0.8, 1.2],
+        colors: [
+          GlobalFunc.colorFromHex('#F1E7FC'),
+          GlobalFunc.colorFromHex('#FBF8FE')
+        ],
+      )),
     );
   }
 
@@ -244,14 +246,13 @@ class GlobalFunc {
     if (permission != PermissionStatus.granted &&
         permission != PermissionStatus.denied) {
       final Map<Permission, PermissionStatus> permissionStatus =
-      await [Permission.storage].request();
+          await [Permission.storage].request();
       return permissionStatus[Permission.storage] ??
           PermissionStatus.restricted;
     } else {
       return permission;
     }
   }
-
 
   static void finish(context) {
     if (Navigator.canPop(context)) {
@@ -260,5 +261,4 @@ class GlobalFunc {
       SystemNavigator.pop();
     }
   }
-
 }

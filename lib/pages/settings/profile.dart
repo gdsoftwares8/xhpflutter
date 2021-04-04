@@ -23,6 +23,9 @@ class _ProfileState extends State<Profile> {
   TextEditingController dateCtl = TextEditingController();
   TextEditingController timeCtl = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   String location;
   Ans _ans;
   Ans _ans1;
@@ -38,7 +41,13 @@ class _ProfileState extends State<Profile> {
     try {
       setState(() {
         user = ChuckLocalData.getUser();
-        _nameController.text = user.firstName + ' ' + user.lastName ?? "";
+        if (user != null) {
+          _nameController.text = user.firstName + ' ' + user.lastName ?? "";
+          _emailController.text = user.email;
+          _dobController.text = "";
+          _phoneController.text = user.mobileNo;
+        }
+
         // _lastNameController.text = user.lastName ?? "";
         // _emailController.text = user.email ?? "";
         // _mobileNumberController.text = user.username ?? "";
@@ -87,29 +96,20 @@ class _ProfileState extends State<Profile> {
                               controller: _nameController,
                             ),
                             DividerWidget(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Email"),
-                                TextWidget(text: "peter@gmail.com")
-                              ],
+                            TextWidgetEditable(
+                              text: 'Email',
+                              controller: _emailController,
                             ),
                             DividerWidget(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Date of Birth"),
-                                TextWidget(text: "20/05/1975")
-                              ],
+                            TextWidgetEditable(
+                              text: 'Date of Birth',
+                              controller: _dobController,
                             ),
                             DividerWidget(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Phone Number"),
-                                TextWidget(text: "0098584512")
-                              ],
-                            )
+                            TextWidgetEditable(
+                              text: 'Phone Number',
+                              controller: _phoneController,
+                            ),
                           ]),
                         )
                       ],
@@ -132,13 +132,12 @@ class _ProfileState extends State<Profile> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Account Type"),
-                                TextWidget(text: "Savings")
-                              ],
+                            TextWidgetEditable(
+                              text: 'Account Type',
+                              controller: _phoneController,
                             ),
+                            TextWidget(text: "Account Type"),
+                            TextWidget(text: "Savings"),
                             DividerWidget(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

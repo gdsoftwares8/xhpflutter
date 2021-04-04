@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xhp/blocs/ChuckLocalData.dart';
 import 'package:xhp/blocs/ChuckLogin.dart';
 import 'package:xhp/models/login_response.dart';
 import 'package:xhp/models/user.dart';
@@ -36,19 +37,15 @@ class _Login extends State<Login> {
   bool show_pass = false;
   User currentuser;
 
- savebool(bool value)async{
-   final pref=await SharedPreferences.getInstance();
-   pref.setBool(GlobalVars.isLogin, value);
-
-
- }
-
+  savebool(bool value) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool(GlobalVars.isLogin, value);
+  }
 
   listenStream() {
     _bloc.chuckListStream.listen((Response<LoginResponce> event) {
-      
       GlobalFunc.logPrint("Login listen ${event.message}");
-      switch(event.status) {
+      switch (event.status) {
         case Status.LOADING:
           GlobalFunc.logPrint(event.message);
           updateLoadingState(true);
@@ -56,12 +53,13 @@ class _Login extends State<Login> {
         case Status.COMPLETED:
           GlobalFunc.logPrint(" Success ${event.data}");
           updateLoadingState(false);
-          if(event.data.userData!=null) {
+          if (event.data.userData != null) {
             savebool(true);
+            ChuckLocalData.saveUser(event.data.userData);
             GlobalFunc.saveUserData(event.data.userData, context, sharedPref);
             Navigator.pushNamedAndRemoveUntil(context, '/home', (r) => false);
           } else {
-            GlobalFunc.showToast("Error:- "+event.message);
+            GlobalFunc.showToast("Error:- " + event.message);
           }
           break;
         case Status.ERROR:
@@ -69,8 +67,7 @@ class _Login extends State<Login> {
           GlobalFunc.showToast(event.message);
           break;
       }
-
-    }, onError: (error){
+    }, onError: (error) {
       print("Error $error");
     }, onDone: () {
       print("Stream closed!");
@@ -82,7 +79,6 @@ class _Login extends State<Login> {
     super.initState();
     _bloc = ChuckLoginbloc();
     listenStream();
-
   }
 
   @override
@@ -141,8 +137,7 @@ class _Login extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         TextField(
-                        
-                         // textAlign: TextAlign.center,
+                          // textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             labelText: 'Username',
                             focusedBorder: UnderlineInputBorder(
@@ -152,8 +147,6 @@ class _Login extends State<Login> {
                                     style: BorderStyle.solid)),
                             prefixIcon: Icon(Icons.person_outline,
                                 color: Theme.of(context).accentColor),
-                               
-                           
                             hintStyle: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           onChanged: (value) {
@@ -172,7 +165,6 @@ class _Login extends State<Login> {
                         TextField(
                           obscureText: !show_pass,
                           obscuringCharacter: "*",
-                         
                           decoration: InputDecoration(
                             labelText: "Password",
                             suffixIcon: IconButton(
@@ -185,7 +177,6 @@ class _Login extends State<Login> {
                                 });
                               },
                               color: Theme.of(context).focusColor,
-                              
                             ),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -201,7 +192,6 @@ class _Login extends State<Login> {
                             _password = value;
                             // currentuser.password=_password;
                             // print("hkjhkhkjh"+currentuser.toString());
-
                           },
                         ),
                         SizedBox(
@@ -218,8 +208,8 @@ class _Login extends State<Login> {
                               GlobalFunc.showToast(GlobalVars.ENTER_PASSWORD);
                             } else {
                               //List<Map<String, dynamic>> map=[{'username':username,},{'password':_password}];
-                             // _bloc.fetchLogin(username, _password);
-                             _bloc.fetchLogin(username, _password);
+                              // _bloc.fetchLogin(username, _password);
+                              _bloc.fetchLogin(username, _password);
                               // if (LoginResponce().status==1) {
                               //   print("DFGHBJN");
                               //   // Navigator.pushReplacementNamed(context, "/home");
@@ -227,9 +217,8 @@ class _Login extends State<Login> {
                               // }
                               //ApiProvider().post(GlobalVars.LOGIN_URL);
                               // ApiProvider().post(url);
-                              
-                                  
-                             // postData();
+
+                              // postData();
                             }
                           },
                         ),
@@ -263,7 +252,6 @@ class _Login extends State<Login> {
       this._loading = loading;
     });
   }
-
 }
 
 //   showPasswordRecovery() {
@@ -463,8 +451,6 @@ class _Login extends State<Login> {
 //     }
 //   }
 
-
-
 //   Future postPasswordRecovery(String email, BuildContext context) async {
 //     Map<String, dynamic> parameterData = Map();
 //     parameterData.putIfAbsent("email", () => email);
@@ -501,11 +487,6 @@ class _Login extends State<Login> {
 //     }
 //   }
 // }
-
-
-
-
-
 
 // import 'dart:convert';
 // import 'dart:io';
@@ -594,7 +575,7 @@ class _Login extends State<Login> {
 //                       mainAxisAlignment: MainAxisAlignment.spaceAround,
 //                       children: <Widget>[
 //                         TextField(
-                        
+
 //                          // textAlign: TextAlign.center,
 //                           decoration: InputDecoration(
 //                             labelText: 'Username',
@@ -605,8 +586,7 @@ class _Login extends State<Login> {
 //                                     style: BorderStyle.solid)),
 //                             prefixIcon: Icon(Icons.person_outline,
 //                                 color: Theme.of(context).accentColor),
-                               
-                           
+
 //                             hintStyle: TextStyle(fontWeight: FontWeight.bold),
 //                           ),
 //                           onChanged: (value) {
@@ -624,7 +604,7 @@ class _Login extends State<Login> {
 //                         TextField(
 //                           obscureText: show_pass,
 //                           obscuringCharacter: "*",
-                         
+
 //                           decoration: InputDecoration(
 //                             labelText: "Password",
 //                             suffixIcon: IconButton(
@@ -637,7 +617,7 @@ class _Login extends State<Login> {
 //                                 });
 //                               },
 //                               color: Theme.of(context).focusColor,
-                              
+
 //                             ),
 //                             focusedBorder: UnderlineInputBorder(
 //                                 borderSide: BorderSide(
@@ -934,8 +914,3 @@ class _Login extends State<Login> {
 //     }
 //   }
 // }
-
-
-
-
-
