@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:xhp/blocs/ChuckLocalData.dart';
+import 'package:xhp/models/user.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/TextForm.dart';
+import 'package:xhp/widgets/TextWidgetEditable.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
 import 'package:xhp/utils/global_vars.dart';
@@ -19,9 +22,41 @@ class _ProfileState extends State<Profile> {
   String _servicecatgeory;
   TextEditingController dateCtl = TextEditingController();
   TextEditingController timeCtl = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   String location;
   Ans _ans;
   Ans _ans1;
+  User user;
+
+  @override
+  void initState() {
+    getUser();
+    super.initState();
+  }
+
+  Future<void> getUser() async {
+    try {
+      setState(() {
+        user = ChuckLocalData.getUser();
+        if (user != null) {
+          _nameController.text = user.firstName + ' ' + user.lastName ?? "";
+          _emailController.text = user.email;
+          _dobController.text = "";
+          _phoneController.text = user.mobileNo;
+        }
+
+        // _lastNameController.text = user.lastName ?? "";
+        // _emailController.text = user.email ?? "";
+        // _mobileNumberController.text = user.username ?? "";
+        // _passwordController.text = user.password ?? "";
+      });
+    } catch (err) {
+      print(err);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,34 +91,25 @@ class _ProfileState extends State<Profile> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Name"),
-                                TextWidget(text: "Peter Georg")
-                              ],
+                            TextWidgetEditable(
+                              text: 'Name',
+                              controller: _nameController,
                             ),
                             DividerWidget(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Email"),
-                                TextWidget(text: "peter@gmail.com")
-                              ],
+                            TextWidgetEditable(
+                              text: 'Email',
+                              controller: _emailController,
                             ),
                             DividerWidget(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Date of Birth"),
-                                TextWidget(text: "20/05/1975")
-                              ],
+                            TextWidgetEditable(
+                              text: 'Date of Birth',
+                              controller: _dobController,
                             ),
                             DividerWidget(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Phone Number"),
-                                TextWidget(text: "0098584512")
-                              ],
-                            )
+                            TextWidgetEditable(
+                              text: 'Phone Number',
+                              controller: _phoneController,
+                            ),
                           ]),
                         )
                       ],
@@ -103,32 +129,34 @@ class _ProfileState extends State<Profile> {
                         fontWeight: FontWeight.bold,
                       ),
                       children: [
-                         Padding(
+                        Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
+                            TextWidgetEditable(
+                              text: 'Account Type',
+                              controller: _phoneController,
+                            ),
+                            TextWidget(text: "Account Type"),
+                            TextWidget(text: "Savings"),
+                            DividerWidget(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Account Type"),
-                                TextWidget(text: "Savings")
-                              ],
-                            ),
-                            DividerWidget(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextWidget(text: "Bank Detail"),
                                 TextWidget(text: "Member")
                               ],
                             ),
                             DividerWidget(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextWidget(text: "Account No."),
                                 TextWidget(text: "12220051975")
                               ],
                             ),
                             DividerWidget(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextWidget(text: "Account Owner"),
                                 TextWidget(text: "Peter Georg")
@@ -136,7 +164,6 @@ class _ProfileState extends State<Profile> {
                             )
                           ]),
                         )
-                       
                       ],
                     ),
                   ),
