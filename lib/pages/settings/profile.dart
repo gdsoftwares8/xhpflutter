@@ -37,10 +37,10 @@ class _ProfileState extends State<Profile> {
     super.initState();
   }
 
-  Future<void> getUser() async {
+  getUser() async {
     try {
-      setState(() {
-        user = ChuckLocalData.getUser();
+      setState(() async {
+        user = await ChuckLocalData.getUser();
         if (user != null) {
           _nameController.text = user.firstName + ' ' + user.lastName ?? "";
           _emailController.text = user.email;

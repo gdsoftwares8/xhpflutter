@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:get/get.dart';
-import 'package:xhp/blocs/ChuckLocalData.dart';
 import 'package:xhp/models/login_response.dart';
 
 import 'package:xhp/networking/Response.dart' as res;
