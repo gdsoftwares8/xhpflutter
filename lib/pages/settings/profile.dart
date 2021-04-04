@@ -26,6 +26,8 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _acTController = TextEditingController();
+  final TextEditingController _bankController = TextEditingController();
   String location;
   Ans _ans;
   Ans _ans1;
@@ -44,8 +46,10 @@ class _ProfileState extends State<Profile> {
         if (user != null) {
           _nameController.text = user.firstName + ' ' + user.lastName ?? "";
           _emailController.text = user.email;
-          _dobController.text = "";
+          _dobController.text = "25-01-2021";
           _phoneController.text = user.mobileNo;
+          _acTController.text = user.memberType;
+          _bankController.text = user.membershipNo;
         }
 
         // _lastNameController.text = user.lastName ?? "";
@@ -134,34 +138,23 @@ class _ProfileState extends State<Profile> {
                           child: Column(children: [
                             TextWidgetEditable(
                               text: 'Account Type',
-                              controller: _phoneController,
-                            ),
-                            TextWidget(text: "Account Type"),
-                            TextWidget(text: "Savings"),
-                            DividerWidget(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Bank Detail"),
-                                TextWidget(text: "Member")
-                              ],
+                              controller: _acTController,
                             ),
                             DividerWidget(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Account No."),
-                                TextWidget(text: "12220051975")
-                              ],
+                            TextWidgetEditable(
+                              text: 'Bank Detail',
+                              controller: _bankController,
                             ),
                             DividerWidget(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(text: "Account Owner"),
-                                TextWidget(text: "Peter Georg")
-                              ],
-                            )
+                            TextWidgetEditable(
+                              text: 'Account No.',
+                              controller: _bankController,
+                            ),
+                            DividerWidget(),
+                            TextWidgetEditable(
+                              text: 'Account Owner',
+                              controller: _nameController,
+                            ),
                           ]),
                         )
                       ],
