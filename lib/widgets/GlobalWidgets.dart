@@ -80,17 +80,21 @@ class GlobalWidgets {
           color: Colors.white,
           textSize: 20,
         ),
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: onPressed));
+        // leading: IconButton(
+        //     icon: Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.white,
+        //     ),
+        //     onPressed: (){
+              
+              
+        //     })
+            );
   }
 
   static Widget getCircleAppIcon({double radious = 100}) {
     return CircleAvatar(
-      backgroundColor: GlobalFunc.colorFromHex('#522B83'),
+      backgroundColor: GlobalFunc.colorFromHex('#0066ff'),
       radius: radious,
       child: Image.asset('assets/app_icon.png'),
     );

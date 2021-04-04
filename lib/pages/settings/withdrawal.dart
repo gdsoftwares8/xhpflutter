@@ -1,47 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:xhp/blocs/ChuckAppointmentbloc.dart';
-import 'package:xhp/models/appointment_model.dart';
-import 'package:xhp/models/appointment_responce.dart';
+import 'package:xhp/blocs/ChuckWithdrawalbloc.dart';
+import 'package:xhp/models/withdrawal-model.dart';
+import 'package:xhp/models/withdrawal_response.dart';
 import 'package:xhp/networking/Response.dart';
 import 'package:xhp/utils/GlobalFuncs.dart';
-import 'package:xhp/utils/SharedPref.dart';
-import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/DividerWidget.dart';
 import 'package:xhp/widgets/Error.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/Loading.dart';
 import 'package:xhp/widgets/text_widget.dart';
+import 'package:xhp/utils/global_vars.dart';
 
-class AppointmentHistory extends StatefulWidget {
+class PendingWithdrawal extends StatefulWidget {
   @override
-  _AppointmentHistoryState createState() => _AppointmentHistoryState();
+  _PendingWithdrawalState createState() => _PendingWithdrawalState();
 }
 
-class _AppointmentHistoryState extends State<AppointmentHistory> {
-  SharedPref sharedPref = SharedPref();
-  ChuckAppointmentbloc _bloc;
+class _PendingWithdrawalState extends State<PendingWithdrawal> {
+  ChuckWithdrawalbloc _bloc;
   String memberId = "1";
   @override
-  initState()  {
+  void initState() {
     super.initState();
-  //  memberId = sharedPref.readString(GlobalVars.id);
-  //   final prefs = await SharedPreferences.getInstance();
-  //   memberId =  prefs.getString(GlobalVars.id);
-    _bloc = ChuckAppointmentbloc(memberId);
+    _bloc = ChuckWithdrawalbloc(memberId);
   }
-
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: GlobalWidgets.getToolbarWithBack(
-            title: "Appointment History",
+            title: "Withdrawal",
             onPressed: (){
               Navigator.pop(context);
             }),
-        body: StreamBuilder<Response<AppointmentResponce>>(
+        body: StreamBuilder<Response<WithdrawalResponce>>(
           stream: _bloc.chuckListStream,
           builder: (context, snapshot) {
             if(snapshot.hasData) {
@@ -52,13 +45,12 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                   break;
                 case Status.COMPLETED:
                 // return CategoryList(categoryList: snapshot.data.data);
-                  AppointmentResponce res = snapshot.data.data;
+                  WithdrawalResponce res = snapshot.data.data;
                   if(res.status == 1) {
-                    GlobalFunc.logPrint("total Appointments ${res.result.length}");
+                    GlobalFunc.logPrint("total Withdrawals ${res.result.length}");
                     return ListView.builder(
                       itemBuilder: (context, index) {
-                        res.result.reversed;
-                        return drawItem(res.result[index]);
+                        return drawItem(res.result[index],index);
                       },
                       itemCount: res.result.length,
                       shrinkWrap: true,
@@ -67,14 +59,14 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                   } else {
                     return Error(
                       errorMessage: res.message,
-                      onRetryPressed: () => _bloc.fetchAppointmets(memberId),
+                      onRetryPressed: () => _bloc.fetchWithdrawals(memberId),
                     );
                   }
                   break;
                 case Status.ERROR:
                   return Error(
                     errorMessage: snapshot.data.message,
-                    onRetryPressed: () => _bloc.fetchAppointmets(memberId),
+                    onRetryPressed: () => _bloc.fetchWithdrawals(memberId),
                   );
                   break;
               }
@@ -82,60 +74,19 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
             return Container();
           },
         ),
-        /*body: RefreshIndicator(
-          onRefresh: _bloc.fetchAppointmets(memberId),
-          child: StreamBuilder<Response<AppointmentResponce>>(
-            stream: _bloc.chuckListStream,
-            builder: (context, snapshot) {
-              if(snapshot.hasData) {
-                switch(snapshot.data.status){
-                  case Status.LOADING:
-                    return Loading(loadingMessage: snapshot.data.message);
-                    break;
-                  case Status.COMPLETED:
-                  // return CategoryList(categoryList: snapshot.data.data);
-                    AppointmentResponce res = snapshot.data.data;
-                    if(res.status == 1) {
-                      return ListView.builder(
-                        itemBuilder: (context, index) {
-                          return drawItem(res.result[index]);
-                        },
-                        itemCount: res.result.length,
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                      );
-                    } else {
-                      return Error(
-                        errorMessage: res.message,
-                        onRetryPressed: () => _bloc.fetchAppointmets(memberId),
-                      );
-                    }
-                    break;
-                  case Status.ERROR:
-                    return Error(
-                      errorMessage: snapshot.data.message,
-                      onRetryPressed: () => _bloc.fetchAppointmets(memberId),
-                    );
-                    break;
-                }
-              }
-              return Container();
-            },
-          ),
-        ),*/
       ),
     );
   }
 
-  Widget drawItem(AppointmentModel model) {
+  Widget drawItem(Withdrawal model, int position) {
     return Card(
       child: ExpansionTile(
         initiallyExpanded: true,
         title: Row(
           children: <Widget>[
-            Expanded(child: TextWidget(text:model.fkIdServiceCategory.toString())),
+            Expanded(child: TextWidget(text: 'Sr.No.${position+1}')),
             Text(
-              model.fkIdMember.toString(),
+              model.WithdrawalNumber,
               style: Theme.of(context).textTheme.caption,
             ),
           ],
@@ -149,10 +100,12 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: 'Business Name'),
-                      TextWidget(text: model.company)
+                      TextWidget(text: 'IFC NO'),
+                      TextWidget(text: "${model.idWithdrawal}")
                     ]),
-                DividerWidget(),
+                DividerWidget(
+
+                ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,8 +116,16 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                 DividerWidget(
 
                 ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Partner"),
+                      TextWidget(text: 'A2ZDental')
+                    ]),
+                DividerWidget(
 
-
+                ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,38 +133,30 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                       TextWidget(text: "Service"),
                       TextWidget(text: 'Dental')
                     ]),
+                DividerWidget(),
 
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(text: "Withdrawal Amount"),
+                      TextWidget(text: "\$${model.grandTotal}")
+                    ]),
                 DividerWidget(),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextWidget(text: "Preferred Date"),
-                      TextWidget(text: model.preferredDate)
+                      TextWidget(text: '05-03-2019 06:30')
                     ]),
                 DividerWidget(),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: "Status"),
+                      TextWidget(text: "Action"),
                       TextWidget(text: model.status)
-                    ]),
-                DividerWidget(),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(text: "Follow Up Appointment"),
-                      TextWidget(text: '-')
-                    ]),
-                DividerWidget(),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(text: "IFC Status"),
-                      TextWidget(text: model.ifcStatus)
                     ]),
               ],
             ),

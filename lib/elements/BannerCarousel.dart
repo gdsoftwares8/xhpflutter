@@ -4,7 +4,7 @@ import '../widgets/BannerWidget.dart';
 
 class BannerCarouselWidget extends StatefulWidget {
   List<String> banners = [
-    'assets/xhp.png','assets/xhp.png','assets/xhp.png','assets/xhp.png','assets/xhp.png',
+    'assets/xhp-icon.png','assets/xhp-icon.png','assets/xhp-icon.png','assets/xhp-icon.png','assets/xhp-icon.png',
     // 'https://xhp.com.au/wp-content/uploads/2020/10/android-chrome-512x512-1-e1602063073396.png',
     // 'https://xhp.com.au/wp-content/uploads/2020/10/android-chrome-512x512-1-e1602063073396.png',
     // 'https://xhp.com.au/wp-content/uploads/2020/10/android-chrome-512x512-1-e1602063073396.png',

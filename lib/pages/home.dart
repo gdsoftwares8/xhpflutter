@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'package:xhp/widgets/DrawerWidget.dart';
 import 'package:xhp/widgets/text_widget.dart';
 
 import 'appointment/appointments.dart';
@@ -61,6 +63,7 @@ class _HomeState extends State<Home> {
         //   ],
         // ),
         body: _children[_currentIndex],
+        drawer: DrawerWidget(),
         bottomNavigationBar: BottomNavigationBar(
           onTap: onTabTapped,
           backgroundColor: Colors.blue[900],
@@ -72,7 +75,7 @@ class _HomeState extends State<Home> {
               label: 'Appointments',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.mail),
+              icon: Icon(FontAwesomeIcons.dollarSign),
               label: 'Invoice',
             ),
             BottomNavigationBarItem(

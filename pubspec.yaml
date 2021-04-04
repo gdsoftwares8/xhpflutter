@@ -46,6 +46,7 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   get: ^4.1.2
   get_storage:
+  date_format: ^2.0.2
 
 flutter_icons:
   android: "launcher_icon"
