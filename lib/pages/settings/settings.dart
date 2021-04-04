@@ -51,7 +51,7 @@ class Settings extends StatelessWidget {
                           tabText: "Withdrawal",
                           icon: FontAwesomeIcons.fileExport,
                           onPressed: (){
-                            //  Navigator.pushNamed(context, '/non-partner');
+                             Navigator.pushNamed(context, '/withdrawal');
                           }),
                     ],
                   ),

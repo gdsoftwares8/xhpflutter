@@ -24,6 +24,8 @@ class Welcome extends StatelessWidget {
             ),
 
             SizedBox(height: 20),
+            TextWidget(text:"Not a member yet?",textSize: 14,),
+            SizedBox(height: 20),
             ButtonWidget(
               text: "Sign Up",
               width: size.width * .60,

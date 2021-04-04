@@ -47,12 +47,12 @@ class _PendingWithdrawalState extends State<PendingWithdrawal> {
                 // return CategoryList(categoryList: snapshot.data.data);
                   WithdrawalResponce res = snapshot.data.data;
                   if(res.status == 1) {
-                    GlobalFunc.logPrint("total Withdrawals ${res.result.length}");
-                    return ListView.builder(
+                    GlobalFunc.logPrint("total Withdrawals ${res.result.withdraw}");
+                    return (res.result.withdraw.length==0)?Center(child: TextWidget(text:"No Withdrawals yet !",textSize: 20,)):ListView.builder(
                       itemBuilder: (context, index) {
-                        return drawItem(res.result[index],index);
+                        return drawItem(res.result.withdraw[index],index);
                       },
-                      itemCount: res.result.length,
+                      itemCount: res.result.withdraw.length,
                       shrinkWrap: true,
                       physics: ClampingScrollPhysics(),
                     );

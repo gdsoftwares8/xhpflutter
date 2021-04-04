@@ -225,9 +225,10 @@ class _Login extends State<Login> {
                         SizedBox(
                           height: 15.0,
                         ),
+                        
                         FlatButton(
                           onPressed: () {
-                            //showPasswordRecovery();
+                            Navigator.pushReplacementNamed(context, "/forgot-password");
                           },
                           child: Text(
                             "Forgot password?",

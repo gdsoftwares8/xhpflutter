@@ -127,7 +127,7 @@ timeCtl=TextEditingController();
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: DropdownButton<String>(
-                                  hint: TextWidget(text:"Select Member No"),
+                                  hint: TextWidget(text:"Select Member Name"),
                                   value: _selectedText,
                                   items: <String>['01000013', '01000012']
                                       .map((String value) {

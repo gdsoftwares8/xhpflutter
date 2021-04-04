@@ -74,7 +74,7 @@ class GlobalVars {
         800: const Color(0xFF0066FF),
         900: const Color(0xFF0066FF),
       });
-  static final Color accentColor = Colors.orange[900];
+  static final Color accentColor = Color(0xFF0066FF);
   static final Color primaryColorDark = Colors.blue[900];
   static final Color buttonColor = Color(0xFF0066FF);
 

@@ -98,7 +98,7 @@ class _HomeState extends State<Home> {
           context: context,
           builder: (context) => new AlertDialog(
             // title: new TextWidget(text:'Are you sure?'),
-            content: new TextWidget(text:'Do you want to exit the App?',textSize: 18,),
+            content: new TextWidget(text:'Do you want to exit ?',textSize: 20,),
             actionsPadding: EdgeInsets.only(left:30,right: 30),
             actions: <Widget>[
               

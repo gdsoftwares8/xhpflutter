@@ -8,6 +8,7 @@ import 'package:xhp/widgets/text_widget.dart';
 
 class GlobalWidgets {
   static Widget getToolbar(double height) {
+    
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(

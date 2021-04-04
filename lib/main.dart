@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xhp/SplashScreen.dart';
+import 'package:xhp/pages/dashboard.dart';
 import 'package:xhp/pages/login.dart';
 import 'package:xhp/pages/reports/contributions.dart';
 import 'package:xhp/pages/reports/financial-report.dart';
@@ -10,8 +11,10 @@ import 'package:xhp/pages/settings/profile.dart';
 import 'package:xhp/pages/signup.dart';
 import 'package:xhp/pages/signupdemo.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'pages/appointment/appointment-status.dart';
 import 'pages/appointment/appointments.dart';
 import 'pages/appointment/history-appointments.dart';
+import 'pages/forgotpass.dart';
 import 'pages/gifts/gift.dart';
 import 'pages/home.dart';
 import 'pages/invoices/gap-history.dart';
@@ -19,6 +22,7 @@ import 'pages/invoices/non-partner.dart';
 import 'pages/invoices/pending-invoice.dart';
 import 'pages/reports/appointment-reports.dart';
 import 'pages/reports/interest-report.dart';
+import 'pages/settings/withdrawal.dart';
 import 'provider/sign_up_provider.dart';
 import 'welcome.dart';
 
@@ -102,10 +106,12 @@ class MyApp extends StatelessWidget {
         "/financial":(context)=>Financial(),
         "/contributions-history":(context) =>ContributionHistory(),
         "/interest-history":(context)=>InterestHistory(),
-        "/profile":(context)=>Profile()
+        "/profile":(context)=>Profile(),
+        "/forgot-password":(context)=>ForgotPassword(),
+        "/withdrawal":(context)=>PendingWithdrawal()
         //"gift-history":(context)=>
       },
-      home: SplashScreen(),
+      home: DashBoard(),
     ));
   }
 }

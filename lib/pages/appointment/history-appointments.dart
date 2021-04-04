@@ -133,9 +133,9 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
         initiallyExpanded: true,
         title: Row(
           children: <Widget>[
-            Expanded(child: TextWidget(text:model.fkIdServiceCategory.toString())),
+            Expanded(child: TextWidget(text:"Peter Georg")),
             Text(
-              model.fkIdMember.toString(),
+              "Dental",
               style: Theme.of(context).textTheme.caption,
             ),
           ],
