@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextWidget extends StatelessWidget {
+class TextWidgetEditable extends StatelessWidget {
   final String text;
   final double textSize;
   final double width;
@@ -15,22 +15,26 @@ class TextWidget extends StatelessWidget {
   final TextDecoration textDecoration;
   final bool softWrap;
   final int maxLines;
-
-  TextWidget(
-      {@required this.text,
-      this.textSize = 12,
-      this.width,
-      this.decoration,
-      this.padding = const EdgeInsets.all(0.0),
-      this.margin = const EdgeInsets.all(0.0),
-      this.color = Colors.black,
-      this.fontWeight = FontWeight.normal,
-      this.backgroundColor = Colors.transparent,
-      this.textAlign = TextAlign.start,
-      this.fontFamily = FontStyles.fontName,
-      this.maxLines,
-      this.softWrap,
-      this.textDecoration = TextDecoration.none});
+  final TextEditingController controller;
+  final Function onEdit;
+  TextWidgetEditable({
+    @required this.text,
+    this.textSize = 12,
+    this.width,
+    this.decoration,
+    this.padding = const EdgeInsets.all(0.0),
+    this.margin = const EdgeInsets.all(0.0),
+    this.color = Colors.black,
+    this.fontWeight = FontWeight.normal,
+    this.backgroundColor = Colors.transparent,
+    this.textAlign = TextAlign.start,
+    this.fontFamily = FontStyles.fontName,
+    this.maxLines,
+    this.softWrap,
+    this.textDecoration = TextDecoration.none,
+    this.controller,
+    this.onEdit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +45,10 @@ class TextWidget extends StatelessWidget {
       padding: padding,
       // alignment: Alignment.ce,
       margin: margin,
-      child: Text(
-        text != null ? text : "",
-        // softWrap: softWrap,
-        maxLines: 2,
+      child: TextField(
+        showCursor: true,
+        readOnly: true,
+        controller: controller,
         style: TextStyle(
           decoration: textDecoration,
           fontSize: textSize,
@@ -52,7 +56,16 @@ class TextWidget extends StatelessWidget {
           fontWeight: fontWeight,
           fontFamily: fontFamily,
         ),
-        textAlign: textAlign,
+        decoration: InputDecoration(
+          labelText: text,
+          suffixIcon: GestureDetector(
+            onTap: onEdit,
+            child: Icon(
+              Icons.edit,
+              size: 13,
+            ),
+          ),
+        ),
       ),
     );
   }
