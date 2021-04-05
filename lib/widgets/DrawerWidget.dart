@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:xhp/blocs/ChuckLocalData.dart';
+import 'package:xhp/models/user.dart';
 import 'package:xhp/pages/login.dart';
 import 'package:xhp/utils/global_vars.dart';
 
@@ -10,6 +11,23 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
+  User user = new User();
+  @override
+  void initState() {
+    getUser();
+    super.initState();
+  }
+
+  getUser() async {
+    try {
+      setState(() async {
+        user = await ChuckLocalData.getUser();
+      });
+    } catch (err) {
+      print(err);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -21,13 +39,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               color: Colors.transparent,
             ),
             arrowColor: Colors.white,
-            accountName: Text("Peter", style: TextStyle(color: Colors.black)),
+            accountName: Text("${user.firstName}",
+                style: TextStyle(color: Colors.black)),
             accountEmail:
-                Text("peter@gmail.com", style: TextStyle(color: Colors.black)),
+                Text("${user.email}", style: TextStyle(color: Colors.black)),
             currentAccountPicture: CircleAvatar(
                 backgroundColor:
                     Theme.of(context).platform == TargetPlatform.android
-                        ? Color(0xFF0066FF)
+                        ? GlobalVars.accentColor
                         : Colors.white,
                 child: Icon(
                   FontAwesomeIcons.user,
