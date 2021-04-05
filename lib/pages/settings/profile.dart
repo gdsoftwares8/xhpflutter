@@ -7,7 +7,6 @@ import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/TextWidgetEditable.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
-import 'package:xhp/utils/global_vars.dart';
 
 enum Ans { Yes, No }
 
@@ -51,11 +50,6 @@ class _ProfileState extends State<Profile> {
           _acTController.text = user.memberType;
           _bankController.text = user.membershipNo;
         }
-
-        // _lastNameController.text = user.lastName ?? "";
-        // _emailController.text = user.email ?? "";
-        // _mobileNumberController.text = user.username ?? "";
-        // _passwordController.text = user.password ?? "";
       });
     } catch (err) {
       print(err);
