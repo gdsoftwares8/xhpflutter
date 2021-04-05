@@ -13,7 +13,11 @@ import 'package:xhp/pages/signupdemo.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'pages/appointment/appointment-status.dart';
 import 'pages/appointment/appointments.dart';
+import 'pages/appointment/book-appointment.dart';
+import 'pages/appointment/confirm-ifc.dart';
+import 'pages/appointment/confirm-instruc.dart';
 import 'pages/appointment/history-appointments.dart';
+import 'pages/appointment/pay-submit.dart';
 import 'pages/forgotpass.dart';
 import 'pages/gifts/gift.dart';
 import 'pages/home.dart';
@@ -22,7 +26,11 @@ import 'pages/invoices/non-partner.dart';
 import 'pages/invoices/pending-invoice.dart';
 import 'pages/reports/appointment-reports.dart';
 import 'pages/reports/interest-report.dart';
+import 'pages/reports/newreport.dart';
 import 'pages/settings/withdrawal.dart';
+import 'pages/signup/newsignup.dart';
+import 'pages/signup/newsignup2.dart';
+import 'pages/signup/payment-form.dart';
 import 'provider/sign_up_provider.dart';
 import 'welcome.dart';
 
@@ -111,7 +119,7 @@ class MyApp extends StatelessWidget {
         "/withdrawal":(context)=>PendingWithdrawal()
         //"gift-history":(context)=>
       },
-      home: DashBoard(),
+      home: ReportMain(),
     ));
   }
 }
