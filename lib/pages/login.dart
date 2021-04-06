@@ -239,6 +239,20 @@ class _Login extends State<Login> {
                                 color: Color(0xFF222222)),
                           ),
                         ),
+                        SizedBox(height:3),
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, "/forgot-password");
+                          },
+                          child: Text(
+                            "Forgot username?",
+                            style: TextStyle(
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14.0,
+                                color: Color(0xFF222222)),
+                          ),
+                        ),
                       ],
                     ),
                   )

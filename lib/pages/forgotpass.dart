@@ -74,10 +74,11 @@ class _ForgotPassword extends State<ForgotPassword> {
                               ),
                               Container(
                                 alignment: Alignment.topCenter,
-                                child: Text(
-                                  "Forgot Password ?",
+                                child: TextWidget(
+                                  text:"Forgot Password | Username",
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline2,
+                                  textSize: 18,
+                                  
                                 ),
                               ),
                               SizedBox(
@@ -95,7 +96,7 @@ class _ForgotPassword extends State<ForgotPassword> {
                         TextField(
                           // textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                            labelText: 'Email or Username',
+                            labelText: 'Enter Email Address',
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     //color: Main.primaryColor,

@@ -42,256 +42,260 @@ class _NBookAppointmentState extends State<NBookAppointment> {
     final size=MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Column(children: [
-          TopWidget(text: "Book Appointment"),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        TextWidget(
-                          text: "Who is the appointment for",
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(height: 5),
-                        BoxTextFormWidget(
-                          labelText: "Member Name",
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        TextWidget(
-                          text: "Type of Service",
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(height: 5),
-                        BoxTextFormWidget(
-                          labelText: "Type of Service",
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        TextWidget(
-                          text: "Location of Service",
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(height: 10),
-                        BoxTextFormWidget(
-                          labelText: "Location / Postcode",
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        TextWidget(
-                          text: "Select Service Provider",
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(height: 10),
-                        BoxTextFormWidget(
-                          labelText: "Service Provider",
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        // TextWidget(text: "Date",fontWeight: FontWeight.bold,),
-                        SizedBox(height: 5),
-                        BoxTextFormWidget(
-                          labelText: "Date",
-                          suffixIcon: Icon(Icons.calendar_today),
-                          controller: dateCtl,
-                          onTap: () async {
-                            DateTime date = DateTime(1900);
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
-
-                            date = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime(2100));
-                            formattedStr = formatDate(
-                              date,
-                              [
-                                dd,
-                                '/',
-                                mm,
-                                '/',
-                                yyyy,
-                              ],
-                            );
-                            //var x = date.toIso8601String().substring(0, 10);
-                            dateCtl.text = formattedStr;
-                          },
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        // TextWidget(text: "Select Service Provider",fontWeight: FontWeight.bold,),
-                        SizedBox(height: 5),
-                        BoxTextFormWidget(
-                          labelText: 'Time*',
-                          suffixIcon: Icon(Icons.watch),
-                          controller: timeCtl, // add this line.
-
-                          onTap: () async {
-                            TimeOfDay time = TimeOfDay.now();
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
-
-                            TimeOfDay picked = await showTimePicker(
-                                context: context, initialTime: time);
-                            if (picked != null && picked != time) {
-                              timeCtl.text = picked
-                                  .toString()
-                                  .substring(10, 15); // add this line.
-                              // setState(() {
-                              //   time = picked;
-                              // });
-                            }
-                          },
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'cant be empty';
-                            }
-                            return null;
-                          },
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height:20),
-                 TextWidget(
-                          text: "Do you want to use extras health insurance",
-                          fontWeight: FontWeight.bold,
-                        ),
-              
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
-                      children: [
-                        Checkbox(value: checkBoxValue,
-          activeColor: GlobalVars.primaryColor,
-          onChanged:(bool newValue){
-        setState(() {
-          checkBoxValue = newValue;
-          checkBoxValue2=false;
-          
-        });
-          }),TextWidget(text:'No',fontWeight: FontWeight.bold,)       
-                      ],
-                    ),
-           Row(
-             children: [
-               Checkbox(value: checkBoxValue2,
-          activeColor: GlobalVars.primaryColor,
-          onChanged:(bool newValue){
-        setState(() {
-          checkBoxValue2 = newValue;
-          checkBoxValue=false;
-        });
-          }),TextWidget(text:'Yes',fontWeight: FontWeight.bold,)
-       
-             ],
-           ),
-          
-                  ]
-                ),
-                SizedBox(height:20),
-              ButtonWidget(
-                  text: 'Book Appointment',
-                  onPressed: () {
-                   //  _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
-                                Fluttertoast.showToast(
-          msg: "Booking Done Successfully! Please Wait...",
-        );
-                              Navigator.of(context)
-                                .pushReplacementNamed('/home');
-        //             return showDialog(
-        //               context: context,
-        //               builder: (context) => new AlertDialog(
-        //                 content: TextWidget(text:'Do you want to book ?',textSize: 18,),
-        //                 actionsPadding:
-        //                 EdgeInsets.only(left: 30, right: 30),
-        //                 actions: <Widget>[
-        //                   GestureDetector(
-        //                     onTap: () => Navigator.of(context).pop(false),
-        //                     child: TextWidget(text:
-        //                     "Cancel",
-        //                       textSize: 14,
-        //                       // style: TextStyle(
-        //                       //     color: Theme.of(context).accentColor,
-        //                       //     fontSize: 14.0,
-        //                       //     fontWeight: FontWeight.bold),
-        //                     ),
-        //                   ),
-        //                   SizedBox(width: 20),
-        //                   //SizedBox(width: MediaQuery.of(context).size.width*.35),
-        //                   GestureDetector(
-        //                     onTap: () {
-        //                         //_bloc.fetchBookAppointmets(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
-        //                         _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
-        //                         Fluttertoast.showToast(
-        //   msg: "Booking Done Successfully!",
-        // );
-        //                       Navigator.of(context)
-        //                         .pushReplacementNamed('/home');},
-        //                     child: TextWidget(text:
-        //                     "Yes",
-        //                       textSize: 14,
-        //                       // style: TextStyle(
-        //                       //     color: Theme.of(context).accentColor,
-        //                       //     fontSize: 14.0,
-        //                       //     fontWeight: FontWeight.bold),
-        //                     ),
-        //                   ),
-        //                 ],
-        //               ),
-        //             ) ??
-        //                 false;
-                  }),
-                  SizedBox(height:40),
-                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
-
-                }),
-                ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
-
-                }),
-              ],
-            )
-
-
-              ],
+        body: SingleChildScrollView(
+                  child: Column(children: [
+            TopWidget(text: "Book Appointment"),
+            SizedBox(
+              height: 40,
             ),
-          ),
-        ]),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          TextWidget(
+                            text: "Who is the appointment for",
+                            fontWeight: FontWeight.bold,
+                          ),
+                          SizedBox(height: 10),
+                          BoxTextFormWidget(
+                            hintText: "Member Name",
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          TextWidget(
+                            text: "Type of Service",
+                            fontWeight: FontWeight.bold,
+                          ),
+                          SizedBox(height: 10),
+                          BoxTextFormWidget(
+                            hintText: "Type of Service",
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          TextWidget(
+                            text: "Location of Service",
+                            fontWeight: FontWeight.bold,
+                          ),
+                          SizedBox(height: 10),
+                          BoxTextFormWidget(
+                            hintText: "Location",
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          TextWidget(
+                            text: "Select Service Provider",
+                            fontWeight: FontWeight.bold,
+                          ),
+                          SizedBox(height: 10),
+                          BoxTextFormWidget(
+                            hintText: "Service Provider",
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 50),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          TextWidget(text: "Date",fontWeight: FontWeight.bold,),
+                          SizedBox(height: 10),
+                          BoxTextFormWidget(
+                            hintText: "Date",
+                            suffixIcon: Icon(Icons.calendar_today),
+                            controller: dateCtl,
+                            onTap: () async {
+                              DateTime date = DateTime(1900);
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
+
+                              date = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime(2100));
+                              formattedStr = formatDate(
+                                date,
+                                [
+                                  dd,
+                                  '/',
+                                  mm,
+                                  '/',
+                                  yyyy,
+                                ],
+                              );
+                              //var x = date.toIso8601String().substring(0, 10);
+                              dateCtl.text = formattedStr;
+                            },
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          TextWidget(text: "Preferred Time",fontWeight: FontWeight.bold,),
+                          SizedBox(height: 10),
+                          BoxTextFormWidget(
+                            hintText: 'Time*',
+                            suffixIcon: Icon(Icons.watch),
+                            controller: timeCtl, // add this line.
+
+                            onTap: () async {
+                              TimeOfDay time = TimeOfDay.now();
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
+
+                              TimeOfDay picked = await showTimePicker(
+                                  context: context, initialTime: time);
+                              if (picked != null && picked != time) {
+                                timeCtl.text = picked
+                                    .toString()
+                                    .substring(10, 15); // add this line.
+                                // setState(() {
+                                //   time = picked;
+                                // });
+                              }
+                            },
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'cant be empty';
+                              }
+                              return null;
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height:20),
+                   TextWidget(
+                            text: "Do you want to use extras health insurance",
+                            fontWeight: FontWeight.bold,
+                          ),
+                
+                  Row(
+                    //  bool checkBoxValue=false;
+  //bool checkBoxValue2=false;
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(value: checkBoxValue,
+            activeColor: GlobalVars.primaryColor,
+            onChanged:(bool newValue){
+          setState(() {
+            checkBoxValue = newValue;
+            checkBoxValue2=false;
+            
+          });
+            }),TextWidget(text:'No',fontWeight: FontWeight.bold,)       
+                        ],
+                      ),
+             Row(
+               children: [
+                 Checkbox(value: checkBoxValue2,
+            activeColor: GlobalVars.primaryColor,
+            onChanged:(bool newValue){
+          setState(() {
+            checkBoxValue2 = newValue;
+            checkBoxValue=false;
+          });
+            }),TextWidget(text:'Yes',fontWeight: FontWeight.bold,)
+       
+               ],
+             ),
+            
+                    ]
+                  ),
+                  SizedBox(height:20),
+                ButtonWidget(
+                    text: 'Book Appointment',
+                    onPressed: () {
+                     //  _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+                                  Fluttertoast.showToast(
+            msg: "Booking Done Successfully! Please Wait...",
+          );
+                                Navigator.of(context)
+                                  .pushReplacementNamed('/home');
+          //             return showDialog(
+          //               context: context,
+          //               builder: (context) => new AlertDialog(
+          //                 content: TextWidget(text:'Do you want to book ?',textSize: 18,),
+          //                 actionsPadding:
+          //                 EdgeInsets.only(left: 30, right: 30),
+          //                 actions: <Widget>[
+          //                   GestureDetector(
+          //                     onTap: () => Navigator.of(context).pop(false),
+          //                     child: TextWidget(text:
+          //                     "Cancel",
+          //                       textSize: 14,
+          //                       // style: TextStyle(
+          //                       //     color: Theme.of(context).accentColor,
+          //                       //     fontSize: 14.0,
+          //                       //     fontWeight: FontWeight.bold),
+          //                     ),
+          //                   ),
+          //                   SizedBox(width: 20),
+          //                   //SizedBox(width: MediaQuery.of(context).size.width*.35),
+          //                   GestureDetector(
+          //                     onTap: () {
+          //                         //_bloc.fetchBookAppointmets(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+          //                         _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+          //                         Fluttertoast.showToast(
+          //   msg: "Booking Done Successfully!",
+          // );
+          //                       Navigator.of(context)
+          //                         .pushReplacementNamed('/home');},
+          //                     child: TextWidget(text:
+          //                     "Yes",
+          //                       textSize: 14,
+          //                       // style: TextStyle(
+          //                       //     color: Theme.of(context).accentColor,
+          //                       //     fontSize: 14.0,
+          //                       //     fontWeight: FontWeight.bold),
+          //                     ),
+          //                   ),
+          //                 ],
+          //               ),
+          //             ) ??
+          //                 false;
+                    }),
+                    SizedBox(height:40),
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
+
+                  }),
+                  ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
+
+                  }),
+                ],
+              )
+
+
+                ],
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }

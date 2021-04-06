@@ -11,6 +11,7 @@ import 'package:xhp/pages/settings/profile.dart';
 import 'package:xhp/pages/signup.dart';
 import 'package:xhp/pages/signupdemo.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'pages/PointId.dart';
 import 'pages/appointment/appointment-status.dart';
 import 'pages/appointment/appointments.dart';
 import 'pages/appointment/book-appointment.dart';
@@ -25,8 +26,12 @@ import 'pages/invoices/gap-history.dart';
 import 'pages/invoices/non-partner.dart';
 import 'pages/invoices/pending-invoice.dart';
 import 'pages/reports/appointment-reports.dart';
+import 'pages/reports/gift-statement.dart';
 import 'pages/reports/interest-report.dart';
 import 'pages/reports/newreport.dart';
+import 'pages/reports/rollover-amount.dart';
+import 'pages/reports/tax-statement.dart';
+import 'pages/settings/manage-profile.dart';
 import 'pages/settings/withdrawal.dart';
 import 'pages/signup/newsignup.dart';
 import 'pages/signup/newsignup2.dart';
@@ -119,7 +124,7 @@ class MyApp extends StatelessWidget {
         "/withdrawal":(context)=>PendingWithdrawal()
         //"gift-history":(context)=>
       },
-      home: ReportMain(),
+      home: PointId(),
     ));
   }
 }
