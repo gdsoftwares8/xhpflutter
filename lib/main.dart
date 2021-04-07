@@ -24,6 +24,7 @@ import 'pages/gifts/gift.dart';
 import 'pages/home.dart';
 import 'pages/invoices/gap-history.dart';
 import 'pages/invoices/non-partner.dart';
+import 'pages/invoices/non-pref-part.dart';
 import 'pages/invoices/pending-invoice.dart';
 import 'pages/reports/appointment-reports.dart';
 import 'pages/reports/gift-statement.dart';
@@ -133,7 +134,7 @@ class MyApp extends StatelessWidget {
 
         //"gift-history":(context)=>
       },
-      home: SplashScreen(),
+      home: NonPrefPartner(),
     ));
   }
 }

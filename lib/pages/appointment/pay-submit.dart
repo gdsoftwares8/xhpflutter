@@ -52,6 +52,7 @@ class _PaySubmitState extends State<PaySubmit> {
                 }),
             SizedBox(height:40),
                 ButtonWidget(width:size.width*.75,text: "Show Invoice History", onPressed: (){
+                   Navigator.pushNamed(context, '/pending-invoice');
 
                 }),
                 SizedBox(height:40),
