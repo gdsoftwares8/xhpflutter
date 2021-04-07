@@ -11,6 +11,14 @@ class SignUpp extends StatefulWidget {
 }
 
 class _SignUppState extends State<SignUpp> {
+  String fName;
+  String mName;
+  String lName;
+  String transPin;
+  String retransPin;
+  String mobile;
+  String email;
+  String username;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -26,22 +34,33 @@ class _SignUppState extends State<SignUpp> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   BoxTextFormWidgett(
-                      width: size.width * .30, labelText: "First Name"),
+                      width: size.width * .30, hintText: "First Name", onChanged: (value) {
+                                fName = value;
+                              },),
                   BoxTextFormWidgett(
-                      width: size.width * .30, labelText: "Middle Name"),
+                      width: size.width * .30, hintText: "Middle Name", onChanged: (value) {
+                                mName = value;
+                              },),
                   BoxTextFormWidgett(
-                      width: size.width * .30, labelText: "Last Name"),
+                      width: size.width * .30, hintText: "Last Name",
+                       onChanged: (value) {
+                                lName = value;
+                              },),
                 ],
               ),
               SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  BoxTextFormWidgett(width: size.width * .30, labelText: "DOB"),
+                  BoxTextFormWidgett(width: size.width * .30, hintText: "DOB"),
                   BoxTextFormWidgett(
-                      width: size.width * .30, labelText: "Mobile"),
+                      width: size.width * .30, hintText: "Mobile", onChanged: (value) {
+                                mobile = value;
+                              },),
                   BoxTextFormWidgett(
-                      width: size.width * .30, labelText: "Email"),
+                      width: size.width * .30, hintText: "Email", onChanged: (value) {
+                                email = value;
+                              },),
                 ],
               ),
               SizedBox(height: 30),
@@ -50,10 +69,14 @@ class _SignUppState extends State<SignUpp> {
                 children: [
                   BoxTextFormWidgett(
                       width: size.width * .40,
-                      labelText: "Enter Transaction Pin"),
+                      hintText: "Enter Transaction Pin", onChanged: (value) {
+                                transPin = value;
+                              },),
                   BoxTextFormWidgett(
                       width: size.width * .40,
-                      labelText: "Re-Enter Transaction Pin"),
+                      hintText: "Re-Enter Transaction Pin", onChanged: (value) {
+                                retransPin = value;
+                              }),
                 ],
               ),
               SizedBox(height: 30),
@@ -64,17 +87,23 @@ class _SignUppState extends State<SignUpp> {
               ),
               SizedBox(height: 30),
               BoxTextFormWidgett(
-                  width: size.width * .40, labelText: "Enter User Name"),
+                  width: size.width * .40, hintText: "Enter User Name", onChanged: (value) {
+                                username = value;
+                              }),
               SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   BoxTextFormWidgett(
                       width: size.width * .40,
-                      labelText: "Enter Transaction Pin"),
+                      hintText: "Enter Transaction Pin", onChanged: (value) {
+                                transPin = value;
+                              }),
                   BoxTextFormWidgett(
                       width: size.width * .40,
-                      labelText: "Re-Enter Transaction Pin"),
+                      hintText: "Re-Enter Transaction Pin", onChanged: (value) {
+                                retransPin = value;
+                              }),
                 ],
               ),
               SizedBox(height: 30),

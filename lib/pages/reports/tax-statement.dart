@@ -66,16 +66,7 @@ class _TaxStatementState extends State<TaxStatement> {
             NewTextWidget(width:size.width*.60,text: "Reschedule Status", ),SizedBox(height:40),
             NewTextWidget(width:size.width*.60,text: "\$500.00"),SizedBox(height:40),
             NewTextWidget(width:size.width*.60,text: "Download Tax Statement",),SizedBox(height:60),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
-
-                }),
-                ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
-
-                }),
-              ],
-            )
+          DashLogout()
           ]),
         ),
         

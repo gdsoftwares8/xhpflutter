@@ -6,6 +6,8 @@ import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/welcome.dart';
 import 'package:xhp/widgets/text_widget.dart';
 
+import 'button_widget.dart';
+
 class GlobalWidgets {
   static Widget getToolbar(double height) {
     
@@ -99,5 +101,39 @@ class GlobalWidgets {
       radius: radious,
       child: Image.asset('assets/app_icon.png'),
     );
+  }
+  
+}
+
+class DashLogout extends StatefulWidget {
+  
+  @override
+  _DashLogoutState createState() => _DashLogoutState();
+}
+
+class _DashLogoutState extends State<DashLogout> {
+
+  savebool(bool value) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool(GlobalVars.isLogin, value);
+  }
+  @override
+  Widget build(BuildContext context) {
+    final size=MediaQuery.of(context).size;
+    return  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
+                    Navigator.pushReplacementNamed(context, "/home");
+
+                  }),
+                  ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
+                     savebool(false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/welcome', (Route<dynamic> route) => false,
+                        );
+
+                  }),
+                ],
+              );
   }
 }

@@ -57,17 +57,7 @@ class _ReportMainState extends State<ReportMain> {
               ],
             ),
             SizedBox(height:100),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
-
-                }),
-                ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
-
-                }),
-              ],
-            )
-          ]),
+          DashLogout()          ]),
         ),
         
         

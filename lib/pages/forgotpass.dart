@@ -54,15 +54,7 @@ class _ForgotPassword extends State<ForgotPassword> {
                  Container(
                       padding: EdgeInsets.only(top: 80.0),
                       alignment: Alignment.topCenter,
-                      /*decoration: BoxDecoration(
-                    //color: Main.opacityColor,
-                    image: DecorationImage(
-                      image: AssetImage("assets/app_icon.png"),
-                      colorFilter: ColorFilter.mode(
-                          Colors.deepPurple.withOpacity(0.7), BlendMode.srcATop),
-                      fit: BoxFit.cover,
-                    ),
-                  ),*/
+                     
                       child: Stack(
                         overflow: Overflow.clip,
                         children: <Widget>[

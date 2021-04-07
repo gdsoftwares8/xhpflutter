@@ -59,16 +59,7 @@ class _PaySubmitState extends State<PaySubmit> {
 
                 }),
 SizedBox(height:50),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
-
-                }),
-                ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
-
-                }),
-              ],
-            )
+           DashLogout()
           ]),
         ),
         

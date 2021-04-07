@@ -150,9 +150,7 @@ timeCtl=TextEditingController();
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormWidget(
                               labelText: "Location / Postcode*",
-                              onChanged: (value) {
-                                location = value;
-                              },
+                             
                             ),
                           ),
                           SizedBox(height: 10),

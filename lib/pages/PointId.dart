@@ -81,46 +81,51 @@ class _PointIdState extends State<PointId> {
                 text: "Australian  Citizenship  | Residence Status",
                 textAlign: TextAlign.center,
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                TextWidget(
-                  text: "Are you an Australian  Citizenship",
-                  textAlign: TextAlign.center,
-                ),
-                Row(
-                  children: [
-                    Checkbox(
-                        value: checkBoxValue,
-                        activeColor: GlobalVars.primaryColor,
-                        onChanged: (bool newValue) {
-                          setState(() {
-                            checkBoxValue = newValue;
-                            checkBoxValue2 = false;
-                          });
-                        }),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                     TextWidget(
-                      text: 'Yes',
-                      fontWeight: FontWeight.bold,
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Checkbox(
-                        value: checkBoxValue2,
-                        activeColor: GlobalVars.primaryColor,
-                        onChanged: (bool newValue) {
-                          setState(() {
-                            checkBoxValue2 = newValue;
-                            checkBoxValue = false;
-                          });
-                        }),
-                    TextWidget(
-                      text: 'No',
-                      fontWeight: FontWeight.bold,
-                    )
-                  ],
-                ),
-              ]),
+                      text: "Are you an Australian  Citizenship",
+                      textAlign: TextAlign.center,
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: checkBoxValue,
+                            activeColor: GlobalVars.primaryColor,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                checkBoxValue = newValue;
+                                checkBoxValue2 = false;
+                              });
+                            }),
+                        TextWidget(
+                          text: 'Yes',
+                          fontWeight: FontWeight.bold,
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: checkBoxValue2,
+                            activeColor: GlobalVars.primaryColor,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                checkBoxValue2 = newValue;
+                                checkBoxValue = false;
+                              });
+                            }),
+                        TextWidget(
+                          text: 'No',
+                          fontWeight: FontWeight.bold,
+                        )
+                      ],
+                    ),
+                  ]),
+               
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 TextWidget(
                   text: "Are you resident in Australia",
@@ -284,7 +289,7 @@ class _PointIdState extends State<PointId> {
                     )
                   ],
                 ),
-              ]),
+              ]),]),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Divider(
@@ -418,14 +423,11 @@ class _PointIdState extends State<PointId> {
                       width: size.width*.80,
                    
                       
-                      child: FittedBox(
-                      
-                                              child: TextWidget( maxLines: 2,
+                      child: TextWidget( maxLines: 2,
                               text: 'By clicking Submit, I confirm that consent has been obtained from the document holder to check the identifying information with the Issuer/Official record holder for the purpose of confirming their identity.I can confirm that the details provided are correct. ',
                             
                          
                             ),
-                      ),
                     ),
                      
                   ],

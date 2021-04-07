@@ -2,6 +2,7 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:xhp/utils/global_vars.dart';
+import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/NewTextWidget.dart';
 import 'package:xhp/widgets/TextForm.dart';
 import 'package:xhp/widgets/TopbarWidget.dart';
@@ -19,6 +20,10 @@ class _NBookAppointmentState extends State<NBookAppointment> {
   String formattedStr;
   bool checkBoxValue=false;
   bool checkBoxValue2=false;
+  String _selectedText;
+  String memberName;
+  String location;
+  
 
   @override
   void initState() {
@@ -64,6 +69,9 @@ class _NBookAppointmentState extends State<NBookAppointment> {
                           SizedBox(height: 10),
                           BoxTextFormWidget(
                             hintText: "Member Name",
+                            onChanged: (value) {
+                                memberName = value;
+                              },
                           )
                         ],
                       ),
@@ -94,21 +102,65 @@ class _NBookAppointmentState extends State<NBookAppointment> {
                           SizedBox(height: 10),
                           BoxTextFormWidget(
                             hintText: "Location",
+                             onChanged: (value) {
+                                location = value;
+                              },
                           )
                         ],
                       ),
-                      Column(
-                        children: [
-                          TextWidget(
+                                   Column(
+                                     children: [TextWidget(
                             text: "Select Service Provider",
                             fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(height: 10),
-                          BoxTextFormWidget(
-                            hintText: "Service Provider",
-                          )
-                        ],
+                          SizedBox(height:3),
+                        
+                                       Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                             width: MediaQuery.of(context).size.width*.40,
+                        height: MediaQuery.of(context).size.width*.12,
+                          
+                          decoration: BoxDecoration(color:Colors.grey[300],borderRadius: BorderRadius.circular(25),border:Border.all(color:Colors.black) ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              
+                            hint: TextWidget(text: "Select Service Provider",fontWeight: FontWeight.bold,),
+                              value: _selectedText,
+                              items: <String>['One', 'Two', 'Three']
+                                  .map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: TextWidget(text: value,color: Colors.black,fontWeight: FontWeight.bold,),
+                                );
+                              }).toList(),
+                              onChanged: (String val) {
+                                setState(() {
+                                  _selectedText = val;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
                       ),
+                                     ],
+                                   ),
+                      // Column(
+                      //   children: [
+                      //     TextWidget(
+                      //       text: "Select Service Provider",
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //     SizedBox(height: 10),
+                      //     BoxTextFormWidget(onChanged: (){
+
+                      //     },
+                      //       hintText: "Service Provider",
+                      //     )
+                      //   ],
+                      // ),
                     ],
                   ),
                   SizedBox(height: 50),
@@ -120,6 +172,7 @@ class _NBookAppointmentState extends State<NBookAppointment> {
                           TextWidget(text: "Date",fontWeight: FontWeight.bold,),
                           SizedBox(height: 10),
                           BoxTextFormWidget(
+                           
                             hintText: "Date",
                             suffixIcon: Icon(Icons.calendar_today),
                             controller: dateCtl,
@@ -279,16 +332,18 @@ class _NBookAppointmentState extends State<NBookAppointment> {
           //                 false;
                     }),
                     SizedBox(height:40),
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
+                    DashLogout(),
+              //       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
+              //       Navigator.pushReplacementNamed(context, "/home");
 
-                  }),
-                  ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
+              //     }),
+              //     ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
 
-                  }),
-                ],
-              )
+              //     }),
+              //   ],
+              // )
 
 
                 ],

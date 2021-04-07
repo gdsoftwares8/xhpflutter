@@ -65,16 +65,7 @@ class _RolloverStatementState extends State<RolloverStatement> {
             NewTextWidget(width:size.width*.60,text: "Amount Rolled Over", ),SizedBox(height:40),
             NewTextWidget(width:size.width*.60,text: "\$500.00"),SizedBox(height:40),
             SizedBox(height:60),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
-
-                }),
-                ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
-
-                }),
-              ],
-            )
+           DashLogout()
           ]),
         ),
         

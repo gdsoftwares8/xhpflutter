@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
@@ -8,6 +10,12 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+
+
+  savebool(bool value) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool(GlobalVars.isLogin, value);
+  }
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
@@ -62,25 +70,31 @@ class _DashBoardState extends State<DashBoard> {
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Book\nAppointment", onPressed: (){
+                    Navigator.pushReplacementNamed(context, "/book-appointment");
 
                   }),
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Upcoming\nAppointment", onPressed: (){
+                     Navigator.pushReplacementNamed(context, "/appointment-status");
                     
                   })
                 ],), SizedBox(height:20),
                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Confirm \nIFC", onPressed: (){
+                               Navigator.pushReplacementNamed(context, "/confirm-ifc");
 
                   }),
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Pay / Submit \nInvoice", onPressed: (){
+                               Navigator.pushReplacementNamed(context, "/pay-submit");
                     
                   })
                 ],),SizedBox(height:20),
                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                   ButtonWidget(width:size.width*.42,height:60,text: "Report", onPressed: (){
+                               Navigator.pushReplacementNamed(context, "/report");
 
                   }),
                   ButtonWidget(width:size.width*.42,height:60,text: "My Profile", onPressed: (){
+                               Navigator.pushReplacementNamed(context, "/my-profile");
                     
                   })
                 ],),SizedBox(height:20),
@@ -90,6 +104,11 @@ class _DashBoardState extends State<DashBoard> {
 
                   }),
                   ButtonWidget(width:size.width*.42,height:60,text: "Logout", onPressed: (){
+                     savebool(false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/welcome', (Route<dynamic> route) => false,
+                        );
+
                     
                   })
                 ],)

@@ -103,11 +103,11 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       routes: {
         "/splash": (context) => SplashScreen(),
-        "/signup": (context) => Signup(),
+        "/signup": (context) => SignUpp(),
         "/welcome": (context) => Welcome(),
         "/login": (context) => Login(),
-        "/home":(context)=> Home(),
-        "/book-appointment":(context)=>BookAppointment(),
+        "/home":(context)=> DashBoard(),
+        "/book-appointment":(context)=>NBookAppointment(),
         "/book-history":(context)=>AppointmentHistory(),
         "/issue-gift":(context)=>IssueGift(),
         "/receive-gift":(context)=>GiftReceive(),
@@ -121,10 +121,19 @@ class MyApp extends StatelessWidget {
         "/interest-history":(context)=>InterestHistory(),
         "/profile":(context)=>Profile(),
         "/forgot-password":(context)=>ForgotPassword(),
-        "/withdrawal":(context)=>PendingWithdrawal()
+        "/withdrawal":(context)=>PendingWithdrawal(),
+        "/appointment-status":(context)=>AppointmentStatus(),
+        "/confirm-ifc":(context)=>ConfirmIFC(),
+        "/confirm-instr":(context)=>ConfirmInstruc(),
+        "/pay-submit":(context)=>PaySubmit(),
+        "/report":(context)=>ReportMain(),
+        "/my-profile":(context)=>ManageProfile(),
+        
+
+
         //"gift-history":(context)=>
       },
-      home: PointId(),
+      home: SplashScreen(),
     ));
   }
 }

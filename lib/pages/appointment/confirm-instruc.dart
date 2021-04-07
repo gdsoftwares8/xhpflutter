@@ -41,17 +41,7 @@ class _ConfirmInstrucState extends State<ConfirmInstruc> {
 
                 }),
 SizedBox(height:60),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
-
-                }),
-                ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
-
-                }),
-              ],
-            )
-          ]),
+           DashLogout()          ]),
         ),
         
         
