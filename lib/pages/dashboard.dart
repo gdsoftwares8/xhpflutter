@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xhp/models/appointment_model.dart';
+import 'package:xhp/pages/appointment/appointments.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/button_widget.dart';
 import 'package:xhp/widgets/text_widget.dart';
 class DashBoard extends StatefulWidget {
+  AppointmentModel model;
+  DashBoard({this.model});
   @override
   _DashBoardState createState() => _DashBoardState();
 }
@@ -36,7 +40,7 @@ class _DashBoardState extends State<DashBoard> {
                     children: [CircleAvatar(radius:50,child: Icon(Icons.person_outline,size: 60,),),
                    
                   Column(children:[
-                    TextWidget(text:"Hello Peter Georg",textSize: 16,),
+                    TextWidget(text:"Hello",textSize: 16,),
                     TextWidget(text: "Good Evening",textSize: 16)
                   ])],),
                    SizedBox(height:20),
@@ -70,7 +74,7 @@ class _DashBoardState extends State<DashBoard> {
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Book\nAppointment", onPressed: (){
-                    Navigator.pushReplacementNamed(context, "/book-appointment");
+                    Navigator.pushNamed(context, "/book-appointment");
 
                   }),
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Upcoming\nAppointment", onPressed: (){
@@ -80,21 +84,21 @@ class _DashBoardState extends State<DashBoard> {
                 ],), SizedBox(height:20),
                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Confirm \nIFC", onPressed: (){
-                               Navigator.pushReplacementNamed(context, "/confirm-ifc");
+                               Navigator.pushNamed(context, "/confirm-ifc");
 
                   }),
                   ButtonWidget(textAlign: TextAlign.center,width:size.width*.42,height:60,text: "Pay / Submit \nInvoice", onPressed: (){
-                               Navigator.pushReplacementNamed(context, "/pay-submit");
+                               Navigator.pushNamed(context, "/pay-submit");
                     
                   })
                 ],),SizedBox(height:20),
                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                   ButtonWidget(width:size.width*.42,height:60,text: "Report", onPressed: (){
-                               Navigator.pushReplacementNamed(context, "/report");
+                               Navigator.pushNamed(context, "/report");
 
                   }),
                   ButtonWidget(width:size.width*.42,height:60,text: "My Profile", onPressed: (){
-                               Navigator.pushReplacementNamed(context, "/my-profile");
+                               Navigator.pushNamed(context, "/my-profile");
                     
                   })
                 ],),SizedBox(height:20),

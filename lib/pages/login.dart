@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xhp/blocs/ChuckAccountbloc.dart';
 import 'package:xhp/blocs/ChuckLocalData.dart';
 import 'package:xhp/blocs/ChuckLogin.dart';
 import 'package:xhp/models/login_response.dart';
@@ -30,12 +31,14 @@ class Login extends StatefulWidget {
 
 class _Login extends State<Login> {
   ChuckLoginbloc _bloc;
+  ChuckAccountbloc bloc;
   SharedPref sharedPref = SharedPref();
   String username = "";
   String _password = "";
   bool _loading = false;
   bool show_pass = false;
   User currentuser;
+  String memberId="1";
 
   savebool(bool value) async {
     final pref = await SharedPreferences.getInstance();
@@ -78,6 +81,7 @@ class _Login extends State<Login> {
   void initState() {
     super.initState();
     _bloc = ChuckLoginbloc();
+    bloc=ChuckAccountbloc(memberId);
     listenStream();
   }
 
@@ -210,6 +214,8 @@ class _Login extends State<Login> {
                               //List<Map<String, dynamic>> map=[{'username':username,},{'password':_password}];
                               // _bloc.fetchLogin(username, _password);
                               _bloc.fetchLogin(username, _password);
+                              bloc.fetchAccounts(memberId);
+
                               // if (LoginResponce().status==1) {
                               //   print("DFGHBJN");
                               //   // Navigator.pushReplacementNamed(context, "/home");

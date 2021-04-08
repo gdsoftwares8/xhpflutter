@@ -49,13 +49,14 @@ class BoxTextFormWidget extends StatelessWidget {
   final String initialValue;
   final double width;
   final double height;
-
+  final TextStyle style;
   BoxTextFormWidget(
       {this.autovalidateMode,
       this.decoration,
       this.keyboardType,
       this.onChanged,
       this.validator,
+      this.style,
       this.onSaved,
       this.obscureText,
       this.onTap,
@@ -75,10 +76,12 @@ class BoxTextFormWidget extends StatelessWidget {
       height: height,
       child: TextFormField(
         initialValue:initialValue,
+        style: style,
        
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: keyboardType,
         enabled: enabled,
+      
          decoration: 
          InputDecoration(
            filled: true,

@@ -25,6 +25,9 @@ class GlobalVars {
   static String INTEREST_URL="report/getInterestStatement";
   static String SIGNUP_FIRST_URL="report/getInterestStatement";
   static String WITHDRAWAL_URL="report/getWithdrawal";
+  static String ACCOUNT_URL="account";
+  static String UPDATE_APPOINTMENT_URL="appointments/updateAppointmentStatus";
+  static String SECONDARY_MEMBER_URL="account/getSecondaryMemberList";
 
   // Constants For Prefrences
   static String isLogin = "isLogin";

@@ -1,6 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:xhp/blocs/ChuckBookAppointment.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/NewTextWidget.dart';
@@ -23,6 +24,13 @@ class _NBookAppointmentState extends State<NBookAppointment> {
   String _selectedText;
   String memberName;
   String location;
+  ChuckBookAppointmentbloc _bloc;
+  String memberId="1";
+  String fkId='1';
+  String isRebate='1';
+  String company='Company';
+  String company_membership_no="01000013";
+  String service_category='Exercise Physiology';
   
 
   @override
@@ -171,8 +179,9 @@ class _NBookAppointmentState extends State<NBookAppointment> {
                         children: [
                           TextWidget(text: "Date",fontWeight: FontWeight.bold,),
                           SizedBox(height: 10),
-                          BoxTextFormWidget(
-                           
+                          BoxTextFormWidget(  
+                            style: TextStyle(fontSize: 15),
+                            width: 60,                         
                             hintText: "Date",
                             suffixIcon: Icon(Icons.calendar_today),
                             controller: dateCtl,
@@ -282,7 +291,7 @@ class _NBookAppointmentState extends State<NBookAppointment> {
                 ButtonWidget(
                     text: 'Book Appointment',
                     onPressed: () {
-                     //  _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
+                      _bloc=ChuckBookAppointmentbloc(memberId, fkId, timeCtl.text, dateCtl.text, isRebate, company, service_category, company_membership_no);
                                   Fluttertoast.showToast(
             msg: "Booking Done Successfully! Please Wait...",
           );

@@ -8,6 +8,7 @@ import 'package:xhp/widgets/DividerWidget.dart';
 import 'package:xhp/widgets/Error.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/Loading.dart';
+import 'package:xhp/widgets/TopbarWidget.dart';
 import 'package:xhp/widgets/text_widget.dart';
 import 'package:xhp/utils/global_vars.dart';
 
@@ -28,12 +29,7 @@ class _PendingInvoiceState extends State<PendingInvoice> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: GlobalWidgets.getToolbarWithBack(
-            title: "Invoice",
-            onPressed: (){
-              Navigator.pop(context);
-            }),
+      child: Scaffold(      
         body: StreamBuilder<Response<InvoiceResponce>>(
           stream: _bloc.chuckListStream,
           builder: (context, snapshot) {
@@ -48,13 +44,21 @@ class _PendingInvoiceState extends State<PendingInvoice> {
                   InvoiceResponce res = snapshot.data.data;
                   if(res.status == 1) {
                     GlobalFunc.logPrint("total Invoices ${res.result.length}");
-                    return ListView.builder(
-                      itemBuilder: (context, index) {
-                        return drawItem(res.result[index],index);
-                      },
-                      itemCount: res.result.length,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
+                    return SingleChildScrollView(
+                                          child: Column(
+                        children: [
+                          TopWidget(text:"Invoices"),
+                          SizedBox(height:30),
+                          ListView.builder(
+                            itemBuilder: (context, index) {
+                              return drawItem(res.result[index],index);
+                            },
+                            itemCount: res.result.length,
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                          ),
+                        ],
+                      ),
                     );
                   } else {
                     return Error(
@@ -78,7 +82,8 @@ class _PendingInvoiceState extends State<PendingInvoice> {
     );
   }
 
-  Widget drawItem(Invoice model, int position) {
+  Widget drawItem(Invoice model, int position) 
+   {
     return Card(
       child: ExpansionTile(
         initiallyExpanded: true,

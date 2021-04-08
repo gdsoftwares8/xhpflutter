@@ -23,10 +23,12 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
             TextWidget(text: "Appointment for Peter Georg",),
             SizedBox(height:40),
             ButtonWidget(width:size.width*.60,text: "Appointment Status", onPressed: (){
+              Navigator.pushNamed(context, "update-appointment");
 
             }),
           SizedBox(height:40),
             ButtonWidget(width:size.width*.60,text: "Reschedule Status", onPressed: (){
+              Navigator.pushNamed(context, "update-appointment");
 
             }),SizedBox(height:40),
             ButtonWidget(width:size.width*.60,text: "Cancel Status", onPressed: (){
@@ -34,17 +36,9 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
             }),SizedBox(height:40),
             ButtonWidget(width:size.width*.60,text: "Appointment History", onPressed: (){
 
+Navigator.of(context).pushReplacementNamed("/book-history");
             }),SizedBox(height:60),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonWidget(width:size.width*.40,text: "Dashboard", onPressed: (){
-
-                }),
-                ButtonWidget(width:size.width*.40,text: "Logout", onPressed: (){
-
-                }),
-              ],
-            )
+            DashLogout()
           ]),
         ),
         

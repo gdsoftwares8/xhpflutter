@@ -214,7 +214,7 @@ class _ProfileState extends State<Profile> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormWidget(
-                            labelText: "Amuount*",
+                            labelText: "Amount*",
                             onChanged: (value) {
                               location = value;
                             },

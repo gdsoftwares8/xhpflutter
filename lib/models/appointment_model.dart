@@ -32,7 +32,9 @@ class AppointmentModel {
   int isPhiRebate;
   String company;
   String companyMembershipNo;
-
+  String firstName;
+  String lastName;
+  String memberType;
   AppointmentModel(
       {this.idAppointment,
         this.fkIdMember,
@@ -48,6 +50,7 @@ class AppointmentModel {
         this.netPayable,
         this.grandTotal,
         this.linAmount,
+        this.memberType,
         this.isDiscount,
         this.discountReason,
         this.discount,
@@ -66,7 +69,8 @@ class AppointmentModel {
         this.isChargePaid,
         this.isPhiRebate,
         this.company,
-        this.companyMembershipNo});
+        this.companyMembershipNo,this.firstName,this.lastName
+        });
 
   AppointmentModel.fromJson(Map<String, dynamic> json) {
     idAppointment = json['id_appointment'];
@@ -102,6 +106,9 @@ class AppointmentModel {
     isPhiRebate = json['is_phi_rebate'];
     company = json['company'];
     companyMembershipNo = json['company_membership_no'];
+    firstName=json['first_name'];
+    lastName=json['last_name'];
+    memberType=json['member_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -139,6 +146,9 @@ class AppointmentModel {
     data['is_phi_rebate'] = this.isPhiRebate;
     data['company'] = this.company;
     data['company_membership_no'] = this.companyMembershipNo;
+    data['first_name'] = this.firstName;
+    data['last_name']=this.lastName;
+    data['member_type']=this.memberType;
     return data;
   }
 

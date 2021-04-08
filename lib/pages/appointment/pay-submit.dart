@@ -47,8 +47,8 @@ class _PaySubmitState extends State<PaySubmit> {
 
             TextWidget(text:"To submit a non preferred partner invoice \nclick on non preferred partner invoice")
 ,            SizedBox(height:30),
-             ButtonWidget(width:size.width*.75,text: "Non Preferred Parnter Invoice", onPressed: (){
-
+             ButtonWidget(width:size.width*.75,text: "Non Preferred Parnter Invoice", onPressed: (){///non-preferred-partner
+                          Navigator.pushNamed(context, '/non-preferred-partner');
                 }),
             SizedBox(height:40),
                 ButtonWidget(width:size.width*.75,text: "Show Invoice History", onPressed: (){

@@ -12,6 +12,7 @@ import 'package:xhp/pages/signup.dart';
 import 'package:xhp/pages/signupdemo.dart';
 import 'package:xhp/utils/global_vars.dart';
 import 'pages/PointId.dart';
+import 'pages/account/secondary_mem.dart';
 import 'pages/appointment/appointment-status.dart';
 import 'pages/appointment/appointments.dart';
 import 'pages/appointment/book-appointment.dart';
@@ -19,6 +20,7 @@ import 'pages/appointment/confirm-ifc.dart';
 import 'pages/appointment/confirm-instruc.dart';
 import 'pages/appointment/history-appointments.dart';
 import 'pages/appointment/pay-submit.dart';
+import 'pages/appointment/update_appointment.dart';
 import 'pages/forgotpass.dart';
 import 'pages/gifts/gift.dart';
 import 'pages/home.dart';
@@ -30,6 +32,7 @@ import 'pages/reports/appointment-reports.dart';
 import 'pages/reports/gift-statement.dart';
 import 'pages/reports/interest-report.dart';
 import 'pages/reports/newreport.dart';
+import 'pages/reports/report.dart';
 import 'pages/reports/rollover-amount.dart';
 import 'pages/reports/tax-statement.dart';
 import 'pages/settings/manage-profile.dart';
@@ -129,12 +132,15 @@ class MyApp extends StatelessWidget {
         "/pay-submit":(context)=>PaySubmit(),
         "/report":(context)=>ReportMain(),
         "/my-profile":(context)=>ManageProfile(),
+        "/update-appointment":(context)=>UpdateAppointment(),
+        "/non-preferred-partner":(context)=>NonPrefPartner(),
+        "/secondary-member":(context)=>SecondaryMember(),
         
 
 
         //"gift-history":(context)=>
       },
-      home: NonPrefPartner(),
+      home: SplashScreen(),
     ));
   }
 }

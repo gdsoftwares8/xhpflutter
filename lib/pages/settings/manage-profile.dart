@@ -27,7 +27,9 @@ class _ManageProfileState extends State<ManageProfile> {
                   onPressed: () {}),
               SizedBox(height: 16),
               ButtonWidget(
-                  width: size.width * .60, text: "Add Members", onPressed: () {}),
+                  width: size.width * .60, text: "Add Members", onPressed: () {
+                    Navigator.of(context).pushNamed("/secondary-member");
+                  }),
               SizedBox(height: 16),
               ButtonWidget(
                   width: size.width * .60,

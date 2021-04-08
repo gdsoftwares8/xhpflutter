@@ -116,18 +116,6 @@ class _ContributionHistoryState extends State<ContributionHistory> {
                       TextWidget(text: 'End Year'),
                       TextWidget(text: year.endYear),
                     ]),
-                DividerWidget(
-
-                ),
-
-
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(text: "Service"),
-                      TextWidget(text: 'Dental')
-                    ]),
 
                 DividerWidget(),
                 Row(

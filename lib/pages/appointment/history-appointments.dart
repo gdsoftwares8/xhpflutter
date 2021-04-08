@@ -11,6 +11,7 @@ import 'package:xhp/widgets/DividerWidget.dart';
 import 'package:xhp/widgets/Error.dart';
 import 'package:xhp/widgets/GlobalWidgets.dart';
 import 'package:xhp/widgets/Loading.dart';
+import 'package:xhp/widgets/TopbarWidget.dart';
 import 'package:xhp/widgets/text_widget.dart';
 
 class AppointmentHistory extends StatefulWidget {
@@ -36,94 +37,107 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: GlobalWidgets.getToolbarWithBack(
-            title: "Appointment History",
-            onPressed: (){
-              Navigator.pop(context);
-            }),
-        body: StreamBuilder<Response<AppointmentResponce>>(
-          stream: _bloc.chuckListStream,
-          builder: (context, snapshot) {
-            if(snapshot.hasData) {
-              GlobalFunc.logPrint("snapshot $snapshot");
-              switch(snapshot.data.status){
-                case Status.LOADING:
-                  return Loading(loadingMessage: snapshot.data.message);
-                  break;
-                case Status.COMPLETED:
-                // return CategoryList(categoryList: snapshot.data.data);
-                  AppointmentResponce res = snapshot.data.data;
-                  if(res.status == 1) {
-                    GlobalFunc.logPrint("total Appointments ${res.result.length}");
-                    return ListView.builder(
+          // appBar: GlobalWidgets.getToolbarWithBack(
+          //     title: "Appointment History",
+          //     onPressed: (){
+          //       Navigator.pop(context);
+          //     }),
+          body: StreamBuilder<Response<AppointmentResponce>>(
+            stream: _bloc.chuckListStream,
+            builder: (context, snapshot) {
+      if(snapshot.hasData) {
+        GlobalFunc.logPrint("snapshot $snapshot");
+        switch(snapshot.data.status){
+          case Status.LOADING:
+            return Loading(loadingMessage: snapshot.data.message);
+            break;
+          case Status.COMPLETED:
+          // return CategoryList(categoryList: snapshot.data.data);
+            AppointmentResponce res = snapshot.data.data;
+            if(res.status == 1) {
+              
+              GlobalFunc.logPrint("total Appointments ${res.result.length}");
+              return SingleChildScrollView(
+                              child: Column(
+
+                  children: [
+                      TopWidget(text: "Appointment History"),
+      SizedBox(
+        height: 40,),
+       
+        
+                    ListView.builder(
                       itemBuilder: (context, index) {
-                        res.result.reversed;
+                        // res.result.reversed;
                         return drawItem(res.result[index]);
                       },
                       itemCount: res.result.length,
                       shrinkWrap: true,
                       physics: ClampingScrollPhysics(),
-                    );
-                  } else {
-                    return Error(
-                      errorMessage: res.message,
-                      onRetryPressed: () => _bloc.fetchAppointmets(memberId),
-                    );
-                  }
-                  break;
-                case Status.ERROR:
-                  return Error(
-                    errorMessage: snapshot.data.message,
-                    onRetryPressed: () => _bloc.fetchAppointmets(memberId),
-                  );
-                  break;
-              }
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return Error(
+                errorMessage: res.message,
+                onRetryPressed: () => _bloc.fetchAppointmets(memberId),
+              );
             }
-            return Container();
-          },
-        ),
-        /*body: RefreshIndicator(
-          onRefresh: _bloc.fetchAppointmets(memberId),
-          child: StreamBuilder<Response<AppointmentResponce>>(
-            stream: _bloc.chuckListStream,
-            builder: (context, snapshot) {
-              if(snapshot.hasData) {
-                switch(snapshot.data.status){
-                  case Status.LOADING:
-                    return Loading(loadingMessage: snapshot.data.message);
-                    break;
-                  case Status.COMPLETED:
-                  // return CategoryList(categoryList: snapshot.data.data);
-                    AppointmentResponce res = snapshot.data.data;
-                    if(res.status == 1) {
-                      return ListView.builder(
-                        itemBuilder: (context, index) {
-                          return drawItem(res.result[index]);
-                        },
-                        itemCount: res.result.length,
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                      );
-                    } else {
-                      return Error(
-                        errorMessage: res.message,
-                        onRetryPressed: () => _bloc.fetchAppointmets(memberId),
-                      );
-                    }
-                    break;
-                  case Status.ERROR:
-                    return Error(
-                      errorMessage: snapshot.data.message,
-                      onRetryPressed: () => _bloc.fetchAppointmets(memberId),
-                    );
-                    break;
-                }
-              }
-              return Container();
+            break;
+          case Status.ERROR:
+            return Error(
+              errorMessage: snapshot.data.message,
+              onRetryPressed: () => _bloc.fetchAppointmets(memberId),
+            );
+            break;
+        }
+      }
+      return Container();
             },
           ),
-        ),*/
-      ),
+          /*body: RefreshIndicator(
+            onRefresh: _bloc.fetchAppointmets(memberId),
+            child: StreamBuilder<Response<AppointmentResponce>>(
+      stream: _bloc.chuckListStream,
+      builder: (context, snapshot) {
+        if(snapshot.hasData) {
+          switch(snapshot.data.status){
+            case Status.LOADING:
+              return Loading(loadingMessage: snapshot.data.message);
+              break;
+            case Status.COMPLETED:
+            // return CategoryList(categoryList: snapshot.data.data);
+              AppointmentResponce res = snapshot.data.data;
+              if(res.status == 1) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return drawItem(res.result[index]);
+                  },
+                  itemCount: res.result.length,
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                );
+              } else {
+                return Error(
+                  errorMessage: res.message,
+                  onRetryPressed: () => _bloc.fetchAppointmets(memberId),
+                );
+              }
+              break;
+            case Status.ERROR:
+              return Error(
+                errorMessage: snapshot.data.message,
+                onRetryPressed: () => _bloc.fetchAppointmets(memberId),
+              );
+              break;
+          }
+        }
+        return Container();
+      },
+            ),
+          ),*/
+        ),
     );
   }
 
@@ -133,9 +147,9 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
         initiallyExpanded: true,
         title: Row(
           children: <Widget>[
-            Expanded(child: TextWidget(text:"Peter Georg")),
+            Expanded(child: TextWidget(text:model.firstName+" "+model.lastName)),
             Text(
-              "Dental",
+             model.idAppointment.toString(),
               style: Theme.of(context).textTheme.caption,
             ),
           ],
@@ -145,20 +159,20 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(text: 'Business Name'),
-                      TextWidget(text: model.company)
-                    ]),
+                // Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       TextWidget(text: 'Business Name'),
+                //       TextWidget(text: model.company)
+                //     ]),
                 DividerWidget(),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(text: 'Member'),
-                      TextWidget(text: 'Peter Goerg (01000002)')
+                      TextWidget(text: 'Member Type'),
+                      TextWidget(text: model.memberType)
                     ]),
                 DividerWidget(
 
