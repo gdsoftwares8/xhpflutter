@@ -6,32 +6,33 @@ import 'GlobalFuncs.dart';
 
 class GlobalVars {
   static String URL = "http://rupeestreet.com/xhpbackend/";
-  static String BASE_URL = URL+"api/";
-  static String REGISTER_URL = BASE_URL+"auth/register";
+  static String BASE_URL = URL + "api/";
+  static String REGISTER_URL = BASE_URL + "auth/register";
   static String LOGIN_URL = "auth/login";
-  static String GET_PROFILE_URL = BASE_URL+"account";
+  static String GET_PROFILE_URL = BASE_URL + "account";
   static String UPDATE_PROFILE_URL = "account/update_account";
   static String APPOINTMENTS_URL = "appointments";
   static String BOOK_APPOINTMENT_URL = "appointments/bookAppointment";
 
-  static String EMAIL_VERIFIED_URL = BASE_URL+"auth/checkEmailVerified";
-  static String PASSWORD_RECOVERY_URL = BASE_URL+"auth/checkEmailVerified";
+  static String EMAIL_VERIFIED_URL = BASE_URL + "auth/checkEmailVerified";
+  static String PASSWORD_RECOVERY_URL = BASE_URL + "auth/checkEmailVerified";
 
   static String INVOICES_URL = "invoice";
   static String GIFTS_URL = "gift";
   static String ADD_GIFT_URL = "gift/add";
   static String TERMS_URL = "getTermsAndCondition";
-  static String CONTRIBUTION_URL="report/getContribution";
-  static String INTEREST_URL="report/getInterestStatement";
-  static String SIGNUP_FIRST_URL="report/getInterestStatement";
-  static String WITHDRAWAL_URL="report/getWithdrawal";
-  static String ACCOUNT_URL="account";
-  static String UPDATE_APPOINTMENT_URL="appointments/updateAppointmentStatus";
-  static String SECONDARY_MEMBER_URL="account/getSecondaryMemberList";
+  static String CONTRIBUTION_URL = "report/getContribution";
+  static String INTEREST_URL = "report/getInterestStatement";
+  static String SIGNUP_FIRST_URL = "report/getInterestStatement";
+  static String WITHDRAWAL_URL = "report/getWithdrawal";
+  static String ACCOUNT_URL = "account";
+  static String UPDATE_APPOINTMENT_URL = "appointments/updateAppointmentStatus";
+  static String SECONDARY_MEMBER_URL = "account/getSecondaryMemberList";
 
   // Constants For Prefrences
   static String isLogin = "isLogin";
   static String user = "user";
+  static String account = "accountDetails";
   static String isVerified = "isVerified";
   static String isPaymentDone = "isPaymentDone";
   static String id = "_id";
@@ -48,7 +49,8 @@ class GlobalVars {
   static String ENTER_VALID_EMAIL = "Enter valid email";
   static String ENTER_PASSWORD = "Enter valid password";
   static String ENTER_CONFIRM_PASSWORD = "Enter valid confirm password";
-  static String PASSWORD_NOT_MATCHED = "Password and Confirm password not matched";
+  static String PASSWORD_NOT_MATCHED =
+      "Password and Confirm password not matched";
 
   static List<Color> colorLib = [
     GlobalFunc.colorFromHex('#AB5952'),
@@ -64,19 +66,19 @@ class GlobalVars {
   static Color borderColor = GlobalFunc.colorFromHex('#0066FF');
   static Color widgetColor = GlobalFunc.colorFromHex('#0066FF');
   static final Color opacityColor = Color.fromRGBO(123, 82, 171, 0.94);
-  static final MaterialColor primaryColor = MaterialColor(0xFF0066FF,
-      const <int, Color> {
-        50: const Color(0xFF0066FF),
-        100: const Color(0xFF0066FF),
-        200: const Color(0xFF0066FF),
-        300: const Color(0xFF0066FF),
-        400: const Color(0xFF0066FF),
-        500: const Color(0xFF0066FF),
-        600: const Color(0xFF0066FF),
-        700: const Color(0xFF0066FF),
-        800: const Color(0xFF0066FF),
-        900: const Color(0xFF0066FF),
-      });
+  static final MaterialColor primaryColor =
+      MaterialColor(0xFF0066FF, const <int, Color>{
+    50: const Color(0xFF0066FF),
+    100: const Color(0xFF0066FF),
+    200: const Color(0xFF0066FF),
+    300: const Color(0xFF0066FF),
+    400: const Color(0xFF0066FF),
+    500: const Color(0xFF0066FF),
+    600: const Color(0xFF0066FF),
+    700: const Color(0xFF0066FF),
+    800: const Color(0xFF0066FF),
+    900: const Color(0xFF0066FF),
+  });
   static final Color accentColor = Color(0xFF0066FF);
   static final Color primaryColorDark = Colors.blue[900];
   static final Color buttonColor = Color(0xFF0066FF);

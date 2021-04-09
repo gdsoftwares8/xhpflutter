@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xhp/models/account-model.dart';
 import 'package:xhp/models/user.dart';
 
 import 'SharedPref.dart';
@@ -20,6 +21,10 @@ class GlobalFunc {
 
   static logPrint(String msg) {
     log("" + msg);
+  }
+
+  static saveAccountData(AccountModel account, SharedPref sharedPref) async {
+    sharedPref.save(GlobalVars.account, account.toJson());
   }
 
   static saveUserData(
