@@ -6,6 +6,7 @@ import 'package:xhp/SplashScreen.dart';
 import 'package:xhp/pages/dashboard.dart';
 import 'package:xhp/pages/login.dart';
 import 'package:xhp/pages/reports/contributions.dart';
+import 'package:xhp/pages/reports/expenses-statement.dart';
 import 'package:xhp/pages/reports/financial-report.dart';
 import 'package:xhp/pages/settings/profile.dart';
 import 'package:xhp/pages/signup.dart';
@@ -135,6 +136,10 @@ class MyApp extends StatelessWidget {
         "/update-appointment":(context)=>UpdateAppointment(),
         "/non-preferred-partner":(context)=>NonPrefPartner(),
         "/secondary-member":(context)=>SecondaryMember(),
+        "/roll-over":(context)=>RolloverStatement(),
+        "/tax-statement":(context)=>TaxStatement(),
+        "/gift-statement":(context)=>GiftStatement(),
+        "/expenses-statement":(context)=>ExpensesStatement(),
         
 
 

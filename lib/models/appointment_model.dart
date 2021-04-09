@@ -35,6 +35,7 @@ class AppointmentModel {
   String firstName;
   String lastName;
   String memberType;
+  String serviceCategoryName;
   AppointmentModel(
       {this.idAppointment,
         this.fkIdMember,
@@ -69,6 +70,7 @@ class AppointmentModel {
         this.isChargePaid,
         this.isPhiRebate,
         this.company,
+        this.serviceCategoryName,
         this.companyMembershipNo,this.firstName,this.lastName
         });
 
@@ -109,6 +111,7 @@ class AppointmentModel {
     firstName=json['first_name'];
     lastName=json['last_name'];
     memberType=json['member_type'];
+    serviceCategoryName=json['service_category_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -149,6 +152,7 @@ class AppointmentModel {
     data['first_name'] = this.firstName;
     data['last_name']=this.lastName;
     data['member_type']=this.memberType;
+    data['service_category_name']=this.serviceCategoryName;
     return data;
   }
 

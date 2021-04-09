@@ -38,6 +38,7 @@ class _ConfirmInstrucState extends State<ConfirmInstruc> {
               ],
             ),SizedBox(height:100),
              ButtonWidget(width:size.width*.40,text: "Confirm", onPressed: (){
+               Navigator.of(context).pop();
 
                 }),
 SizedBox(height:60),

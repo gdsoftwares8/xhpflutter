@@ -43,6 +43,7 @@ class _ConfirmIFCState extends State<ConfirmIFC> {
               ],
             ),SizedBox(height:80),
              ButtonWidget(width:size.width*.40,text: "Confirm", onPressed: (){
+               Navigator.of(context).pop();
 
                 }),
 SizedBox(height:60),

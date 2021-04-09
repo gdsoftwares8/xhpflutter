@@ -57,6 +57,7 @@ class _PaySubmitState extends State<PaySubmit> {
                 }),
                 SizedBox(height:40),
              ButtonWidget(width:size.width*.40,text: "Confirm", onPressed: (){
+               Navigator.of(context).pop();
 
                 }),
 SizedBox(height:50),

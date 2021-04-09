@@ -42,22 +42,16 @@ class _ManageProfileState extends State<ManageProfile> {
               ButtonWidget(
                   width: size.width * .60, text: "Withdrawal", onPressed: () {}),
               SizedBox(height: 16),
-              ButtonWidget(
-                  width: size.width * .60,
-                  text: "Manage Contributions",
-                  onPressed: () {}),
-              SizedBox(height: 16),
+            
+            
               ButtonWidget(
                   width: size.width * .60, text: "Referral", onPressed: () {}),
-              SizedBox(height: 16),
-              ButtonWidget(
-                  width: size.width * .60,
-                  text: "Manage Contributions",
-                  onPressed: () {}),
+            
+             
               SizedBox(height: 16),
               ButtonWidget(
                   width: size.width * .60, text: "Account Cancellation", onPressed: () {}),
-              SizedBox(height: 60),
+              
              
             ]),
           ),
