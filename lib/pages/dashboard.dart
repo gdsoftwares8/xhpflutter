@@ -16,21 +16,28 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  AccountModel _accountModel;
+  AccountModel _accountModel = new AccountModel();
+  @override
+  void initState() {
+    getAccountDetails(onSucess: () {
+      super.initState();
+    });
+  }
+
   savebool(bool value) async {
     final pref = await SharedPreferences.getInstance();
     pref.setBool(GlobalVars.isLogin, value);
   }
 
-  @override
-  void initState() {
-    getAccountDetails();
-    super.initState();
-  }
-
-  getAccountDetails() async {
-    _accountModel = await ChuckLocalData.getAccount();
-    print(_accountModel);
+  getAccountDetails({onSucess}) async {
+    var result = await ChuckLocalData.getAccount();
+    if (onSucess != null) {
+      setState(() {
+        _accountModel = result;
+      });
+      onSucess('success');
+      print(_accountModel.minimumAccountBalance);
+    }
   }
 
   @override
@@ -83,7 +90,7 @@ class _DashBoardState extends State<DashBoard> {
                 ),
                 SizedBox(height: 5),
                 ButtonWidget(
-                    text: "\$${_accountModel.rolloverAmount ?? ''}",
+                    text: '\$${_accountModel.rolloverAmount}',
                     width: MediaQuery.of(context).size.width * .60,
                     height: 60,
                     onPressed: () {}),
