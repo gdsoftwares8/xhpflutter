@@ -4,6 +4,7 @@ import 'package:xhp/blocs/ChuckUpdateAppointmentbloc.dart';
 import 'package:xhp/models/update_app_response.dart';
 import 'package:xhp/networking/Response.dart';
 import 'package:xhp/utils/GlobalFuncs.dart';
+import 'package:xhp/utils/global_vars.dart';
 import 'package:xhp/widgets/NewTextWidget.dart';
 import 'package:xhp/widgets/TopbarWidget.dart';
 import 'package:xhp/widgets/button_widget.dart';
@@ -19,9 +20,8 @@ class _UpdateAppointmentState extends State<UpdateAppointment> {
   String memberId;
   String remarks;
   ChuckUpdateAppointmentbloc _bloc;
-  bool _loading=false;
+  bool _loading = false;
   String appointmentId;
-
 
   listenStream() {
     _bloc.chuckListStream.listen((Response<UpdateAppointmentResponse> event) {
@@ -68,7 +68,7 @@ class _UpdateAppointmentState extends State<UpdateAppointment> {
 
   @override
   Widget build(BuildContext context) {
-    final size= MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -77,88 +77,107 @@ class _UpdateAppointmentState extends State<UpdateAppointment> {
             SizedBox(
               height: 40,
             ),
-            Column(children:[
-              BoxTextFormWidgett(width:size.width*.60,
-                hintText:"Member Id",
-                  onChanged: (value) {
-                                memberId = value;
-                              },
-              ),
-              SizedBox(height:10),
-                 BoxTextFormWidgett(
-                hintText:"Appointment Id",width:size.width*.60,
-                onChanged: (value){
-                  appointmentId=value;
+            Column(children: [
+              BoxTextFormWidgett(
+                width: size.width * .80,
+                hintText: "Member Id",
+                onChanged: (value) {
+                  memberId = value;
                 },
-              ),SizedBox(height:10),
+              ),
+              SizedBox(height: 10),
+              BoxTextFormWidgett(
+                hintText: "Appointment Id",
+                width: size.width * .80,
+                onChanged: (value) {
+                  appointmentId = value;
+                },
+              ),
+              SizedBox(height: 10),
+              Column(
+                children: [
+                  //TextWidget(
+                  //   text: "Select Status",
+                  //   fontWeight: FontWeight.bold,
+                  // ),
+                  // SizedBox(height:3),
 
-                         Column(
-                                     children: [
-                                       //TextWidget(
-                          //   text: "Select Status",
-                          //   fontWeight: FontWeight.bold,
-                          // ),
-                          // SizedBox(height:3),
-                        
-                                       Padding(
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * .80,
+                      height: MediaQuery.of(context).size.width * .12,
+                      decoration: BoxDecoration(
+                          color: GlobalVars.primaryColor,
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(color: Colors.black)),
+                      child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                             width: MediaQuery.of(context).size.width*.60,
-                        height: MediaQuery.of(context).size.width*.12,
-                          
-                          decoration: BoxDecoration(color:Colors.grey[300],borderRadius: BorderRadius.circular(25),border:Border.all(color:Colors.black) ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DropdownButton<String>(
-                              isExpanded: true,
-                              
-                            hint: TextWidget(text: "Select Status",fontWeight: FontWeight.bold,),
-                              value: _selectedText,
-                              items: <String>['Confirm', 'Pending', 'Cancel','Reschedule']
-                                  .map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: TextWidget(text: value,color: Colors.black,fontWeight: FontWeight.bold,),
-                                );
-                              }).toList(),
-                              onChanged: (String val) {
-                                setState(() {
-                                  _selectedText = val;
-                                });
-                              },
-                            ),
+                        child: DropdownButton<String>(
+                          dropdownColor: GlobalVars.primaryColor,
+                          isExpanded: true,
+                          hint: TextWidget(
+                            text: "Select Status",
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
+                        
+                          value: _selectedText,
+                          items: <String>[
+                            'Confirm',
+                            'Pending',
+                            'Cancel',
+                            'Reschedule'
+                          ].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: TextWidget(
+                                text: value,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (String val) {
+                            setState(() {
+                              _selectedText = val;
+                            });
+                          },
                         ),
                       ),
-                                     ],
-                                   ),SizedBox(height:10),
-                                    BoxTextFormWidgett(
-                hintText:"Remarks",width:size.width*.60,
-                onChanged: (String value){
-                  remarks=value;
-
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              BoxTextFormWidgett(
+                hintText: "Remarks",
+                width: size.width * .80,
+                onChanged: (String value) {
+                  remarks = value;
                 },
               ),
-SizedBox(height:50),
-ButtonWidget(text: "Update", onPressed: (){
-    _bloc.fetchUpdateAppointment(appointmentId, memberId, _selectedText, remarks);
+              SizedBox(height: 50),
+              ButtonWidget(
+                  text: "Update",
+                  onPressed: () {
+                    _bloc.fetchUpdateAppointment(
+                        appointmentId, memberId, _selectedText, remarks);
 
-                                        Fluttertoast.showToast(
-                                          msg: "Updated Successfully !",
-                                        );
-                                        Navigator.of(context)
-                                            .pushReplacementNamed('/appointment-status');
-
-})
-
+                    Fluttertoast.showToast(
+                      msg: "Updated Successfully !",
+                    );
+                    Navigator.of(context)
+                        .pushReplacementNamed('/appointment-status');
+                  })
             ])
-
           ]),
         ),
       ),
     );
   }
-    updateLoadingState(bool loading) {
+
+  updateLoadingState(bool loading) {
     setState(() {
       this._loading = loading;
     });

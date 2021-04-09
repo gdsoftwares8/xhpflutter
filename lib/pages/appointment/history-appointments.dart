@@ -147,9 +147,9 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
         initiallyExpanded: true,
         title: Row(
           children: <Widget>[
-            Expanded(child: TextWidget(text:model.firstName+" "+model.lastName)),
-            Text(
-             model.idAppointment.toString(),
+            Expanded(child: TextWidget(text:model.serviceCategoryName)),
+            Text(model.firstName+" "+model.lastName
+             ,
               style: Theme.of(context).textTheme.caption,
             ),
           ],
@@ -184,7 +184,7 @@ class _AppointmentHistoryState extends State<AppointmentHistory> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextWidget(text: "Service"),
-                      TextWidget(text: 'Dental')
+                      TextWidget(text: model.serviceCategoryName)
                     ]),
 
                 DividerWidget(),

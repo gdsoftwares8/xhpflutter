@@ -23,12 +23,12 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
             TextWidget(text: "Appointment for Peter Georg",),
             SizedBox(height:40),
             ButtonWidget(width:size.width*.60,text: "Appointment Status", onPressed: (){
-              Navigator.pushNamed(context, "update-appointment");
+              Navigator.pushNamed(context, "/update-appointment");
 
             }),
           SizedBox(height:40),
             ButtonWidget(width:size.width*.60,text: "Reschedule Status", onPressed: (){
-              Navigator.pushNamed(context, "update-appointment");
+              Navigator.pushNamed(context, "/update-appointment");
 
             }),SizedBox(height:40),
             ButtonWidget(width:size.width*.60,text: "Cancel Status", onPressed: (){

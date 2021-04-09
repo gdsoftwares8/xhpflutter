@@ -408,6 +408,7 @@ class _PointIdState extends State<PointId> {
                 color: Colors.grey[300],
                 height: size.height * .50,
               ),
+              SizedBox(height:8),
                Row(
                   children: [
                     Checkbox(
@@ -419,15 +420,22 @@ class _PointIdState extends State<PointId> {
                             
                           });
                         }),
+                        SizedBox(height:5),
                     Container(
                       width: size.width*.80,
                    
                       
-                      child: TextWidget( maxLines: 2,
-                              text: 'By clicking Submit, I confirm that consent has been obtained from the document holder to check the identifying information with the Issuer/Official record holder for the purpose of confirming their identity.I can confirm that the details provided are correct. ',
+                      child: Column(
+                        children: [
+                          TextWidget( maxLines: 2,
+                                  text: 'By clicking Submit, I confirm that consent has been obtained from the document holder to check',
+                                
+                             
+                                ),
+                                TextWidget(text: 'the identifying information with the Issuer/Official record holder for the purpose of confirming their identity.I can confirm that the details provided are correct.',)
+                        ],
+                      ),
                             
-                         
-                            ),
                     ),
                      
                   ],

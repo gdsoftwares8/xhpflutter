@@ -37,9 +37,10 @@ class _ReportMainState extends State<ReportMain> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ButtonWidget(width:size.width*.42,height:60, textAlign:TextAlign.center,text: "Tax Statement", onPressed: (){
-
+Navigator.pushNamed(context, "/tax-statement");
                 }),
                  ButtonWidget(width:size.width*.42,height:60, textAlign:TextAlign.center,text: "Rollover Amount", onPressed: (){
+                   Navigator.pushNamed(context, "/roll-over");
 
             }),
               ],
@@ -49,9 +50,10 @@ class _ReportMainState extends State<ReportMain> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ButtonWidget(width:size.width*.42,height:60, textAlign:TextAlign.center,text: "Expenses Statement", onPressed: (){
-
+  Navigator.pushNamed(context, "/expenses-statement");
                 }),
                  ButtonWidget(width:size.width*.42,height:60, textAlign:TextAlign.center,text: "Gift Issued", onPressed: (){
+                   Navigator.pushNamed(context, "/gift-statement");
 
             }),
               ],

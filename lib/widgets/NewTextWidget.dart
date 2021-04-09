@@ -156,6 +156,7 @@ class BoxTextFormWidgett extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: keyboardType,
         enabled: enabled,
+        style: TextStyle(color: Colors.white),
          decoration: 
          InputDecoration(
            filled: true,
