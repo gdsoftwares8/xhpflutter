@@ -19,7 +19,7 @@ class _DashBoardState extends State<DashBoard> {
   AccountModel _accountModel = new AccountModel();
   @override
   void initState() {
-    getAccountDetails(onSucess: () {
+    getAccountDetails(onSucess: (val) {
       super.initState();
     });
   }
